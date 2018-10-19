@@ -64,7 +64,7 @@ export class AppComponent {
                                 console.log('Second callback successful!!', notif2);
                             }
                         },
-                        image: '/assets/images/yo-mangarized-100x100.png',
+                        image: 'assets/images/yo-mangarized-100x100.png',
                     });
                 }
             }
