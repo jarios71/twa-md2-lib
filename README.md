@@ -4,6 +4,8 @@ Modules made for angular material. The set includes:
 
 - twa-md2-dialogs
 
+[Online demo](https://jarios71.github.io/twa-md2-lib/)
+
 # twa-md2-dialogs
 
 This module makes it easy to generate alert dialogs, confirmation or data collection.
