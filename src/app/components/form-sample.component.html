@@ -1,0 +1,21 @@
+<div fxLayout="row" fxLayoutGap="30px">
+    <div fxFlex>
+        <div fxLayout="row" fxLayoutGap="20px">
+            <h2>Dialog with simple form</h2>
+            <div fxLayout="column" fxLayoutAlign="center center">
+                <button mat-raised-button color="primary" (click)="showDemoForm()">Test dialog</button>
+            </div>
+        </div>
+        <div fxLayout="row">
+            <handy-syntax-highlighter [language]="'typescript'" [content]="demoForm" fxFlex>
+            </handy-syntax-highlighter>
+        </div>
+    </div>
+    <div *ngIf="responseForm > ''" fxFlex>
+        <div fxLayout="row" fxLayoutGap="20px">
+            <h2>Resultado</h2>
+        </div>
+        <handy-syntax-highlighter [language]="'json'" [content]="responseForm">
+        </handy-syntax-highlighter>
+    </div>
+</div>

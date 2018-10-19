@@ -1,27 +1,138 @@
-# LibTwaMdDialogs
+# twa-modules
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.7.
+Modules made for angular material. The set includes:
 
-## Development server
+- twa-md2-dialogs
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+# twa-md2-dialogs
 
-## Code scaffolding
+This module makes it easy to generate alert dialogs, confirmation or data collection.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+It allows the generation of dynamic forms based on JSON objects, including basic validations and layout options.
+
+## Installation
+
+npm way:
+
+npm i twa-md2-dialogs --save
+
+## Usage
+
+First, include the module in your app module:
+
+```typescript
+import { TWADialogsModule } from 'twa-md2-dialogs';
+
+@NgModule({
+    imports: [
+        ...
+        TWADialogsModule,
+        ...
+    ],
+    ...
+})
+```
+
+And you can start to launch dialogs:
+
+```typescript
+import { TWADialogsModule } from 'twa-md2-dialogs';
+
+export class AppComponent {
+
+    constructor(
+        private dialogsService: TWADialogsModule
+    ) {
+    }
+
+    showAlertDialog() {
+        this.dialogsService
+            .confirm(
+                'Alert dialog',
+                'This dialog only contains a text and a closing button.',
+                'Close'
+            )
+            .subscribe(res => {
+                console.log(res);
+            }
+        );
+    }
+
+    showPromptDialog() {
+        this.dialogsService
+            .prompt(
+                'Dialog with simple form',
+                'Here we show a simple form',
+                [
+                    {
+                        key: 'name',
+                        label: 'Name',
+                        type: 'text',
+                        value: '',
+                        fxFlex: '100%',
+                    },
+                    {
+                        key: 'sex',
+                        label: 'Sex',
+                        type: 'select',
+                        value: '',
+                        fxFlex: '50%',
+                        options: [
+                            {
+                                label: 'Male',
+                                value: '1'
+                            },
+                            {
+                                label: 'Female',
+                                value: '2'
+                            },
+                        ]
+                    },
+                    {
+                        key: 'age',
+                        label: 'Age',
+                        type: 'number',
+                        value: '',
+                        fxFlex: '50%'
+                    },
+                    {
+                        key: 'field1',
+                        label: 'Autocomplete field',
+                        type: 'text',
+                        value: '',
+                        fxFlex: '100%',
+                        autocomplete: {
+                            forceSelect: true,
+                            options: [
+                                'first option',
+                                'second option',
+                                'third option',
+                                'fourth option'
+                            ]
+                        }
+                    },
+                    {
+                        key: 'date',
+                        label: 'Date',
+                        type: 'date',
+                        value: '',
+                        fxFlex: '100%'
+                    },
+                ],
+                'Send',
+                'Cancel')
+            .subscribe(res => {
+                if (res) {
+                    console.log(res);
+                }
+            }
+        );
+    }
+
+```
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Run `ng build` to build the sample. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Run `ng build --project twa-md2-dialogs` to build the module. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.

@@ -1,0 +1,97 @@
+<p>{{ title }}</p>
+<p>{{ message }}</p>
+
+<form novalidate (ngSubmit)="onSubmit(form.value)" [formGroup]="form" fxLayout="column">
+    <div *ngFor="let prop of fields" fxFlex>
+        <div [ngSwitch]="prop.type">
+            <div *ngSwitchCase="'text'" fxFlex="{{prop.fxFlex||'none'}}">
+                <div *ngIf="typeof prop.autocomplete === 'undefined'">
+                    <mat-form-field fxFlex="{{prop.fxFlex||'none'}}">
+                        <!-- <input matInput placeholder="{{prop.label}}" -->
+                        <input matInput placeholder="ooohh..."
+                            [formControlName]="prop.key"
+                            [id]="prop.key" [type]="prop.type" fxFlex="{{prop.fxFlex||'none'}}">
+                    </mat-form-field>
+                </div>
+                <div *ngIf="typeof prop.autocomplete !== 'undefined'">
+                    <mat-form-field fxFlex="{{prop.fxFlex||'none'}}">
+                        <input matInput placeholder="'SORPRESA!!'"
+                            [formControlName]="prop.key"
+                            [matAutocomplete]="auto"
+                            <!-- [matAutocomplete]="auto[{{prop.key}}]" -->
+                            [id]="prop.key" [type]="prop.type" fxFlex="{{prop.fxFlex||'none'}}">
+                    </mat-form-field>
+                    <mat-autocomplete #auto="matAutocomplete">
+                        <mat-option *ngFor="let option of prop.autocomplete.options" [value]="option">
+                        {{ option }}
+                        </mat-option>
+                    </mat-autocomplete>
+                </div>
+            </div>
+            <div *ngSwitchCase="'textarea'" fxFlex="{{prop.fxFlex||'none'}}">
+                <mat-form-field fxFlex="{{prop.fxFlex||'none'}}">
+                      <textarea matInput placeholder="{{prop.label}}" rows="{{prop.rows||'3'}}" autosize
+                      [formControlName]="prop.key"
+                      [id]="prop.key" [type]="prop.type"></textarea>
+                </mat-form-field>
+            </div>
+            <div *ngSwitchCase="'number'" fxFlex="{{prop.fxFlex||'none'}}">
+                <mat-form-field fxFlex="{{prop.fxFlex||'none'}}">
+                      <input matInput placeholder="{{prop.label}}"
+                      [formControlName]="prop.key"
+                      [id]="prop.key" [type]="prop.type">
+                </mat-form-field>
+            </div>
+            <div *ngSwitchCase="'date'" fxFlex="{{prop.fxFlex||'none'}}">
+                <mat-form-field fxFlex="{{prop.fxFlex||'none'}}">
+                      <input matInput [matDatepicker]=picker placeholder="{{prop.label}}"
+                      [formControlName]="prop.key"
+                      [id]="prop.key">
+                      <mat-datepicker #picker></mat-datepicker>
+                      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                </mat-form-field>
+            </div>
+            <div *ngSwitchCase="'time'" fxFlex="{{prop.fxFlex||'none'}}">
+                <mat-form-field fxFlex="{{prop.fxFlex||'none'}}">
+                      <input matInput [ngxTimePicker]=tpicker placeholder="{{prop.label}}"
+                      [formControlName]="prop.key"
+                      [id]="prop.key">
+                      <ngx-material-timepicker #tpicker></ngx-material-timepicker>
+                </mat-form-field>
+            </div>
+
+            <div *ngSwitchCase="'radio'" fxFlex="{{prop.fxFlex||'none'}}" fxLayout="column">
+                <div _ngcontent-c20="" style="height: 20px;" fxFlex="{{prop.fxFlex||'none'}}">
+                    <label _ngcontent-c20="" style="transform: translateY(-1.28125em) scale(0.75) perspective(100px) translateZ(0.001px);-ms-transform: translateY(-1.28125em) scale(0.75);width: 133.33333333%;margin: 14px 0 0 -66px;font-weight: 100;color: #666;">
+                      {{prop.label}}
+                    </label>
+                </div>
+		<mat-radio-group [formControlName]="prop.key" [name]="prop.key" fxLayout="column" fxFlex="{{prop.fxFlex||'none'}}">
+                    <mat-radio-button [value]="option.value" *ngFor="let option of prop.options">
+                        {{option.label}}
+                    </mat-radio-button>
+                </mat-radio-group>
+            </div>
+
+            <div *ngSwitchCase="'select'" fxFlex="{{prop.fxFlex||'none'}}">
+                <mat-form-field fxFlex="{{prop.fxFlex||'none'}}">
+                    <mat-select [formControlName]="prop.key" placeholder="{{prop.label}}">
+                        <mat-option *ngFor="let option of prop.options" [value]="option.value">
+                            {{ option.label }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="error" *ngIf="form.get(prop.key).invalid && (form.get(prop.key).dirty || form.get(prop.key).touched)">
+            <mat-error *ngIf="form.get(prop.key).errors.required">
+              El campo {{ prop.label }} es obligatorio.
+            </mat-error>
+        </div>
+    </div>
+</form>
+
+<button type="button" mat-raised-button
+    (click)="send()">{{ okText }}</button>
+<button type="button" mat-button
+    (click)="dialogRef.close(false)">{{ cancelText }}</button>

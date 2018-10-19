@@ -1,0 +1,25 @@
+@import "./theme";
+
+.background-primary {
+    background-color: mat-color($primary);
+}
+
+.background-accent {
+    background-color: mat-color($accent);
+}
+
+// .dlg-footer.background-primary::before {
+.dlg-content span.or {
+    position: absolute;
+    width: 30px;
+    background: #fff;
+    color: mat-color($primary);
+    // font-weight: bold;
+    font-family: Roboto;
+    font-size: 24px;
+    text-align: center;
+    border-radius: 20px;
+    line-height: 20px;
+    border: 2px solid mat-color($primary);
+    margin: 214px 0 0 0;    float: left;
+}

@@ -1,0 +1,12 @@
+{
+  "name": "twa-md2-dialogs",
+  "version": "0.0.35",
+  "whitelistedNonPeerDependencies": {
+    "ngx-material-timepicker-noload": "^2.6.0"
+  },
+  "peerDependencies": {
+    "@angular/common": "^6.0.0-rc.0 || ^6.0.0",
+    "@angular/core": "^6.0.0-rc.0 || ^6.0.0",
+    "ngx-material-timepicker": "^2.6.0"
+  }
+}

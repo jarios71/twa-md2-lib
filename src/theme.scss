@@ -1,0 +1,28 @@
+@import '~@angular/material/theming';
+
+@include mat-core();
+
+$primary: mat-palette($mat-orange, 800);
+// $accent:  mat-palette($mat-light-green, 600, 100, 800);
+$accent:  mat-palette($mat-deep-orange, 600, 100, 800);
+$warn:    mat-palette($mat-red, 600);
+$theme: mat-light-theme($primary, $accent, $warn);
+
+@include angular-material-theme($theme);
+
+$dark-primary: mat-palette($mat-orange, 800);
+$dark-accent:  mat-palette($mat-light-green, 600, 100, 800);
+$dark-warn:    mat-palette($mat-red, 600);
+$dark-theme: mat-dark-theme($primary, $accent, $warn);
+
+body {
+    font-family: Roboto Light, "Helvetica Neue", sans-serif;
+}
+
+.light-theme {
+    @include angular-material-theme($theme);
+}
+
+.dark-theme {
+    @include angular-material-theme($dark-theme);
+}

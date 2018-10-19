@@ -1,0 +1,7 @@
+import { PipeTransform } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
+export declare class StyleSanitizerPipe implements PipeTransform {
+    private domSanitizer;
+    constructor(domSanitizer: DomSanitizer);
+    transform(value: string): any;
+}

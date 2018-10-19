@@ -3,17 +3,21 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "lib-twa-md-dialogs": {
+    "lib-twa-md": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
       "prefix": "ld",
-      "schematics": {},
+      "schematics": {
+        "@schematics/angular:component": {
+          "styleext": "scss"
+        }
+      },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/lib-twa-md-dialogs",
+            "outputPath": "dist/lib-twa-md",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -23,7 +27,8 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "src/styles.scss"
             ],
             "scripts": []
           },
@@ -50,18 +55,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "lib-twa-md-dialogs:build"
+            "browserTarget": "lib-twa-md:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "lib-twa-md-dialogs:build:production"
+              "browserTarget": "lib-twa-md:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "lib-twa-md-dialogs:build"
+            "browserTarget": "lib-twa-md:build"
           }
         },
         "test": {
@@ -95,7 +100,7 @@
         }
       }
     },
-    "lib-twa-md-dialogs-e2e": {
+    "lib-twa-md-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "architect": {
@@ -103,11 +108,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "lib-twa-md-dialogs:serve"
+            "devServerTarget": "lib-twa-md:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "lib-twa-md-dialogs:serve:production"
+              "devServerTarget": "lib-twa-md:serve:production"
             }
           }
         },
@@ -115,6 +120,86 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": "e2e/tsconfig.e2e.json",
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "twa-md2-dialogs": {
+      "root": "projects/twa-md2-dialogs",
+      "sourceRoot": "projects/twa-md2-dialogs/src",
+      "projectType": "library",
+      "prefix": "tm",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/twa-md2-dialogs/tsconfig.lib.json",
+            "project": "projects/twa-md2-dialogs/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "project": "projects/twa-md2-dialogs/ng-package.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/twa-md2-dialogs/src/test.ts",
+            "tsConfig": "projects/twa-md2-dialogs/tsconfig.spec.json",
+            "karmaConfig": "projects/twa-md2-dialogs/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/twa-md2-dialogs/tsconfig.lib.json",
+              "projects/twa-md2-dialogs/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "twa-md2-notifications": {
+      "root": "projects/twa-md2-notifications",
+      "sourceRoot": "projects/twa-md2-notifications/src",
+      "projectType": "library",
+      "prefix": "tm",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/twa-md2-notifications/tsconfig.lib.json",
+            "project": "projects/twa-md2-notifications/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "project": "projects/twa-md2-notifications/ng-package.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/twa-md2-notifications/src/test.ts",
+            "tsConfig": "projects/twa-md2-notifications/tsconfig.spec.json",
+            "karmaConfig": "projects/twa-md2-notifications/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/twa-md2-notifications/tsconfig.lib.json",
+              "projects/twa-md2-notifications/tsconfig.spec.json"
+            ],
             "exclude": [
               "**/node_modules/**"
             ]

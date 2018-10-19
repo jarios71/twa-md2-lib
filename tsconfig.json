@@ -15,6 +15,20 @@
     "lib": [
       "es2017",
       "dom"
-    ]
+    ],
+    "paths": {
+      "twa-md2-dialogs": [
+        "dist/twa-md2-dialogs"
+      ],
+      "twa-md2-dialogs/*": [
+        "dist/twa-md2-dialogs/*"
+      ],
+      "twa-md2-notifications": [
+        "dist/twa-md2-notifications"
+      ],
+      "twa-md2-notifications/*": [
+        "dist/twa-md2-notifications/*"
+      ]
+    }
   }
 }
