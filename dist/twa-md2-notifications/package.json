@@ -1,0 +1,21 @@
+{
+  "name": "twa-md2-notifications",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "@angular/common": "^6.0.0-rc.0 || ^6.0.0",
+    "@angular/core": "^6.0.0-rc.0 || ^6.0.0"
+  },
+  "main": "bundles/twa-md2-notifications.umd.js",
+  "module": "fesm5/twa-md2-notifications.js",
+  "es2015": "fesm2015/twa-md2-notifications.js",
+  "esm5": "esm5/twa-md2-notifications.js",
+  "esm2015": "esm2015/twa-md2-notifications.js",
+  "fesm5": "fesm5/twa-md2-notifications.js",
+  "fesm2015": "fesm2015/twa-md2-notifications.js",
+  "typings": "twa-md2-notifications.d.ts",
+  "metadata": "twa-md2-notifications.metadata.json",
+  "sideEffects": false,
+  "dependencies": {
+    "tslib": "^1.9.0"
+  }
+}

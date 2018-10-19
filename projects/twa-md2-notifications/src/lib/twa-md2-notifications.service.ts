@@ -19,20 +19,20 @@ export class TwaMd2NotificationsService {
 
     constructor() { }
 
-    add(notif: INotif) {
+    public add(notif: INotif) {
         console.log(notif);
         this.queue.push(notif);
     }
 
-    remove(idx: number) {
+    public remove(idx: number) {
         this.queue.splice(idx, 1);
     }
 
-    get(): Observable<INotif[]> {
+    public get(): Observable<INotif[]> {
         return of(this.queue);
     }
 
-    clicked(notif: INotif) {
+    public clicked(notif: INotif) {
         console.log(notif);
     }
 
