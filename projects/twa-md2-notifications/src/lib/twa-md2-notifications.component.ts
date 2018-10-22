@@ -1,6 +1,7 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ElementRef } from '@angular/core';
 import { TwaMd2NotificationsService, INotif } from './twa-md2-notifications.service';
-import { Observable } from 'rxjs';
+import { Observable, fromEvent } from 'rxjs';
+import { delay, tap } from 'rxjs/operators';
 // import { EventEmitter } from 'protractor';
 
 @Component({
@@ -63,15 +64,49 @@ export class TwaMd2NotificationsComponent implements OnInit {
     @Input() notifsService: TwaMd2NotificationsService;
     @Output() panelClicked: EventEmitter<any> = new EventEmitter();
 
+    private globalClick: Observable<Event>;
+    private listening: boolean;
+
     isOpened = false;
     notifs: INotif[];
 
-    constructor() { }
+    constructor(
+        private _elRef: ElementRef,
+    ) { }
 
     ngOnInit() {
         this.notifsService.get().subscribe(data => {
             this.notifs = data;
         });
+        this.globalClick = fromEvent(document, 'click').pipe(
+            delay(1),
+            tap(() => {
+                this.listening = true;
+            })
+        );
+        this.globalClick.subscribe((event: MouseEvent) => {
+            this.onGlobalClick(event);
+        });
+    }
+
+    onGlobalClick(event: MouseEvent) {
+        if (event instanceof MouseEvent && this.listening === true) {
+            if (this.isDescendant(this._elRef.nativeElement, event.target) !== true) {
+                this.isOpened = false;
+            }
+        }
+    }
+
+    isDescendant(parent, child) {
+        let node = child;
+        while (node !== null) {
+            if (node === parent) {
+                return true;
+            } else {
+                node = node.parentNode;
+            }
+        }
+        return false;
     }
 
     notifClicked() {
