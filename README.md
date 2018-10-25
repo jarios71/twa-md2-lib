@@ -192,4 +192,6 @@ export class AppComponent {
 
 Run `ng build` to build the sample. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
-Run `ng build --project twa-md2-dialogs` to build the module. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Run `ng build --project twa-md2-dialogs` to build the dialogs module. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+
+Run `ng build --project twa-md2-notifications` to build the notifications module. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
