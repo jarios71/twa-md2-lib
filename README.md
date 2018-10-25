@@ -3,6 +3,7 @@
 Modules made for angular material. The set includes:
 
 - twa-md2-dialogs
+- twa-md2-notifications
 
 [Online demo](https://jarios71.github.io/twa-md2-lib/)
 
