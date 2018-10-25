@@ -4,6 +4,7 @@ export declare class TwaMd2NotificationsComponent implements OnInit {
     private _elRef;
     notifsService: TwaMd2NotificationsService;
     panelClicked: EventEmitter<any>;
+    notifPanel: any;
     private globalClick;
     private listening;
     isOpened: boolean;
@@ -11,6 +12,7 @@ export declare class TwaMd2NotificationsComponent implements OnInit {
     constructor(_elRef: ElementRef);
     ngOnInit(): void;
     onGlobalClick(event: MouseEvent): void;
+    hasClass(elem: any, className: any): boolean;
     isDescendant(parent: any, child: any): boolean;
     notifClicked(): void;
     notifPanelClicked(notif: INotif, notifIdx: number): void;

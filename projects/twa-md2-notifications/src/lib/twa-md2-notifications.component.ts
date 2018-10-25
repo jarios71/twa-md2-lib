@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, ElementRef } from '@angular/core';
+import { Component, OnInit, Input, Output, ViewChild, EventEmitter, ElementRef } from '@angular/core';
 import { TwaMd2NotificationsService, INotif } from './twa-md2-notifications.service';
 import { Observable, fromEvent } from 'rxjs';
 import { delay, tap } from 'rxjs/operators';
@@ -17,29 +17,32 @@ import { delay, tap } from 'rxjs/operators';
             [cdkConnectedOverlayOpen]="isOpened"
             (detach)="connectedOverlayDetach()"
         >
-            <div class="notifPanelContainer" fxLayoutGap="12px">
-                <div fxLayout="row" class="panelTitle">
-                    <h3 fxFlex>Notifications</h3>
-                    <button mat-icon-button (click)="clearPanels()">
-                        <mat-icon>clear_all</mat-icon>
+            <div #notifPanelContainer class="notifPanelContainer twa-notif" fxLayoutGap="12px">
+                <div fxLayout="row" class="panelTitle twa-notif">
+                    <h3 class="twa-notif" fxFlex>Notifications</h3>
+                    <button class="twa-notif" mat-icon-button (click)="clearPanels()">
+                        <mat-icon class="twa-notif">clear_all</mat-icon>
                     </button>
                 </div>
-                <mat-card *ngFor="let notif of notifs; let i = index" fxLayout="row" class="notif" (click)="notifPanelClicked(notif, i)">
-                    <div class="cicon">
-                        <mat-icon class="panelIcon" *ngIf="!notif.image">notifications</mat-icon>
-                        <img class="notifImage" *ngIf="notif.image" [src]="notif.image" />
+                <mat-card *ngFor="let notif of notifs; let i = index" 
+                          fxLayout="row"
+                          class="notif twa-notif"
+                          (click)="notifPanelClicked(notif, i)">
+                    <div class="cicon twa-notif">
+                        <mat-icon class="panelIcon twa-notif" *ngIf="!notif.image">notifications</mat-icon>
+                        <img class="notifImage twa-notif" *ngIf="notif.image" [src]="notif.image" />
                     </div>
-                    <div class="ccontent" fxLayout="column">
-                        <div fxLayout="row">
-                            <h4 fxFlex>{{notif.title}}</h4>
-                            <button class="close" mat-icon-button (click)="removePanel(i)">
-                                <mat-icon>close</mat-icon>
+                    <div class="ccontent twa-notif" fxLayout="column">
+                        <div fxLayout="row" class="twa-notif">
+                            <h4 class="twa-notif" fxFlex>{{notif.title}}</h4>
+                            <button class="close twa-notif" mat-icon-button (click)="removePanel(i)">
+                                <mat-icon class="twa-notif">close</mat-icon>
                             </button>
                         </div>
-                        <p fxFlex>{{notif.message}}</p>
+                        <p class="twa-notif" fxFlex>{{notif.message}}</p>
                     </div>
                 </mat-card>
-                <div class="notifPanelHideButton" (click)="isOpened = false" fxLayout="row" fxLayoutAlign="center center">
+                <div class="notifPanelHideButton twa-notif" (click)="isOpened = false" fxLayout="row" fxLayoutAlign="center center">
                     <mat-icon>expand_less</mat-icon>
                 </div>
             </div>
@@ -63,6 +66,8 @@ import { delay, tap } from 'rxjs/operators';
 export class TwaMd2NotificationsComponent implements OnInit {
     @Input() notifsService: TwaMd2NotificationsService;
     @Output() panelClicked: EventEmitter<any> = new EventEmitter();
+
+    @ViewChild('notifPanelContainer') notifPanel;
 
     private globalClick: Observable<Event>;
     private listening: boolean;
@@ -90,11 +95,27 @@ export class TwaMd2NotificationsComponent implements OnInit {
     }
 
     onGlobalClick(event: MouseEvent) {
-        if (event instanceof MouseEvent && this.listening === true) {
-            if (this.isDescendant(this._elRef.nativeElement, event.target) !== true) {
+        if (event instanceof MouseEvent &&
+            this.listening === true &&
+            typeof this.notifPanel !== 'undefined' &&
+            this.notifPanel !== undefined) {
+            console.log(this.notifPanel.nativeElement);
+            console.log(this._elRef.nativeElement);
+            console.log(event.target);
+            if (this.isDescendant(this.notifPanel.nativeElement, event.target) !== true &&
+                this.isDescendant(this._elRef.nativeElement, event.target) !== true &&
+                this._elRef.nativeElement !== event.target &&
+                !this.hasClass(event.target, 'twa-notif')) {
                 this.isOpened = false;
             }
         }
+    }
+
+    hasClass(elem, className) {
+        if (elem.classList.contains(className)) {
+            return true;
+        }
+        return false;
     }
 
     isDescendant(parent, child) {
