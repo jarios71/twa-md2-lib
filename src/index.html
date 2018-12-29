@@ -1,18 +1,28 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>LibTwaMdDialogs</title>
-  <base href="/">
+    <head>
+        <meta charset="utf-8">
+        <title>LibTwaMdDialogs</title>
+        <base href="/">
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link rel="stylesheet" href="assets/prism.js/prism.css">
-  <script src="assets/prism.js/prism.js"></script>
-</head>
-<body>
-  <ld-root></ld-root>
-</body>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" type="image/x-icon" href="favicon.ico">
+        <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="assets/prism.js/prism.css">
+        <script src="assets/prism.js/prism.js"></script>
+        <script>
+            // See http://www.backalleycoder.com/2016/05/13/sghpa-the-single-page-app-hack-for-github-pages/
+            (function(){
+            var redirect = sessionStorage.redirect;
+            delete sessionStorage.redirect;
+            if (redirect && redirect != location.href) {
+                history.replaceState(null, null, redirect);
+            }
+            })();
+        </script>
+    </head>
+    <body>
+        <ld-root></ld-root>
+    </body>
 </html>
