@@ -27,11 +27,11 @@ export declare class TWAPromptDialogComponent implements OnInit {
     constructor(dialogRef: MatDialogRef<TWAPromptDialogComponent>);
     ngOnInit(): void;
     getFormGroupEvent(formGroup: any, i: any): any;
-    private _filterValues(value, options);
+    private _filterValues;
     getFormSubmitEv(): EventEmitter<any>;
     send(): void;
     acClick(field: any, event: any): void;
     acCheckBlur(field: any): void;
     submitForm(form: any): void;
-    private mapValidators(validators);
+    private mapValidators;
 }

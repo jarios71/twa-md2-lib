@@ -1,0 +1,22 @@
+.header h1 {
+    margin: 8px 0;
+}
+
+mat-option.mat-selected {
+    background: transparent!important;
+}
+
+mat-option.mat-selected.selected {
+    /* background-color: #ccc; */
+    background-color: rgba(0, 0, 0, 0.04)!important;
+    padding-right: 0;
+}
+
+mat-option.selected mat-icon {
+    /* margin-right: 0; */
+    margin-left: 8px;
+}
+
+.json span.token.string {
+    white-space: pre-wrap!important;
+}

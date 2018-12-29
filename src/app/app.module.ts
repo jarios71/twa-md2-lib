@@ -15,6 +15,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material';
 import { MatTableModule } from '@angular/material/table';
+import { MatTabsModule } from '@angular/material/tabs';
 import { MatSortModule } from '@angular/material';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -32,7 +33,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { Ng2HandySyntaxHighlighterModule } from 'ng2-handy-syntax-highlighter';
 
 import { TWADialogsModule, TWAConfirmDialogComponent, TWAPromptDialogComponent } from 'twa-md2-dialogs';
-import { TwaMd2NotificationsModule } from 'twa-md2-notifications';
+import { TWAMd2NotificationsModule } from 'twa-md2-notifications';
+import { TWAFilterEditorModule } from 'twa-md2-filter-editor';
 
 import { appRoutes } from './app.routing';
 import { AppComponent } from './app.component';
@@ -41,6 +43,10 @@ import { AlertSampleComponent } from './components/alert-sample.component';
 import { ConfirmSampleComponent } from './components/confirm-sample.component';
 import { AutocompleteSampleComponent } from './components/autocomplete-sample.component';
 import { FormSampleComponent } from './components/form-sample.component';
+import { FilterEditorSampleComponent } from './components/filter-editor-sample.component';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+
+import { EllipsisPipe } from './pipes/ellipsis.pipe';
 
 @NgModule({
   declarations: [
@@ -48,15 +54,18 @@ import { FormSampleComponent } from './components/form-sample.component';
     AlertSampleComponent,
     ConfirmSampleComponent,
     AutocompleteSampleComponent,
-    FormSampleComponent
-
+    FormSampleComponent,
+    FilterEditorSampleComponent,
+    EllipsisPipe,
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(appRoutes),
     BrowserAnimationsModule,
     TWADialogsModule,
-    TwaMd2NotificationsModule,
+    HttpClientModule,
+    TWAMd2NotificationsModule,
+    TWAFilterEditorModule,
     MatButtonModule,
     MatMenuModule,
     MatCardModule,
@@ -71,6 +80,7 @@ import { FormSampleComponent } from './components/form-sample.component';
     MatTooltipModule,
     MatSnackBarModule,
     MatTableModule,
+    MatTabsModule,
     MatSortModule,
     MatPaginatorModule,
     MatSidenavModule,
@@ -85,7 +95,9 @@ import { FormSampleComponent } from './components/form-sample.component';
     FlexLayoutModule,
     Ng2HandySyntaxHighlighterModule,
   ],
-  providers: [],
+  providers: [
+      HttpClient,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

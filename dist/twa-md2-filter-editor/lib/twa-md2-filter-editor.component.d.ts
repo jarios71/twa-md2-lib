@@ -1,0 +1,44 @@
+import { OnInit, ElementRef, EventEmitter } from '@angular/core';
+import { FilterEditorOptions, FieldFilter, FilterEditorConfig } from './twa-md2-filter-editor.interface';
+export declare class TWAFilterEditorComponent implements OnInit {
+    options: FilterEditorOptions;
+    config: FilterEditorConfig;
+    change: EventEmitter<any[]>;
+    fileSet: ElementRef;
+    filterOptions: FilterEditorOptions;
+    selectedField: string;
+    selectedValue: string;
+    operation: string;
+    activeFilters: FieldFilter[];
+    editing: boolean;
+    operations: any;
+    operationsData: {
+        type: string;
+        label: string;
+        operator: string;
+    }[];
+    handleKeyboardEvent(event: KeyboardEvent): void;
+    constructor();
+    checkFilter(): boolean;
+    addFilter(): void;
+    selectFilter(filter: FieldFilter): void;
+    getParentFilter(filter: FieldFilter): FieldFilter | null;
+    arrayMove: (arr: any[], oldIndex: number, newIndex: number) => any[];
+    moveTo(direction: number): void;
+    getSelected(): number;
+    clearSelection(): void;
+    changeBitwise(filter: FieldFilter, bitwise: any): void;
+    groupSelected(): boolean;
+    entireGroupSelected(): boolean;
+    createGroup(): void;
+    sanitizeGroups(): void;
+    removeFromGroup(): void;
+    onStartDragFilter(_event: any, _filter: any): void;
+    onDroppedFilter(event: any): void;
+    uploadSet(): void;
+    removeFilter(filter: FieldFilter): void;
+    clearFilters(): void;
+    onFocus(event: any): void;
+    onBlur(event: any): void;
+    ngOnInit(): void;
+}

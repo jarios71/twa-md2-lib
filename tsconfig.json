@@ -8,6 +8,7 @@
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "resolveJsonModule": true,
     "target": "es5",
     "typeRoots": [
       "node_modules/@types"
@@ -28,6 +29,12 @@
       ],
       "twa-md2-notifications/*": [
         "dist/twa-md2-notifications/*"
+      ],
+      "twa-md2-filter-editor": [
+        "dist/twa-md2-filter-editor"
+      ],
+      "twa-md2-filter-editor/*": [
+        "dist/twa-md2-filter-editor/*"
       ]
     }
   }

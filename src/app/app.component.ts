@@ -8,7 +8,9 @@ import { TwaMd2NotificationsService } from 'twa-md2-notifications';
 @Component({
     selector: 'ld-root',
     templateUrl: './app.component.html',
-    styleUrls: ['./app.component.css']
+    styleUrls: [
+        './app.component.scss'
+    ]
 })
 export class AppComponent {
 
@@ -18,7 +20,7 @@ export class AppComponent {
     demoAutocomplete: string = require('!!raw-loader?lang=typescript!./../assets/code/autocomplete-sample.ts');
     demoForm: string = require('!!raw-loader?lang=typescript!./../assets/code/form-sample.ts');
 
-    samples = [
+    samplesDialog = [
         {
             title: 'Alert dialog',
             path: 'alert-sample'
@@ -34,6 +36,13 @@ export class AppComponent {
         {
             title: 'Dialog with simple form',
             path: 'form-sample'
+        },
+    ];
+
+    samplesFilter = [
+        {
+            title: 'Filter Editor',
+            path: 'filter-editor-sample'
         },
     ];
 

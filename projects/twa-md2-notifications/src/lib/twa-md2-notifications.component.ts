@@ -63,7 +63,7 @@ import { delay, tap } from 'rxjs/operators';
         'button.close { margin: -12px -12px 0 0;}',
     ]
 })
-export class TwaMd2NotificationsComponent implements OnInit {
+export class TWAMd2NotificationsComponent implements OnInit {
     @Input() notifsService: TwaMd2NotificationsService;
     @Output() panelClicked: EventEmitter<any> = new EventEmitter();
 

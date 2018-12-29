@@ -1,6 +1,6 @@
 import { OnInit, EventEmitter, ElementRef } from '@angular/core';
 import { TwaMd2NotificationsService, INotif } from './twa-md2-notifications.service';
-export declare class TwaMd2NotificationsComponent implements OnInit {
+export declare class TWAMd2NotificationsComponent implements OnInit {
     private _elRef;
     notifsService: TwaMd2NotificationsService;
     panelClicked: EventEmitter<any>;

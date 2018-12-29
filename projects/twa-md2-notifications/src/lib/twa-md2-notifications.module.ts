@@ -8,7 +8,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { OverlayModule } from '@angular/cdk/overlay';
 
-import { TwaMd2NotificationsComponent } from './twa-md2-notifications.component';
+import { TWAMd2NotificationsComponent } from './twa-md2-notifications.component';
 
 @NgModule({
     imports: [
@@ -18,25 +18,25 @@ import { TwaMd2NotificationsComponent } from './twa-md2-notifications.component'
         MatButtonModule,
         MatIconModule,
         OverlayModule,
-        // TwaMd2NotificationsComponent,
+        // TWAMd2NotificationsComponent,
     ],
     declarations: [
-        TwaMd2NotificationsComponent,
+        TWAMd2NotificationsComponent,
         // TwaMd2NotificationsService,
     ],
     exports: [
         OverlayModule,
-        TwaMd2NotificationsComponent,
+        TWAMd2NotificationsComponent,
         // TwaMd2NotificationsService,
     ],
     entryComponents: [
-        TwaMd2NotificationsComponent,
+        TWAMd2NotificationsComponent,
     ],
     providers: [
-        TwaMd2NotificationsComponent,
+        TWAMd2NotificationsComponent,
     ],
     schemas: [
         CUSTOM_ELEMENTS_SCHEMA
     ]
 })
-export class TwaMd2NotificationsModule { }
+export class TWAMd2NotificationsModule { }

@@ -8,6 +8,39 @@
     background-color: mat-color($accent);
 }
 
+.json span.token.string {
+    white-space: pre-wrap!important;
+}
+
+.timepicker {
+
+    .timepicker__header {
+      background-color: mat-color($primary) !important;
+    }
+  
+    .clock-face__clock-hand {
+      background-color: mat-color($primary) !important;
+  
+      &::after {
+        background-color: mat-color($primary) !important;
+      }
+  
+      &::before {
+        border-color: mat-color($primary) !important;
+      }
+    }
+  
+    .clock-face__number {
+      > span.active {
+        background-color: mat-color($primary) !important;
+      }
+    }
+  
+    button:not(.timepicker-dial__item) {
+      color: mat-color($primary) !important;
+    }
+  }
+
 // .dlg-footer.background-primary::before {
 .dlg-content span.or {
     position: absolute;

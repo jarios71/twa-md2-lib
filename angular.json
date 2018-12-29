@@ -206,6 +206,46 @@
           }
         }
       }
+    },
+    "twa-md2-filter-editor": {
+      "root": "projects/twa-md2-filter-editor",
+      "sourceRoot": "projects/twa-md2-filter-editor/src",
+      "projectType": "library",
+      "prefix": "twa",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/twa-md2-filter-editor/tsconfig.lib.json",
+            "project": "projects/twa-md2-filter-editor/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "project": "projects/twa-md2-filter-editor/ng-package.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/twa-md2-filter-editor/src/test.ts",
+            "tsConfig": "projects/twa-md2-filter-editor/tsconfig.spec.json",
+            "karmaConfig": "projects/twa-md2-filter-editor/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/twa-md2-filter-editor/tsconfig.lib.json",
+              "projects/twa-md2-filter-editor/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "lib-twa-md-dialogs"

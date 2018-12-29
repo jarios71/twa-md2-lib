@@ -1,20 +1,30 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center" fxLayout="row">
-  <h1 fxFlex>
-    twa-md2-lib
-  </h1>
-  <twa-md2-notifications [notifsService]="notifsService" (panelClicked)="panelClicked($event)"></twa-md2-notifications>
-</div>
-
 <div fxLayout="row" fxLayoutGap="20px">
     <div fxLayout="column">
-        <mat-list *ngFor="let page of samples">
-            <mat-option [routerLink]="page.path" [style.background-color]="(router.url===('/'+page.path)) ? '#ccc' : 'transparent'">
-                <p>{{page.title}}</p>
-            </mat-option>
-        </mat-list>
+        <div *ngTemplateOutlet="samples; context: { title: 'Filter Editor', samples: samplesFilter}" fxLayout="row">
+        </div>
+        <div *ngTemplateOutlet="samples; context: { title: 'Dialogs', samples: samplesDialog}" fxLayout="row">
+        </div>
     </div>
-    <div fxFlex>
+    <div fxFlex fxLayout="column">
+        <div style="text-align: left" fxLayout="row" class="header">
+            <h1 fxFlex>
+                twa-md2-lib demo
+            </h1>
+            <twa-md2-notifications [notifsService]="notifsService" (panelClicked)="panelClicked($event)"></twa-md2-notifications>
+        </div>
         <router-outlet></router-outlet>
     </div>
 </div>
+
+<ng-template #samples let-title="title" let-samples="samples">
+    <h3>{{title}}</h3>
+    <mat-list *ngFor="let page of samples">
+        <mat-option [routerLink]="page.path" [ngClass]="{'selected': (router.url===('/'+page.path))}">
+            {{page.title}}
+            <span fxFlex></span>
+            <span>
+                <mat-icon matListIcon *ngIf="(router.url===('/'+page.path))">chevron_right</mat-icon>
+            </span>
+        </mat-option>
+    </mat-list>
+</ng-template>

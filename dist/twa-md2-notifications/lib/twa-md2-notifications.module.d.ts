@@ -1,2 +1,2 @@
-export declare class TwaMd2NotificationsModule {
+export declare class TWAMd2NotificationsModule {
 }
