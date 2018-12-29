@@ -2,9 +2,9 @@
 
 Modules made for angular material. The set includes:
 
-- twa-md2-dialogs
-- twa-md2-notifications
-- twa-md2-filter-editor
+- [twa-md2-dialogs](https://jarios71.github.io/twa-md2-lib/#twa-md2-dialogs)twa-md2-dialogs
+- [twa-md2-notifications](https://jarios71.github.io/twa-md2-lib/#twa-md2-notifications)twa-md2-notifications
+- [twa-md2-filter-editor](https://jarios71.github.io/twa-md2-lib/#twa-md2-filter-editor)twa-md2-filter-editor 
 
 [Online demo](https://jarios71.github.io/twa-md2-lib/)
 
