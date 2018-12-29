@@ -1,6 +1,6 @@
 {
   "name": "twa-md2-notifications",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "homepage": "https://github.com/jarios71/twa-md2-lib",
   "description": "This module makes it easy to generate silent notifications and interact with them. The notifications can be customizable and provide a service that makes them accessible throughout the application.",
   "peerDependencies": {

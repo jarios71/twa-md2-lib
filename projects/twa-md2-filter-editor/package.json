@@ -1,6 +1,8 @@
 {
   "name": "twa-md2-filter-editor",
-  "version": "0.0.1",
+  "version": "0.0.3",
+  "homepage": "https://github.com/jarios71/twa-md2-lib",
+  "description": "This plugin offers an interface to create complex filters visually, it also provides a service that processes the data and returns it already filtered. The service can process all data at once or record by record.",
   "peerDependencies": {
     "@angular/common": "^6.0.0-rc.0 || ^6.0.0",
     "@angular/core": "^6.0.0-rc.0 || ^6.0.0"

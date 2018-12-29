@@ -1,6 +1,6 @@
 {
   "name": "twa-md2-dialogs",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "homepage": "https://github.com/jarios71/twa-md2-lib",
   "description": "This module makes it easy to generate alert dialogs, confirmation or data collection. It allows the generation of dynamic forms based on JSON objects, including basic validations and layout options.",
   "peerDependencies": {

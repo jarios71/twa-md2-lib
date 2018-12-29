@@ -375,7 +375,7 @@ export class BBTDatabase {
         const headers = new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' });
         const options = { headers: headers};
 
-        this.http.get('/assets/data/bbt.json', options).subscribe(res => {
+        this.http.get('./assets/data/bbt.json', options).subscribe(res => {
             this.episodes = res['_embedded'].episodes;
             let copiedData = [];
             this.data.splice(0, this.data.length);
