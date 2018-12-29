@@ -1,90 +1,98 @@
 <div>
-    <div fxLayout="column" fxLayoutGap="20px">
-        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
-            <h2>Filter Editor</h2>
-            <div>
-                <button mat-raised-button color="primary" (click)="loadFilter()">Load sample filters</button>
-            </div>
+    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
+        <h2>Filter Editor</h2>
+        <div>
+            <button mat-raised-button 
+                    color="primary" 
+                    (click)="loadFilter()"
+                    *ngIf="this.selectedTab === 0"
+                    >
+                Load sample filters
+            </button>
         </div>
-        <twa-md2-filter-editor [options]="fieldOptions" [config]="filterConfig" (change)="onChange($event)" #BBTFilter fxFlex></twa-md2-filter-editor>
-        <mat-table #table [dataSource]="episodes">
-
-            <ng-container matColumnDef="airdate">
-                <mat-header-cell *matHeaderCellDef>
-                    Air date
-                </mat-header-cell>
-                <mat-cell *matCellDef="let row; let i = index;" (click)="openEpisode(row)">
-                    {{row.airdate}}
-                </mat-cell>
-            </ng-container>
-
-            <ng-container matColumnDef="airtime">
-                <mat-header-cell *matHeaderCellDef>
-                    Air time
-                </mat-header-cell>
-                <mat-cell *matCellDef="let row; let i = index;" (click)="openEpisode(row)">
-                    {{row.airtime}}
-                </mat-cell>
-            </ng-container>
-
-            <ng-container matColumnDef="name">
-                <mat-header-cell *matHeaderCellDef>
-                    Title
-                </mat-header-cell>
-                <mat-cell *matCellDef="let row; let i = index;" (click)="openEpisode(row, i)">
-                    {{row.name}}
-                </mat-cell>
-            </ng-container>
-
-            <ng-container matColumnDef="number">
-                <mat-header-cell *matHeaderCellDef>
-                    Episode
-                </mat-header-cell>
-                <mat-cell *matCellDef="let row; let i = index;" (click)="openEpisode(row, i)">
-                    {{row.number}}
-                </mat-cell>
-            </ng-container>
-
-            <ng-container matColumnDef="season">
-                <mat-header-cell *matHeaderCellDef>
-                    Season
-                </mat-header-cell>
-                <mat-cell *matCellDef="let row; let i = index;" (click)="openEpisode(row, i)">
-                    {{row.season}}
-                </mat-cell>
-            </ng-container>
-
-            <ng-container matColumnDef="summary">
-                <mat-header-cell *matHeaderCellDef>
-                    Summary
-                </mat-header-cell>
-                <mat-cell *matCellDef="let row; let i = index;" (click)="openEpisode(row, i)">
-                    {{row.summary | ellipsis: 200}}
-                </mat-cell>
-            </ng-container>
-
-            <ng-container matColumnDef="tools">
-                <mat-header-cell *matHeaderCellDef class="tools">
-                </mat-header-cell>
-                <mat-cell *matCellDef="let row; let i = index;" class="tools">
-                    <div class="tools">
-                        <button mat-icon-button (click)="deleteEpisode(row, i)"><mat-icon>delete</mat-icon></button>
-                    </div>
-                </mat-cell>
-            </ng-container>
-
-            <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
-            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-
-        </mat-table>
-        <mat-paginator #paginator
-            [length]="getRows()"
-            [pageIndex]="0"
-            [pageSize]="10"
-            [pageSizeOptions]="[5, 10, 25, 100, 500, 1000]">
-        </mat-paginator>
     </div>
-    <mat-tab-group>
+    <mat-tab-group #demoTabs (selectedTabChange)="tabChanged($event)">
+        <mat-tab label="Demo">
+            <div fxLayout="column" fxLayoutGap="20px">
+                <twa-md2-filter-editor [options]="fieldOptions" [config]="filterConfig" (change)="onChange($event)" #BBTFilter fxFlex></twa-md2-filter-editor>
+                <mat-table #table [dataSource]="episodes">
+        
+                    <ng-container matColumnDef="airdate">
+                        <mat-header-cell *matHeaderCellDef>
+                            Air date
+                        </mat-header-cell>
+                        <mat-cell *matCellDef="let row; let i = index;" (click)="openEpisode(row)">
+                            {{row.airdate}}
+                        </mat-cell>
+                    </ng-container>
+        
+                    <ng-container matColumnDef="airtime">
+                        <mat-header-cell *matHeaderCellDef>
+                            Air time
+                        </mat-header-cell>
+                        <mat-cell *matCellDef="let row; let i = index;" (click)="openEpisode(row)">
+                            {{row.airtime}}
+                        </mat-cell>
+                    </ng-container>
+        
+                    <ng-container matColumnDef="name">
+                        <mat-header-cell *matHeaderCellDef>
+                            Title
+                        </mat-header-cell>
+                        <mat-cell *matCellDef="let row; let i = index;" (click)="openEpisode(row, i)">
+                            {{row.name}}
+                        </mat-cell>
+                    </ng-container>
+        
+                    <ng-container matColumnDef="number">
+                        <mat-header-cell *matHeaderCellDef>
+                            Episode
+                        </mat-header-cell>
+                        <mat-cell *matCellDef="let row; let i = index;" (click)="openEpisode(row, i)">
+                            {{row.number}}
+                        </mat-cell>
+                    </ng-container>
+        
+                    <ng-container matColumnDef="season">
+                        <mat-header-cell *matHeaderCellDef>
+                            Season
+                        </mat-header-cell>
+                        <mat-cell *matCellDef="let row; let i = index;" (click)="openEpisode(row, i)">
+                            {{row.season}}
+                        </mat-cell>
+                    </ng-container>
+        
+                    <ng-container matColumnDef="summary">
+                        <mat-header-cell *matHeaderCellDef>
+                            Summary
+                        </mat-header-cell>
+                        <mat-cell *matCellDef="let row; let i = index;" (click)="openEpisode(row, i)">
+                            {{row.summary | ellipsis: 200}}
+                        </mat-cell>
+                    </ng-container>
+        
+                    <ng-container matColumnDef="tools">
+                        <mat-header-cell *matHeaderCellDef class="tools">
+                        </mat-header-cell>
+                        <mat-cell *matCellDef="let row; let i = index;" class="tools">
+                            <div class="tools">
+                                <button mat-icon-button (click)="deleteEpisode(row, i)"><mat-icon>delete</mat-icon></button>
+                            </div>
+                        </mat-cell>
+                    </ng-container>
+        
+                    <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        
+                </mat-table>
+                <mat-paginator #paginator
+                    [length]="getRows()"
+                    [pageIndex]="0"
+                    [pageSize]="10"
+                    [pageSizeOptions]="[5, 10, 25, 100, 500, 1000]">
+                </mat-paginator>
+            </div>
+        </mat-tab>
         <mat-tab label="HTML">
             <handy-syntax-highlighter [language]="'html'" [content]="demoFilterHTML">
             </handy-syntax-highlighter>

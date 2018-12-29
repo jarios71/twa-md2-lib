@@ -37,6 +37,7 @@ export class FilterEditorSampleComponent implements OnInit {
     episodesDB: BBTDatabase | null;
     episodes: BBTDataSource | null;
     filter: BBTFilter = new BBTFilter();
+    selectedTab = 0;
 
     displayedColumns = [
         'airdate',
@@ -143,6 +144,8 @@ export class FilterEditorSampleComponent implements OnInit {
     paginator: MatPaginator;
     @ViewChild(TWAFilterEditorComponent)
     BBTFilter: TWAFilterEditorComponent;
+    @ViewChild('demoTabs')
+    demoTabs;
 
     initialFilters = [];
 
@@ -178,6 +181,10 @@ export class FilterEditorSampleComponent implements OnInit {
 
     }
 
+    tabChanged(event) {
+        this.selectedTab = event.index;
+    }
+
     getRows() {
         return (this.episodes ? this.episodes.resultsLength : 0);
     }
@@ -185,6 +192,26 @@ export class FilterEditorSampleComponent implements OnInit {
     loadFilter() {
 
         const filter = [
+            {
+                color: 'primary',
+                explanation: '"Sheldon" => summary',
+                label: 'Summary',
+                name: 'summary',
+                field: 'summary',
+                bitwise: '&&',
+                operation: '=>',
+                value: 'Sheldon'
+            },
+            {
+                explanation: '"Wolowitz" => summary',
+                color: 'primary',
+                label: 'Summary',
+                name: 'summary',
+                field: 'summary',
+                bitwise: '&&',
+                operation: '=>',
+                value: 'Wolowitz'
+            },
             {
                 color: '',
                 name: '',
@@ -228,26 +255,6 @@ export class FilterEditorSampleComponent implements OnInit {
                 ],
                 selected: false
             },
-            {
-                color: 'primary',
-                explanation: '"Sheldon" => summary',
-                label: 'Summary',
-                name: 'summary',
-                field: 'summary',
-                bitwise: '&&',
-                operation: '=>',
-                value: 'Sheldon'
-            },
-            {
-                explanation: '"Wolowitz" => summary',
-                color: 'primary',
-                label: 'Summary',
-                name: 'summary',
-                field: 'summary',
-                bitwise: '&&',
-                operation: '=>',
-                value: 'Wolowitz'
-            }
         ];
 
         this.BBTFilter.activeFilters = filter;
