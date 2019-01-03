@@ -1,9 +1,8 @@
 declare var require: any;       // To avoid compilation errors with "require"...
 
 import { Component } from '@angular/core';
-// import { TWADialogsModule } from 'twa-md2-dialogs';
-// import { TWADialogsModule } from '../../projects/twa-md2-dialogs/src/public_api';
 import { TWADialogsModule } from 'twa-md2-dialogs';
+// import { TWADialogsModule } from '../../../projects/twa-md2-dialogs/src/lib/twa-dialogs.module';
 
 
 @Component({

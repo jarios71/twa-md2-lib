@@ -5,6 +5,7 @@ export declare class TWAFilterEditorComponent implements OnInit {
     config: FilterEditorConfig;
     change: EventEmitter<any[]>;
     fileSet: ElementRef;
+    openFiltersFile: ElementRef;
     filterOptions: FilterEditorOptions;
     selectedField: string;
     selectedValue: string;
@@ -18,6 +19,8 @@ export declare class TWAFilterEditorComponent implements OnInit {
         ungroup: string;
         moveLeft: string;
         moveRight: string;
+        openFilter: string;
+        saveFilter: string;
         clearSelection: string;
         clearAll: string;
     };
@@ -29,6 +32,8 @@ export declare class TWAFilterEditorComponent implements OnInit {
     }[];
     handleKeyboardEvent(event: KeyboardEvent): void;
     constructor();
+    openFilters(): void;
+    saveFilters(): void;
     checkFilter(): boolean;
     addFilter(): void;
     selectFilter(filter: FieldFilter): void;

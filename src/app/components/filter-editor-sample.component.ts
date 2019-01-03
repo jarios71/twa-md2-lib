@@ -7,9 +7,10 @@ import { MatPaginator, MatSort } from '@angular/material';
 import { BehaviorSubject, Observable, merge } from 'rxjs';
 import { map } from 'rxjs/operators';
 
+// import { TWADialogsModule } from '../../../projects/twa-md2-dialogs/src/lib/twa-dialogs.module';
 import { TWADialogsModule } from 'twa-md2-dialogs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { TWAFilterEditorService, TWAFilterEditorComponent, FieldFilter } from 'twa-md2-filter-editor';
+import { TWAFilterEditorService, TWAFilterEditorComponent, FieldFilter } from '../../../projects/twa-md2-filter-editor/src/public_api';
 
 @Component({
     selector: 'ld-filter-editor-sample',

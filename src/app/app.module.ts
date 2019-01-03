@@ -34,7 +34,10 @@ import { Ng2HandySyntaxHighlighterModule } from 'ng2-handy-syntax-highlighter';
 
 import { TWADialogsModule, TWAConfirmDialogComponent, TWAPromptDialogComponent } from 'twa-md2-dialogs';
 import { TWAMd2NotificationsModule } from 'twa-md2-notifications';
-import { TWAFilterEditorModule } from 'twa-md2-filter-editor';
+// import { TWAFilterEditorModule } from 'twa-md2-filter-editor';
+// import { TWADialogsModule } from '../../projects/twa-md2-dialogs/src/lib/twa-dialogs.module';
+// import { TWAMd2NotificationsModule } from '../../projects/twa-md2-notifications/src/public_api';
+import { TWAFilterEditorModule } from '../../projects/twa-md2-filter-editor/src/lib/twa-md2-filter-editor.module';
 
 import { appRoutes } from './app.routing';
 import { AppComponent } from './app.component';

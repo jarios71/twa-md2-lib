@@ -1,105 +1,121 @@
-<div fxLayout="row" fxLayoutGap="20px">
-    <div fxLayout="column" fxFlex>
-        <div class="selector" fxLayout="row" fxLayoutGap="10px">
-            <mat-form-field>
-                <mat-select [(ngModel)]="selectedField">
-                    <mat-option selected value="none">{{texts.filterBy}}</mat-option>
-                    <mat-option *ngFor="let field of filterOptions.fields" [(value)]="field.name">{{field.label}}</mat-option>
-                </mat-select>
-            </mat-form-field>
-            <mat-form-field>
-                <mat-select [(ngModel)]="operation">
-                    <mat-option *ngFor="let op of operationsData" value="{{op.type}}">{{op.label}}</mat-option>
-                </mat-select>
-            </mat-form-field>
-            <mat-form-field>
-                <input matInput placeholder="{{texts.filter}}" [(ngModel)]="selectedValue"
-                        (focus)="onFocus($event)" (blur)="onBlur($event)" />
-                <button mat-button *ngIf="operation==='in'" matSuffix mat-icon-button aria-label="Clear" (click)="fileSet.click()">
-                    <mat-icon>attach_file</mat-icon>
-                </button>
-            </mat-form-field>
-            <div>
-                <button mat-button mat-icon-button (click)="addFilter()" [disabled]="checkFilter()">
-                    <mat-icon>send</mat-icon>
-                </button>
-            </div>
-            <div fxFlex>&nbsp;</div>
-            <div class="tools" *ngIf="activeFilters.length > 0" fxLayout="row">
-                <button mat-button mat-icon-button
+<div fxLayout="column" style="width: 100%;">
+    <div class="selector" fxLayout="row" fxLayoutGap="10px">
+        <mat-form-field>
+            <mat-select [(ngModel)]="selectedField">
+                <mat-option selected value="none">{{texts.filterBy}}</mat-option>
+                <mat-option *ngFor="let field of filterOptions.fields" [(value)]="field.name">{{field.label}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-select [(ngModel)]="operation">
+                <mat-option *ngFor="let op of operationsData" value="{{op.type}}">{{op.label}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="{{texts.filter}}" [(ngModel)]="selectedValue"
+                    (focus)="onFocus($event)" (blur)="onBlur($event)" />
+            <button mat-button *ngIf="operation==='in'" matSuffix mat-icon-button aria-label="Clear" (click)="fileSet.click()">
+                <mat-icon>attach_file</mat-icon>
+            </button>
+        </mat-form-field>
+        <div>
+            <button mat-button mat-icon-button (click)="addFilter()" [disabled]="checkFilter()">
+                <mat-icon>send</mat-icon>
+            </button>
+        </div>
+        <div fxFlex></div>
+        <button mat-button mat-icon-button
+                *ngIf="activeFilters.length === 0"
+                matTooltip="{{texts.openFilter}}"
+                (click)="openFiltersFile.click()">
+            <mat-icon>folder_open</mat-icon>
+        </button>
+        <div class="tools" *ngIf="activeFilters.length > 0" fxLayout="row">
+            <button mat-button mat-icon-button
                     matTooltip="{{texts.group}}"
                     (click)="createGroup()"
                     [disabled]="getSelected() < 2">
-                    <mat-icon>link</mat-icon>
-                </button>
-                <button mat-button mat-icon-button
+                <mat-icon>link</mat-icon>
+            </button>
+            <button mat-button mat-icon-button
                     matTooltip="{{texts.ungroup}}"
                     (click)="removeFromGroup()"
                     [disabled]="!groupSelected()">
-                    <mat-icon>link_off</mat-icon>
-                </button>
-                <button mat-button mat-icon-button
+                <mat-icon>link_off</mat-icon>
+            </button>
+            <button mat-button mat-icon-button
                     matTooltip="{{texts.moveLeft}}"
                     (click)="moveTo(-1)"
                     [disabled]="getSelected() !== 1 && !entireGroupSelected()">
-                    <mat-icon>arrow_back</mat-icon>
-                </button>
-                <button mat-button mat-icon-button
+                <mat-icon>arrow_back</mat-icon>
+            </button>
+            <button mat-button mat-icon-button
                     matTooltip="{{texts.moveRight}}"
                     (click)="moveTo(1)"
                     [disabled]="getSelected() !== 1 && !entireGroupSelected()">
-                    <mat-icon>arrow_forward</mat-icon>
-                </button>
-                <button mat-button mat-icon-button
+                <mat-icon>arrow_forward</mat-icon>
+            </button>
+            <button mat-button mat-icon-button
+                    matTooltip="{{texts.openFilter}}"
+                    (click)="openFiltersFile.click()">
+                <mat-icon>folder_open</mat-icon>
+            </button>
+            <button mat-button mat-icon-button
+                    matTooltip="{{texts.saveFilter}}"
+                    [disabled]="getSelected() > 1"
+                    (click)="saveFilters()">
+                <mat-icon>save</mat-icon>
+            </button>
+            <button mat-button mat-icon-button
                     matTooltip="{{texts.clearSelection}}"
                     [disabled]="getSelected() < 1"
                     (click)="clearSelection()">
-                    <mat-icon>clear</mat-icon>
-                </button>
-                <button mat-button mat-icon-button
-                        matTooltip="{{texts.clearAll}}"
-                        [disabled]="activeFilters.length < 1"
-                        (click)="clearFilters()">
-                    <mat-icon>clear_all</mat-icon>
-                </button>
-            </div>
-        </div>
-        <div class="filter" fxLayoutGap="12">
-            <mat-chip-list cdkDropList
-                           cdkDropListOrientation="horizontal"
-                           (cdkDropListDropped)="onDroppedFilter($event)">
-                <ng-container *ngFor="let filter of activeFilters; let idx = index">
-                    <div fxLayout="row"
-                    cdkDrag
-                    (cdkDragStarted)="onStartDragFilter($event, filter)" [ngClass]="{'cgroup': filter.isgroup}">
-                        <button mat-button *ngIf="idx > 0" [matMenuTriggerFor]="menu" class="bitwise">{{filter.bitwise}}</button>
-                        <mat-menu #menu="matMenu">
-                            <button mat-menu-item (click)="changeBitwise(filter, '&&')">&&</button>
-                            <button mat-menu-item (click)="changeBitwise(filter, '||')">||</button>
-                        </mat-menu>
-                        <mat-chip color="{{filter.color}}" selected="true"
-                                  id="filter-{{idx}}"
-                                  [removable]="true" (removed)="removeFilter(filter)"
-                                  [matTooltip]="filter.value"
-                                  [matTooltipDisabled]="filter.operation!=='in'"
-                                  matTooltipShowDelay="1500"
-                                  (click)="selectFilter(filter)"
-                                  *ngIf="!filter.isgroup"
-                                  [ngClass]="{'selected': filter.selected, 'mat-accent': filter.selected}">
-                            {{filter.explanation}}
-                            <mat-icon matChipRemove>cancel</mat-icon>
-                        </mat-chip>
-                        <div *ngIf="filter.isgroup" fxLayout="row">
-                            <div *ngTemplateOutlet="group; context: { filter: this.filter, idx: this.idx}" fxLayout="row">
-                            </div>
-                        </div>
-                    </div>
-                </ng-container>
-            </mat-chip-list>
+                <mat-icon>clear</mat-icon>
+            </button>
+            <button mat-button mat-icon-button
+                    matTooltip="{{texts.clearAll}}"
+                    [disabled]="activeFilters.length < 1"
+                    (click)="clearFilters()">
+                <mat-icon>clear_all</mat-icon>
+            </button>
         </div>
     </div>
-    <input style="visibilty: hidden; height: 0px; width: 0px;" type="file" id="fileSet" #fileSet (change)="uploadSet()" />
+    <div class="filter" fxLayoutGap="12">
+        <mat-chip-list cdkDropList
+                        cdkDropListOrientation="horizontal"
+                        (cdkDropListDropped)="onDroppedFilter($event)">
+            <ng-container *ngFor="let filter of activeFilters; let idx = index">
+                <div fxLayout="row"
+                cdkDrag
+                (cdkDragStarted)="onStartDragFilter($event, filter)" [ngClass]="{'cgroup': filter.isgroup}">
+                    <button mat-button *ngIf="idx > 0" [matMenuTriggerFor]="menu" class="bitwise">{{filter.bitwise}}</button>
+                    <mat-menu #menu="matMenu">
+                        <button mat-menu-item (click)="changeBitwise(filter, '&&')">&&</button>
+                        <button mat-menu-item (click)="changeBitwise(filter, '||')">||</button>
+                    </mat-menu>
+                    <mat-chip color="{{filter.color}}" selected="true"
+                                id="filter-{{idx}}"
+                                [removable]="true" (removed)="removeFilter(filter)"
+                                [matTooltip]="filter.value"
+                                [matTooltipDisabled]="filter.operation!=='in'"
+                                matTooltipShowDelay="1500"
+                                (click)="selectFilter(filter)"
+                                *ngIf="!filter.isgroup"
+                                [ngClass]="{'selected': filter.selected, 'mat-accent': filter.selected}">
+                        {{filter.explanation}}
+                        <mat-icon matChipRemove>cancel</mat-icon>
+                    </mat-chip>
+                    <div *ngIf="filter.isgroup" fxLayout="row">
+                        <div *ngTemplateOutlet="group; context: { filter: this.filter, idx: this.idx}" fxLayout="row">
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+        </mat-chip-list>
+    </div>
 </div>
+<input style="visibilty: hidden; height: 0px; width: 0px;" type="file" id="fileSet" #fileSet (change)="uploadSet()" />
+<input style="visibilty: hidden; height: 0px; width: 0px;" type="file" id="openFiltersFile" #openFiltersFile (change)="openFilters()" />
 <ng-template #group let-filter="filter" let-idx="idx">
     <span class="group-start">(</span>
     <ng-container *ngFor="let filter2 of filter.fields; let idx2 = index">

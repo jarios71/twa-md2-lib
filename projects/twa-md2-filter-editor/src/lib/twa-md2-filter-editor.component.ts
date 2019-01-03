@@ -45,6 +45,7 @@ export class TWAFilterEditorComponent implements OnInit {
     @Output() change: EventEmitter<any[]> = new EventEmitter<any[]>();
 
     @ViewChild('fileSet') fileSet: ElementRef;
+    @ViewChild('oepnFiltersFile') openFiltersFile: ElementRef;
 
     filterOptions: FilterEditorOptions;
     selectedField = 'none';
@@ -59,6 +60,8 @@ export class TWAFilterEditorComponent implements OnInit {
         ungroup: 'Ungroup',
         moveLeft: 'Move to left',
         moveRight: 'Move to right',
+        openFilter: 'Open saved filter',
+        saveFilter: 'Save filter',
         clearSelection: 'Clear selection',
         clearAll: 'Clear filters',
 
@@ -120,6 +123,27 @@ export class TWAFilterEditorComponent implements OnInit {
     }
 
     constructor() {}
+
+    openFilters() {
+        const fileObj = (<HTMLInputElement>document.getElementById('openFiltersFile')).files[0];
+        const reader = new FileReader();
+        reader.onload = () => {
+            console.log(reader.result);
+            const data = JSON.parse(<string>reader.result);
+            this.activeFilters = data;
+        };
+        reader.readAsText(fileObj);
+    }
+
+    saveFilters() {
+        const blob = new Blob([JSON.stringify(this.activeFilters)], { type: 'text/json' });
+        const filename = 'filters.json';
+        const element = document.createElement('a');
+        element.href = window.URL.createObjectURL(blob);
+        element.download = filename;
+        document.body.appendChild(element);
+        element.click();
+    }
 
     checkFilter(): boolean {
         return (this.selectedField === 'none' || this.selectedValue === '');

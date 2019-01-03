@@ -14,7 +14,7 @@
     <mat-tab-group #demoTabs (selectedTabChange)="tabChanged($event)">
         <mat-tab label="Demo">
             <div fxLayout="column" fxLayoutGap="20px">
-                <twa-md2-filter-editor [options]="fieldOptions" [config]="filterConfig" (change)="onChange($event)" #BBTFilter fxFlex></twa-md2-filter-editor>
+                <twa-md2-filter-editor [options]="fieldOptions" [config]="filterConfig" (change)="onChange($event)" #BBTFilter></twa-md2-filter-editor>
                 <mat-table #table [dataSource]="episodes">
         
                     <ng-container matColumnDef="airdate">
