@@ -11,6 +11,16 @@ export declare class TWAFilterEditorComponent implements OnInit {
     operation: string;
     activeFilters: FieldFilter[];
     editing: boolean;
+    texts: {
+        filterBy: string;
+        filter: string;
+        group: string;
+        ungroup: string;
+        moveLeft: string;
+        moveRight: string;
+        clearSelection: string;
+        clearAll: string;
+    };
     operations: any;
     operationsData: {
         type: string;

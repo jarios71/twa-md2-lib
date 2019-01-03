@@ -52,6 +52,17 @@ export class TWAFilterEditorComponent implements OnInit {
     operation = 'contain';
     activeFilters: FieldFilter[] = [];
     editing = false;
+    texts = {
+        filterBy: 'Filter by...',
+        filter: 'filter',
+        group: 'Group',
+        ungroup: 'Ungroup',
+        moveLeft: 'Move to left',
+        moveRight: 'Move to right',
+        clearSelection: 'Clear selection',
+        clearAll: 'Clear filters',
+
+    };
     operations: any = {
         contain: '=>',
         equal: '===',
@@ -117,6 +128,7 @@ export class TWAFilterEditorComponent implements OnInit {
     addFilter() {
         let color = '',
             field = '',
+            dbfield = '',
             label = '',
             name = '',
             explanation = this.selectedField + ' ' + this.operations[this.operation] + ' ' + this.selectedValue;
@@ -130,7 +142,7 @@ export class TWAFilterEditorComponent implements OnInit {
                 /**
                  * ...with object destructuring
                  */
-                ({ color, field, label, name } = this.filterOptions.fields[i]);
+                ({ color, field, dbfield, label, name } = this.filterOptions.fields[i]);
                 break;
             }
         }
@@ -146,6 +158,7 @@ export class TWAFilterEditorComponent implements OnInit {
             label: label,
             name: name,
             field: field,
+            dbfield: dbfield,
             bitwise: '&&',
             operation: this.operations[this.operation],
             value: this.selectedValue
@@ -569,11 +582,14 @@ export class TWAFilterEditorComponent implements OnInit {
         this.filterOptions = this.options;
         this.selectedField = (typeof this.filterOptions.fields[0] !== 'undefined') ? this.filterOptions.fields[0].name : 'none';
         if (typeof this.config !== undefined) {
-            if (typeof this.config.operationsData !== 'undefined') {
+            if (this.config && typeof this.config.operationsData !== 'undefined') {
                 this.operationsData = this.config.operationsData;
             }
-            if (typeof this.config.filter !== 'undefined') {
+            if (this.config && typeof this.config.filter !== 'undefined') {
                 this.activeFilters = this.config.filter.slice();
+            }
+            if (this.config && typeof this.config.texts !== 'undefined') {
+                this.texts = {...this.texts, ...this.config.texts};
             }
         }
         // this.filterOptions = JSON.parse(this.options);

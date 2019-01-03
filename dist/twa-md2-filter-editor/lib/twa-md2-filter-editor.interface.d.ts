@@ -11,6 +11,7 @@ export interface OperationData {
 export interface FilterEditorConfig {
     operationsData: OperationData[];
     filter?: FieldFilter[];
+    texts?: any;
 }
 export interface FieldFilter {
     color: string;

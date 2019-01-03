@@ -102,7 +102,7 @@ export class FilterEditorSampleComponent implements OnInit {
         operationsData: [
             {
                 type: 'contain',
-                label: 'include',
+                label: 'includes',
                 operator: '=>'
             },
             {

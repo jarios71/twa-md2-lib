@@ -3,7 +3,7 @@
         <div class="selector" fxLayout="row" fxLayoutGap="10px">
             <mat-form-field>
                 <mat-select [(ngModel)]="selectedField">
-                    <mat-option selected value="none">Filtrar por...</mat-option>
+                    <mat-option selected value="none">{{texts.filterBy}}</mat-option>
                     <mat-option *ngFor="let field of filterOptions.fields" [(value)]="field.name">{{field.label}}</mat-option>
                 </mat-select>
             </mat-form-field>
@@ -13,7 +13,7 @@
                 </mat-select>
             </mat-form-field>
             <mat-form-field>
-                <input matInput placeholder="filtro" [(ngModel)]="selectedValue"
+                <input matInput placeholder="{{texts.filter}}" [(ngModel)]="selectedValue"
                         (focus)="onFocus($event)" (blur)="onBlur($event)" />
                 <button mat-button *ngIf="operation==='in'" matSuffix mat-icon-button aria-label="Clear" (click)="fileSet.click()">
                     <mat-icon>attach_file</mat-icon>
@@ -27,37 +27,37 @@
             <div fxFlex>&nbsp;</div>
             <div class="tools" *ngIf="activeFilters.length > 0" fxLayout="row">
                 <button mat-button mat-icon-button
-                    matTooltip="Agrupar"
+                    matTooltip="{{texts.group}}"
                     (click)="createGroup()"
                     [disabled]="getSelected() < 2">
                     <mat-icon>link</mat-icon>
                 </button>
                 <button mat-button mat-icon-button
-                    matTooltip="Desagrupar"
+                    matTooltip="{{texts.ungroup}}"
                     (click)="removeFromGroup()"
                     [disabled]="!groupSelected()">
                     <mat-icon>link_off</mat-icon>
                 </button>
                 <button mat-button mat-icon-button
-                    matTooltip="Mover a la izquierda"
+                    matTooltip="{{texts.moveLeft}}"
                     (click)="moveTo(-1)"
                     [disabled]="getSelected() !== 1 && !entireGroupSelected()">
                     <mat-icon>arrow_back</mat-icon>
                 </button>
                 <button mat-button mat-icon-button
-                    matTooltip="Mover a la derecha"
+                    matTooltip="{{texts.moveRight}}"
                     (click)="moveTo(1)"
                     [disabled]="getSelected() !== 1 && !entireGroupSelected()">
                     <mat-icon>arrow_forward</mat-icon>
                 </button>
                 <button mat-button mat-icon-button
-                    matTooltip="Limpiar selección"
+                    matTooltip="{{texts.clearSelection}}"
                     [disabled]="getSelected() < 1"
                     (click)="clearSelection()">
                     <mat-icon>clear</mat-icon>
                 </button>
                 <button mat-button mat-icon-button
-                        matTooltip="Limpiar filtros"
+                        matTooltip="{{texts.clearAll}}"
                         [disabled]="activeFilters.length < 1"
                         (click)="clearFilters()">
                     <mat-icon>clear_all</mat-icon>

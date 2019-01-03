@@ -36,6 +36,10 @@ export class TWAFilterEditorService {
         let ret = true;
         const length = data.length;
 
+        if (!this.filter) {
+            return data;
+        }
+
         this.processedFilters = this.processFilterOrs(this.filter.activeFilters);
 
         this.data = data;
