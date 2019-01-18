@@ -12,6 +12,7 @@ export interface ITWAPromptField {
     autocomplete: any;
     rows: any[];
     validation: any;
+    validationMessages?: any;
 }
 export declare class TWAPromptDialogComponent implements OnInit {
     dialogRef: MatDialogRef<TWAPromptDialogComponent>;
@@ -27,11 +28,13 @@ export declare class TWAPromptDialogComponent implements OnInit {
     constructor(dialogRef: MatDialogRef<TWAPromptDialogComponent>);
     ngOnInit(): void;
     getFormGroupEvent(formGroup: any, i: any): any;
+    log(object: any): void;
     private _filterValues;
     getFormSubmitEv(): EventEmitter<any>;
     send(): void;
     acClick(field: any, event: any): void;
     acCheckBlur(field: any): void;
     submitForm(form: any): void;
+    drawCustomErrors(prop: any, error: any): boolean;
     private mapValidators;
 }

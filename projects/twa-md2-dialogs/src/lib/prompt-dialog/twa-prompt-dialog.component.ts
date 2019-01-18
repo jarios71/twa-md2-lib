@@ -5,6 +5,8 @@ import { SafeHtml } from '@angular/platform-browser';
 
 import { map, startWith } from 'rxjs/operators';
 
+import { MatchValidator } from './match-validator.directive';
+
 export interface ITWAPromptField {
     key: string;
     label: string;
@@ -15,6 +17,7 @@ export interface ITWAPromptField {
     autocomplete: any;
     rows: any[];
     validation: any;
+    validationMessages?: any;
 }
 
 @Component({
@@ -26,7 +29,7 @@ export interface ITWAPromptField {
     <h2>{{ title }}</h2>
     <p [innerHtml]="messageHtml"></p>
 
-    <form novalidate (ngSubmit)="onSubmit(form.value)" [formGroup]="form" fxLayout="row wrap" fxLayoutGap="10px">
+    <form novalidate (ngSubmit)="submitForm(form.value)" [formGroup]="form" fxLayout="row wrap" fxLayoutGap="10px">
         <div *ngFor="let prop of fields" fxFlex="{{prop.fxFlex ? ('calc(' + prop.fxFlex + ' - 10px)') : '100%'}}" fxLayout="column">
             <div [ngSwitch]="prop.type" fxFlex="100%">
                 <div *ngSwitchCase="'text'">
@@ -51,6 +54,13 @@ export interface ITWAPromptField {
                             </mat-option>
                         </mat-autocomplete>
                     </div>
+                </div>
+                <div *ngSwitchCase="'password'">
+                    <mat-form-field fxFlex>
+                        <input matInput type="password" placeholder="{{prop.label}}"
+                            [formControlName]="prop.key"
+                            [id]="prop.key" [type]="prop.type" fxFlex>
+                    </mat-form-field>
                 </div>
                 <div *ngSwitchCase="'textarea'">
                     <mat-form-field fxFlex>
@@ -112,9 +122,40 @@ export interface ITWAPromptField {
                     </mat-form-field>
                 </div>
             </div>
+            <div class="error" *ngIf="form.get(prop.key).errors" fxFlex="100%">
+            </div>
             <div class="error" *ngIf="form.get(prop.key).invalid && (form.get(prop.key).dirty || form.get(prop.key).touched)" fxFlex="100%">
                 <mat-error *ngIf="form.get(prop.key).errors.required">
-                    El campo {{ prop.label }} es obligatorio.
+                    <div *ngIf="drawCustomErrors(prop, 'required')">
+                        {{prop.validationMessages.required}}
+                    </div>
+                    <div *ngIf="!prop.validationMessages || !prop.validationMessages.required">
+                        The field {{ prop.label }} is required.
+                    </div>
+                </mat-error>
+                <mat-error *ngIf="form.get(prop.key).errors.match">
+                    <div *ngIf="drawCustomErrors(prop, 'match')">
+                        {{prop.validationMessages.match}}
+                    </div>
+                    <div *ngIf="!prop.validationMessages || !prop.validationMessages.match">
+                        The fields doesn't match.
+                    </div>
+                </mat-error>
+                <mat-error *ngIf="form.get(prop.key).errors.min">
+                    <div *ngIf="drawCustomErrors(prop, 'min')">
+                        {{prop.validationMessages.min}}
+                    </div>
+                    <div *ngIf="!prop.validationMessages || !prop.validationMessages.min">
+                        The minimal value is {{form.get(prop.key).errors.min.min}}.
+                    </div>
+                </mat-error>
+                <mat-error *ngIf="form.get(prop.key).errors.max">
+                    <div *ngIf="drawCustomErrors(prop, 'max')">
+                        {{prop.validationMessages.max}}
+                    </div>
+                    <div *ngIf="!prop.validationMessages || !prop.validationMessages.max">
+                        The max value is {{form.get(prop.key).errors.max.max}}.
+                    </div>
                 </mat-error>
             </div>
         </div>
@@ -150,11 +191,9 @@ export class TWAPromptDialogComponent implements OnInit {
             if (this.fields.hasOwnProperty(i)) {
                 formGroup[this.fields[i].key] = new FormControl(
                     this.fields[i].value || '',
-                    this.mapValidators(this.fields[i].validation)
+                    this.mapValidators(this.fields[i].validation, this.fields[i].key)
                 );
-                console.log(this.fields[i].autocomplete);
                 if (typeof this.fields[i].autocomplete !== 'undefined' && this.fields[i].autocomplete !== undefined) {
-                    console.log(this.fields[i].autocomplete);
                     this.fields[i].autocomplete.filteredOptions = this.getFormGroupEvent(formGroup, i);
                 }
             }
@@ -170,6 +209,10 @@ export class TWAPromptDialogComponent implements OnInit {
             map(filterValue => filterValue ? this._filterValues(filterValue, this.fields[i].autocomplete.options) :
                 this.fields[i].autocomplete.options.slice())
         );
+    }
+
+    log(object: any) {
+        console.log(object);
     }
 
     private _filterValues(value, options) {
@@ -229,7 +272,21 @@ export class TWAPromptDialogComponent implements OnInit {
             this.formSubmitEv.emit(form);
     }
 
-    private mapValidators(validators: any) {
+    drawCustomErrors(prop, error) {
+        let ret = false;
+        if (typeof prop.validationMessages !== 'undefined') {
+            if (typeof prop.validationMessages[error] !== 'undefined') {
+                ret = prop.validationMessages[error] > '';
+            } else {
+                ret = false;
+            }
+        } else {
+            ret = false;
+        }
+        return ret;
+    }
+
+    private mapValidators(validators: any, field) {
 
         const formValidators = [];
 
@@ -237,8 +294,27 @@ export class TWAPromptDialogComponent implements OnInit {
             for (const validation of Object.keys(validators)) {
                 if (validation === 'required') {
                     formValidators.push(Validators.required);
+                } else if (validation === 'match') {
+                    formValidators.push(() => {
+                        let ret: any | boolean = false;
+                        const control = this.form.get(validators[validation]);
+                        if (!this.form.get(field)) {
+                            ret = null;
+                        }
+                        ret = !(this.form.get(field) && this.form.get(field).value === control.value);
+                        if (!ret) {
+                            ret = null;
+                        } else {
+                            ret = {
+                                match: true
+                            };
+                        }
+                        return ret;
+                    });
                 } else if (validation === 'min') {
                     formValidators.push(Validators.min(validators[validation]));
+                } else if (validation === 'max') {
+                    formValidators.push(Validators.max(validators[validation]));
                 }
             }
         }

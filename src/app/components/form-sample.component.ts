@@ -31,6 +31,32 @@ export class FormSampleComponent {
                         type: 'text',
                         value: '',
                         fxFlex: '100%',
+                        validation: {
+                            required: true
+                        },
+                        validationMessages: {
+                            required: 'Please, we need your name...'
+                        }
+                    },
+                    {
+                        key: 'password',
+                        label: 'Pasword',
+                        type: 'password',
+                        value: '',
+                        fxFlex: '50%',
+                        validationMessages: {
+                            required: 'El campo es requerido'
+                        }
+                    },
+                    {
+                        key: 'password2',
+                        label: 'Confirm pasword',
+                        type: 'password',
+                        value: '',
+                        fxFlex: '50%',
+                        validation: {
+                            match: 'password'
+                        }
                     },
                     {
                         key: 'sex',
@@ -54,7 +80,15 @@ export class FormSampleComponent {
                         label: 'Age',
                         type: 'number',
                         value: '',
-                        fxFlex: '50%'
+                        fxFlex: '50%',
+                        validation: {
+                            min: '10',
+                            max: '30',
+                        },
+                        validationMessages: {
+                            min: 'You can\'t register under age of 10',
+                            max: 'You\'re too older! XD',
+                        }
                     },
                     {
                         key: 'field1',
