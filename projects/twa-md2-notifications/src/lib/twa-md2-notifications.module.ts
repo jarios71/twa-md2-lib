@@ -7,6 +7,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { OverlayModule } from '@angular/cdk/overlay';
+import { MatBadgeModule } from '@angular/material/badge';
 
 import { TWAMd2NotificationsComponent } from './twa-md2-notifications.component';
 
@@ -18,6 +19,7 @@ import { TWAMd2NotificationsComponent } from './twa-md2-notifications.component'
         MatButtonModule,
         MatIconModule,
         OverlayModule,
+        MatBadgeModule,
         // TWAMd2NotificationsComponent,
     ],
     declarations: [

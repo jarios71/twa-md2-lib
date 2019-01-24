@@ -8,9 +8,11 @@ import { MatPaginator, MatSort } from '@angular/material';
 import { BehaviorSubject, Observable, merge } from 'rxjs';
 import { map } from 'rxjs/operators';
 
+// import { TWADialogsModule } from '../../../projects/twa-md2-dialogs/src/lib/twa-dialogs.module';
 import { TWADialogsModule } from 'twa-md2-dialogs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { TWAFilterEditorService, TWAFilterEditorComponent, FieldFilter } from 'twa-md2-filter-editor';
+import { TWAFilterEditorService, TWAFilterEditorComponent, FieldFilter } from '../../../projects/twa-md2-filter-editor/src/public_api';
+import { TwaMd2NotificationsService } from 'twa-md2-notifications';
 
 @Component({
     selector: 'ld-filter-editor-sample',
@@ -103,7 +105,7 @@ export class FilterEditorSampleComponent implements OnInit {
         operationsData: [
             {
                 type: 'contain',
-                label: 'include',
+                label: 'includes',
                 operator: '=>'
             },
             {
@@ -156,6 +158,7 @@ export class FilterEditorSampleComponent implements OnInit {
         private dialogsService: TWADialogsModule,
         private http: HttpClient,
         private filterService: TWAFilterEditorService,
+        private notifsService: TwaMd2NotificationsService,
     ) {}
 
     ngOnInit() {
@@ -321,7 +324,14 @@ export class FilterEditorSampleComponent implements OnInit {
             'Cancel'
         ).subscribe(result => {
                 if (result) {
-                    this.episodesDB.data[this.episodes.filteredData[idx].realIndex || idx] = {...episode, ...result};
+                    this.episodesDB.data[(this.episodes.filteredData[idx] &&
+                                          this.episodes.filteredData[idx].realIndex) ?
+                                            this.episodes.filteredData[idx].realIndex : idx] = {...episode, ...result};
+                    this.notifsService.add({
+                        title: 'Episode edited!',
+                        message: 'You\'re edited the episode "' + result.name + '"',
+                        date: ''
+                    });
                     this.onChange(this.episodes.filter);
                 }
             }

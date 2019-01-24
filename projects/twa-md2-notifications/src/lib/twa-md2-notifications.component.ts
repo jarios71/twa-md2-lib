@@ -8,7 +8,7 @@ import { delay, tap } from 'rxjs/operators';
     selector: 'twa-md2-notifications',
     template: `
         <button mat-icon-button #overlayOrigin="cdkOverlayOrigin" cdkOverlayOrigin (click)="notifClicked()">
-            <mat-icon *ngIf="notifs.length">notifications</mat-icon>
+            <mat-icon [matBadge]="notifs.length" matBadgeSize="medium" *ngIf="notifs.length">notifications</mat-icon>
             <mat-icon *ngIf="notifs.length===0">notifications_none</mat-icon>
         </button>
         <ng-template
@@ -24,24 +24,26 @@ import { delay, tap } from 'rxjs/operators';
                         <mat-icon class="twa-notif">clear_all</mat-icon>
                     </button>
                 </div>
-                <mat-card *ngFor="let notif of notifs; let i = index" 
-                          fxLayout="row"
-                          class="notif twa-notif"
-                          (click)="notifPanelClicked(notif, i)">
-                    <div class="cicon twa-notif">
-                        <mat-icon class="panelIcon twa-notif" *ngIf="!notif.image">notifications</mat-icon>
-                        <img class="notifImage twa-notif" *ngIf="notif.image" [src]="notif.image" />
-                    </div>
-                    <div class="ccontent twa-notif" fxLayout="column">
-                        <div fxLayout="row" class="twa-notif">
-                            <h4 class="twa-notif" fxFlex>{{notif.title}}</h4>
-                            <button class="close twa-notif" mat-icon-button (click)="removePanel(i)">
-                                <mat-icon class="twa-notif">close</mat-icon>
-                            </button>
+                <div class="notifsContainer" [ngClass]="{'scrolling': notifs.length > 4}">
+                    <mat-card *ngFor="let notif of notifs; let i = index"
+                            fxLayout="row"
+                            class="notif twa-notif"
+                            (click)="notifPanelClicked(notif, i)">
+                        <div class="cicon twa-notif">
+                            <mat-icon class="panelIcon twa-notif" *ngIf="!notif.image">notifications</mat-icon>
+                            <img class="notifImage twa-notif" *ngIf="notif.image" [src]="notif.image" />
                         </div>
-                        <p class="twa-notif" fxFlex>{{notif.message}}</p>
-                    </div>
-                </mat-card>
+                        <div class="ccontent twa-notif" fxLayout="column">
+                            <div fxLayout="row" class="twa-notif">
+                                <h4 class="twa-notif" fxFlex>{{notif.title}}</h4>
+                                <button class="close twa-notif" mat-icon-button (click)="removePanel(i)">
+                                    <mat-icon class="twa-notif">close</mat-icon>
+                                </button>
+                            </div>
+                            <p class="twa-notif" fxFlex>{{notif.message}}</p>
+                        </div>
+                    </mat-card>
+                </div>
                 <div class="notifPanelHideButton twa-notif" (click)="isOpened = false" fxLayout="row" fxLayoutAlign="center center">
                     <mat-icon>expand_less</mat-icon>
                 </div>
@@ -53,6 +55,7 @@ import { delay, tap } from 'rxjs/operators';
                                'padding: 12px 12px 4px 12px; box-shadow: 0 2px 10px rgba(0,0,0,.2); }',
         '.notifPanelHideButton { width: 100%; height: 18px; border-top: 1px solid #ccc; cursor: pointer; }',
         'div.panelTitle h3 { color: #aaa; font-weight: 900; font-family: Roboto Light; font-size: 26px; margin: 8px; }',
+        'div.notifsContainer.scrolling { max-height: 408px; overflow: auto; }',
         'mat-card.notif { cursor: pointer; padding: 12px 12px 12px 8px; margin: 0 0 8px 0!important; }',
         'mat-card.notif h4 { font-family: Roboto Light; font-size: 16px; margin: 8px 0 0; }',
         'mat-card.notif p { font-family: Roboto Light; margin: 8px 0 0; }',

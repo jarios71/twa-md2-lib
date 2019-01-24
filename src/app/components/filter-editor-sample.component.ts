@@ -11,6 +11,7 @@ import { map } from 'rxjs/operators';
 import { TWADialogsModule } from 'twa-md2-dialogs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { TWAFilterEditorService, TWAFilterEditorComponent, FieldFilter } from '../../../projects/twa-md2-filter-editor/src/public_api';
+import { TwaMd2NotificationsService } from 'twa-md2-notifications';
 
 @Component({
     selector: 'ld-filter-editor-sample',
@@ -156,6 +157,7 @@ export class FilterEditorSampleComponent implements OnInit {
         private dialogsService: TWADialogsModule,
         private http: HttpClient,
         private filterService: TWAFilterEditorService,
+        private notifsService: TwaMd2NotificationsService,
     ) {}
 
     ngOnInit() {
@@ -321,7 +323,14 @@ export class FilterEditorSampleComponent implements OnInit {
             'Cancel'
         ).subscribe(result => {
                 if (result) {
-                    this.episodesDB.data[this.episodes.filteredData[idx].realIndex || idx] = {...episode, ...result};
+                    this.episodesDB.data[(this.episodes.filteredData[idx] &&
+                                          this.episodes.filteredData[idx].realIndex) ?
+                                            this.episodes.filteredData[idx].realIndex : idx] = {...episode, ...result};
+                    this.notifsService.add({
+                        title: 'Episode edited!',
+                        message: 'You\'re edited the episode "' + result.name + '"',
+                        date: ''
+                    });
                     this.onChange(this.episodes.filter);
                 }
             }
