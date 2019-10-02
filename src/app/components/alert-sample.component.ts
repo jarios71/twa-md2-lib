@@ -13,7 +13,8 @@ import { TWADialogsModule } from 'twa-md2-dialogs';
 export class AlertSampleComponent {
 
     title = 'ld';
-    demoAlert: string = require('!!raw-loader?lang=typescript!./../../assets/code/alert-sample.ts');
+    demoAlert: string = require('!!raw-loader!./../../assets/code/alert-sample.ts.txt');
+    // demoAlert: string = require('!!raw-loader?lang=typescript!./../../assets/code/alert-sample.ts.txt');
 
     constructor(
         private dialogsService: TWADialogsModule

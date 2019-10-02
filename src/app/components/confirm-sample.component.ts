@@ -12,7 +12,7 @@ import { TWADialogsModule } from 'twa-md2-dialogs';
 export class ConfirmSampleComponent {
 
     title = 'ld';
-    demoConfirm: string = require('!!raw-loader?lang=typescript!./../../assets/code/confirm-sample.ts');
+    demoConfirm: string = require('!!raw-loader!./../../assets/code/confirm-sample.ts.txt');
 
     constructor(
         private dialogsService: TWADialogsModule

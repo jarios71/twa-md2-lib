@@ -33,8 +33,10 @@ import { TwaMd2NotificationsService } from 'twa-md2-notifications';
 export class FilterEditorSampleComponent implements OnInit {
 
     title = 'ld';
-    demoFilterHTML: string = require('!!raw-loader?lang=html!./../../assets/code/filter-editor-sample.component.html');
-    demoFilterTypeScript: string = require('!!raw-loader?lang=typescript!./../../assets/code/filter-editor-sample.component.tss');
+    demoFilterHTML: string = require('!!raw-loader!./../../assets/code/filter-editor-sample.component.html.txt');
+    demoFilterTypeScript: string = require('!!raw-loader!./../../assets/code/filter-editor-sample.component.ts.txt');
+    // demoFilterHTML: string = require('!!raw-loader?lang=html!./../../assets/code/filter-editor-sample.component.html.txt');
+    // demoFilterTypeScript: string = require('!!raw-loader?lang=typescript!./../../assets/code/filter-editor-sample.component.ts.txt');
     demoFilterJSON: string = `\n` + JSON.stringify(require('./../../assets/data/bbt.json'), null, 4);
     episodesDB: BBTDatabase | null;
     episodes: BBTDataSource | null;
@@ -142,11 +144,11 @@ export class FilterEditorSampleComponent implements OnInit {
         // filter: [
         // ]
     };
-    @ViewChild(MatPaginator)
+    @ViewChild(MatPaginator, {static: true})
     paginator: MatPaginator;
-    @ViewChild(TWAFilterEditorComponent)
+    @ViewChild(TWAFilterEditorComponent, {static: true})
     BBTFilter: TWAFilterEditorComponent;
-    @ViewChild('demoTabs')
+    @ViewChild('demoTabs', {static: true})
     demoTabs;
 
     initialFilters = [];

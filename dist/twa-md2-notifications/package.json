@@ -1,11 +1,9 @@
 {
   "name": "twa-md2-notifications",
-  "version": "0.1.0",
-  "homepage": "https://github.com/jarios71/twa-md2-lib",
-  "description": "This module makes it easy to generate silent notifications and interact with them. The notifications can be customizable and provide a service that makes them accessible throughout the application.",
+  "version": "0.8.1",
   "peerDependencies": {
-    "@angular/common": "^6.0.0-rc.0 || ^6.0.0",
-    "@angular/core": "^6.0.0-rc.0 || ^6.0.0"
+    "@angular/common": "^7.1.0",
+    "@angular/core": "^7.1.0"
   },
   "main": "bundles/twa-md2-notifications.umd.js",
   "module": "fesm5/twa-md2-notifications.js",

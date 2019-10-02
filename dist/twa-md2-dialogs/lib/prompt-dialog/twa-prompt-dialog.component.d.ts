@@ -18,6 +18,8 @@ export declare class TWAPromptDialogComponent implements OnInit {
     dialogRef: MatDialogRef<TWAPromptDialogComponent>;
     form: FormGroup;
     formSubmitEv: EventEmitter<any>;
+    formData: FormData;
+    isMultipart: boolean;
     title: string;
     message: string;
     messageHtml: SafeHtml;
@@ -37,4 +39,6 @@ export declare class TWAPromptDialogComponent implements OnInit {
     submitForm(form: any): void;
     drawCustomErrors(prop: any, error: any): boolean;
     private mapValidators;
+    addFiles(formElement: any): void;
+    changeFiles(formElement: any): void;
 }

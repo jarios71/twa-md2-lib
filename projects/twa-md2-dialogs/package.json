@@ -1,11 +1,8 @@
 {
-    "name": "twa-md2-dialogs",
-    "version": "0.1.9",
-    "homepage": "https://github.com/jarios71/twa-md2-lib",
-    "description": "This module makes it easy to generate alert dialogs, confirmation or data collection. It allows the generation of dynamic forms based on JSON objects, including basic validations and layout options.",
-    "peerDependencies": {
-        "@angular/common": "^6.0.0-rc.0 || ^6.0.0",
-        "@angular/core": "^6.0.0-rc.0 || ^6.0.0",
-        "ngx-material-timepicker": "^2.6.0"
-    }
+  "name": "twa-md2-dialogs",
+  "version": "0.8.7",
+  "peerDependencies": {
+    "@angular/common": "^7.1.0",
+    "@angular/core": "^7.1.0"
+  }
 }

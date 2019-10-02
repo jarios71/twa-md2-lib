@@ -6,6 +6,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
+import { MatIconModule } from '@angular/material/icon';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
@@ -34,10 +35,11 @@ import { MatDialog, MatDialogRef } from '@angular/material';
     MatCheckboxModule,
     MatSelectModule,
     MatRadioModule,
+    MatIconModule,
     MatDatepickerModule,
     MatNativeDateModule,
     MatAutocompleteModule,
-    NgxMaterialTimepickerModule.forRoot(),
+    NgxMaterialTimepickerModule,
   ],
   declarations: [
     // TWADialogsModule,
@@ -57,7 +59,9 @@ import { MatDialog, MatDialogRef } from '@angular/material';
     TWAPromptDialogComponent
   ]
 })
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class TWADialogsModule {
   constructor(
       private dialog: MatDialog,

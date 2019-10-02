@@ -1,6 +1,6 @@
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 import { Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
@@ -14,7 +14,7 @@ var TWAConfirmDialogComponent = /** @class */ (function () {
                     // templateUrl: './twa-confirm-dialog.component.html',
                     // styleUrls: ['./twa-confirm-dialog.component.css'],
                     template: "\n    <h2>{{ title }}</h2>\n    <p [innerHtml]=\"messageHtml\"></p>\n\n    <button type=\"button\" mat-raised-button\n        (click)=\"dialogRef.close(true)\">{{ okText }}</button>\n    <button type=\"button\" mat-button *ngIf=\"cancelText > ''\"\n        (click)=\"dialogRef.close()\">{{ cancelText }}</button>\n    "
-                },] },
+                }] }
     ];
     /** @nocollapse */
     TWAConfirmDialogComponent.ctorParameters = function () { return [

@@ -1,6 +1,6 @@
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -42,7 +42,7 @@ var TWAMd2NotificationsModule = /** @class */ (function () {
                     schemas: [
                         CUSTOM_ELEMENTS_SCHEMA
                     ]
-                },] },
+                },] }
     ];
     return TWAMd2NotificationsModule;
 }());

@@ -1,6 +1,6 @@
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -44,7 +44,7 @@ var TWAFilterEditorModule = /** @class */ (function () {
                     providers: [
                         TWAFilterEditorService
                     ]
-                },] },
+                },] }
     ];
     return TWAFilterEditorModule;
 }());

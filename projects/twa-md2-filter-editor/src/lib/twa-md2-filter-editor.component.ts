@@ -44,8 +44,8 @@ export class TWAFilterEditorComponent implements OnInit {
     @Input() config: FilterEditorConfig;
     @Output() change: EventEmitter<any[]> = new EventEmitter<any[]>();
 
-    @ViewChild('fileSet') fileSet: ElementRef;
-    @ViewChild('oepnFiltersFile') openFiltersFile: ElementRef;
+    @ViewChild('fileSet', {static: true}) fileSet: ElementRef;
+    @ViewChild('oepnFiltersFile', {static: true}) openFiltersFile: ElementRef;
 
     filterOptions: FilterEditorOptions;
     selectedField = 'none';
@@ -128,9 +128,10 @@ export class TWAFilterEditorComponent implements OnInit {
         const fileObj = (<HTMLInputElement>document.getElementById('openFiltersFile')).files[0];
         const reader = new FileReader();
         reader.onload = () => {
-            console.log(reader.result);
+            // console.log(reader.result);
             const data = JSON.parse(<string>reader.result);
             this.activeFilters = data;
+            this.change.emit(this.activeFilters);
         };
         reader.readAsText(fileObj);
     }
@@ -149,7 +150,14 @@ export class TWAFilterEditorComponent implements OnInit {
         return (this.selectedField === 'none' || this.selectedValue === '');
     }
 
+    sendFilter() {
+        this.addFilter();
+    }
+
     addFilter() {
+
+        // console.log('adding filter...');
+
         let color = '',
             field = '',
             dbfield = '',
@@ -188,6 +196,7 @@ export class TWAFilterEditorComponent implements OnInit {
             value: this.selectedValue
         });
         this.selectedValue = '';
+        // console.log(this.activeFilters);
         this.change.emit(this.activeFilters);
     }
 

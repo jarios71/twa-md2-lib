@@ -122,6 +122,13 @@ export class AppComponent {
                         value: '',
                         fxFlex: '100%'
                     },
+                    {
+                        key: 'file1',
+                        label: 'File upload',
+                        type: 'file',
+                        value: '',
+                        fxFlex: '100%'
+                    },
                 ],
                 'Send',
                 'Cancel')

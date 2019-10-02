@@ -7,12 +7,8 @@
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
-      "prefix": "ld",
-      "schematics": {
-        "@schematics/angular:component": {
-          "styleext": "scss"
-        }
-      },
+      "prefix": "app",
+      "schematics": {},
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -24,12 +20,10 @@
             "tsConfig": "src/tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
-              "src/404.html",
               "src/assets"
             ],
             "styles": [
-              "src/styles.css",
-              "src/styles.scss"
+              "src/styles.css"
             ],
             "scripts": []
           },
@@ -49,7 +43,14 @@
               "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
-              "buildOptimizer": true
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
             }
           }
         },
@@ -104,6 +105,7 @@
     "lib-twa-md-e2e": {
       "root": "e2e/",
       "projectType": "application",
+      "prefix": "",
       "architect": {
         "e2e": {
           "builder": "@angular-devkit/build-angular:protractor",
@@ -132,18 +134,13 @@
       "root": "projects/twa-md2-dialogs",
       "sourceRoot": "projects/twa-md2-dialogs/src",
       "projectType": "library",
-      "prefix": "tm",
+      "prefix": "lib",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
           "options": {
             "tsConfig": "projects/twa-md2-dialogs/tsconfig.lib.json",
             "project": "projects/twa-md2-dialogs/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "project": "projects/twa-md2-dialogs/ng-package.prod.json"
-            }
           }
         },
         "test": {
@@ -172,18 +169,13 @@
       "root": "projects/twa-md2-notifications",
       "sourceRoot": "projects/twa-md2-notifications/src",
       "projectType": "library",
-      "prefix": "tm",
+      "prefix": "lib",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
           "options": {
             "tsConfig": "projects/twa-md2-notifications/tsconfig.lib.json",
             "project": "projects/twa-md2-notifications/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "project": "projects/twa-md2-notifications/ng-package.prod.json"
-            }
           }
         },
         "test": {
@@ -212,18 +204,13 @@
       "root": "projects/twa-md2-filter-editor",
       "sourceRoot": "projects/twa-md2-filter-editor/src",
       "projectType": "library",
-      "prefix": "twa",
+      "prefix": "lib",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
           "options": {
             "tsConfig": "projects/twa-md2-filter-editor/tsconfig.lib.json",
             "project": "projects/twa-md2-filter-editor/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "project": "projects/twa-md2-filter-editor/ng-package.prod.json"
-            }
           }
         },
         "test": {
@@ -249,5 +236,5 @@
       }
     }
   },
-  "defaultProject": "lib-twa-md-dialogs"
+  "defaultProject": "lib-twa-md"
 }

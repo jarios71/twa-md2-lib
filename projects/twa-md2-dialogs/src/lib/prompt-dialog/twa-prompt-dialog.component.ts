@@ -74,7 +74,29 @@ export interface ITWAPromptField {
                         <input matInput placeholder="{{prop.label}}"
                             [formControlName]="prop.key"
                             [id]="prop.key" [type]="prop.type">
-                   </mat-form-field>
+                    </mat-form-field>
+                </div>
+                <div *ngSwitchCase="'file'">
+                    <mat-form-field fxFlex>
+                        <input type="file"
+                            [formControlName]="prop.key"
+                            [id]="prop.key"
+                            [type]="prop.type"
+                            style="display: none"
+                            (change)="changeFiles($event)" />
+                        <input matInput placeholder="{{prop.label}}"
+                            [formControlName]="prop.key + 'Ctrl'"
+                            [id]="prop.key + 'Ctrl'" type="text"
+                            (click)="addFiles(prop.key)">
+                        <mat-icon matSuffix>folder</mat-icon>
+                    </mat-form-field>
+                </div>
+                <div *ngSwitchCase="'checkbox'">
+                    <mat-checkbox
+                        [formControlName]="prop.key"
+                        [id]="prop.key">
+                        {{prop.label}}
+                    </mat-checkbox>
                 </div>
                 <div *ngSwitchCase="'date'">
                     <mat-form-field fxFlex>
@@ -172,6 +194,8 @@ export class TWAPromptDialogComponent implements OnInit {
 
     public form: FormGroup = new FormGroup({});
     formSubmitEv: EventEmitter<any> = new EventEmitter();
+    public formData: FormData = new FormData();
+    public isMultipart = false;
 
     public title: string;
     public message: string;
@@ -189,12 +213,25 @@ export class TWAPromptDialogComponent implements OnInit {
         const formGroup = {};
         for (const i in this.fields) {
             if (this.fields.hasOwnProperty(i)) {
-                formGroup[this.fields[i].key] = new FormControl(
-                    this.fields[i].value || '',
-                    this.mapValidators(this.fields[i].validation, this.fields[i].key)
-                );
+                if (this.fields[i].type !== 'file') {
+                    formGroup[this.fields[i].key] = new FormControl(
+                        this.fields[i].value || '',
+                        this.mapValidators(this.fields[i].validation, this.fields[i].key)
+                    );
+                } else {
+                    formGroup[this.fields[i].key] = new FormControl(
+                        '',
+                        this.mapValidators(this.fields[i].validation, this.fields[i].key)
+                    );
+                }
                 if (typeof this.fields[i].autocomplete !== 'undefined' && this.fields[i].autocomplete !== undefined) {
                     this.fields[i].autocomplete.filteredOptions = this.getFormGroupEvent(formGroup, i);
+                }
+                if (this.fields[i].type === 'file') {
+                    this.isMultipart = true;
+                    formGroup[this.fields[i].key + 'Ctrl'] = new FormControl(
+                        this.fields[i].value
+                    );
                 }
             }
         }
@@ -228,12 +265,27 @@ export class TWAPromptDialogComponent implements OnInit {
     }
 
     send() {
-            let i;
+            // let i;
             this.form.updateValueAndValidity();
             if (this.form.status !== 'INVALID') {
+                console.log(this.form.controls);
+                console.log(this.form.value);
+                if (this.isMultipart) {
+                    const fields = this.fields;
+                    for (const i in fields) {
+                        if (fields[i].type !== 'file') {
+                            this.formData.set(fields[i].key, this.form.value[fields[i].key]);
+                            console.log(i, this.formData.getAll(fields[i].key));
+                        } else {
+                            console.log('file', i, this.formData.getAll(fields[i].key));
+                        }
+                    }
+                    this.dialogRef.close(this.formData);
+                } else {
                     this.dialogRef.close(this.form.value);
+                }
             } else {
-                    for (i in this.form.controls) {
+                    for (const i in this.form.controls) {
                     // console.log(this.form.controls[i]);
                             if (this.form.controls.hasOwnProperty(i)) {
                                     this.form.controls[i].markAsTouched({ onlySelf: true });
@@ -320,6 +372,28 @@ export class TWAPromptDialogComponent implements OnInit {
         }
 
         return formValidators;
+    }
+
+    addFiles(formElement): void {
+
+        console.log(formElement, this.form.get(formElement));
+        const elem = document.getElementById(formElement) as HTMLInputElement;
+        elem.click();
+        // this.form.get(formElement).nativeElement.click();
+
+    }
+
+    changeFiles(formElement): void {
+
+        this.form.get(formElement.target.id + 'Ctrl').setValue(formElement.target.files[0].name);
+
+        // console.log(formElement);
+        // const formData = new FormData();
+        this.formData.append(formElement.target.id, formElement.target.files[0]);
+        console.log(JSON.stringify(this.formData));
+        console.log(this.formData);
+        // this.form.get(formElement.target.id).setValue(JSON.stringify(formData));
+
     }
 
 }

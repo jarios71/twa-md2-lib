@@ -35,6 +35,7 @@ export declare class TWAFilterEditorComponent implements OnInit {
     openFilters(): void;
     saveFilters(): void;
     checkFilter(): boolean;
+    sendFilter(): void;
     addFilter(): void;
     selectFilter(filter: FieldFilter): void;
     getParentFilter(filter: FieldFilter): FieldFilter | null;

@@ -12,7 +12,8 @@ import { TWADialogsModule } from 'twa-md2-dialogs';
 export class AutocompleteSampleComponent {
 
     title = 'ld';
-    demoAutocomplete: string = require('!!raw-loader?lang=typescript!./../../assets/code/autocomplete-sample.ts');
+    demoAutocomplete: string = require('!!raw-loader!./../../assets/code/autocomplete-sample.ts.txt');
+    // demoAutocomplete: string = require('!!raw-loader?lang=typescript!./../../assets/code/autocomplete-sample.ts');
 
     constructor(
         private dialogsService: TWADialogsModule

@@ -33,6 +33,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { Ng2HandySyntaxHighlighterModule } from 'ng2-handy-syntax-highlighter';
 
 import { TWADialogsModule, TWAConfirmDialogComponent, TWAPromptDialogComponent } from 'twa-md2-dialogs';
+// import { TWADialogsModule } from '../../projects/twa-md2-dialogs/src/public_api';
 import { TWAMd2NotificationsModule } from 'twa-md2-notifications';
 // import { TWAFilterEditorModule } from 'twa-md2-filter-editor';
 // import { TWADialogsModule } from '../../projects/twa-md2-dialogs/src/lib/twa-dialogs.module';

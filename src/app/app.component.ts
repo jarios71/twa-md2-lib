@@ -15,10 +15,14 @@ import { TwaMd2NotificationsService } from 'twa-md2-notifications';
 export class AppComponent {
 
     title = 'ld';
-    demoAlert: string = require('!!raw-loader?lang=typescript!./../assets/code/alert-sample.ts');
-    demoConfirm: string = require('!!raw-loader?lang=typescript!./../assets/code/confirm-sample.ts');
-    demoAutocomplete: string = require('!!raw-loader?lang=typescript!./../assets/code/autocomplete-sample.ts');
-    demoForm: string = require('!!raw-loader?lang=typescript!./../assets/code/form-sample.ts');
+    demoAlert: string = require('!!raw-loader!./../assets/code/alert-sample.ts.txt');
+    demoConfirm: string = require('!!raw-loader!./../assets/code/confirm-sample.ts.txt');
+    demoAutocomplete: string = require('!!raw-loader!./../assets/code/autocomplete-sample.ts.txt');
+    demoForm: string = require('!!raw-loader!./../assets/code/form-sample.ts.txt');
+    // demoAlert: string = require('!!raw-loader?lang=typescript!./../assets/code/alert-sample.ts.txt');
+    // demoConfirm: string = require('!!raw-loader?lang=typescript!./../assets/code/confirm-sample.ts.txt');
+    // demoAutocomplete: string = require('!!raw-loader?lang=typescript!./../assets/code/autocomplete-sample.ts.txt');
+    // demoForm: string = require('!!raw-loader?lang=typescript!./../assets/code/form-sample.ts.txt');
 
     samplesDialog = [
         {
