@@ -88,7 +88,7 @@ export interface ITWAPromptField {
                             [formControlName]="prop.key + 'Ctrl'"
                             [id]="prop.key + 'Ctrl'" type="text"
                             (click)="addFiles(prop.key)">
-                        <mat-icon matSuffix>folder</mat-icon>
+                        <mat-icon matSuffix (click)="addFiles(prop.key)">folder</mat-icon>
                     </mat-form-field>
                 </div>
                 <div *ngSwitchCase="'checkbox'">
