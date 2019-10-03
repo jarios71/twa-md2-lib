@@ -17,7 +17,7 @@ export class AlertSampleComponent {
     constructor(
         private dialogsService: TWADialogsModule
     ) {
-        fetch('./../../assets/code/alert-sample.ts.txt').then(response => {
+        fetch('./assets/code/alert-sample.ts.txt').then(response => {
             response.text().then(text => {
                 this.demoAlert = text;
             });

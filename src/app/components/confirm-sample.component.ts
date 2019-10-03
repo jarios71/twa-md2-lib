@@ -17,7 +17,7 @@ export class ConfirmSampleComponent {
     constructor(
         private dialogsService: TWADialogsModule
     ) {
-        fetch('./../../assets/code/confirm-sample.ts.txt').then(response => {
+        fetch('./assets/code/confirm-sample.ts.txt').then(response => {
             response.text().then(text => {
                 this.demoConfirm = text;
             });

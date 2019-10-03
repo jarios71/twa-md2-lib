@@ -182,12 +182,12 @@ export class FilterEditorSampleComponent implements OnInit {
 
         this.sort.active = 'airdate';
 
-        fetch('./../../assets/code/filter-editor-sample.component.html.txt').then(response => {
+        fetch('./assets/code/filter-editor-sample.component.html.txt').then(response => {
             response.text().then(text => {
                 this.demoFilterHTML = text;
             });
         });
-        fetch('./../../assets/code/filter-editor-sample.component.ts.txt').then(response => {
+        fetch('./assets/code/filter-editor-sample.component.ts.txt').then(response => {
             response.text().then(text => {
                 this.demoFilterTypeScript = text;
             });

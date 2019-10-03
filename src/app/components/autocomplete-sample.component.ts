@@ -18,7 +18,7 @@ export class AutocompleteSampleComponent {
     constructor(
         private dialogsService: TWADialogsModule
     ) {
-        fetch('./../../assets/code/autocomplete-sample.ts.txt').then(response => {
+        fetch('./assets/code/autocomplete-sample.ts.txt').then(response => {
             response.text().then(text => {
                 this.demoAutocomplete = text;
             });
