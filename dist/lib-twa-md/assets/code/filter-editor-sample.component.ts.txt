@@ -352,7 +352,7 @@ export class FilterEditorSampleComponent implements OnInit {
     deleteEpisode(episode, idx) {
         this.dialogsService.confirm(
             'Delete episode',
-            'This action removes the episode ' + episode.name + ' from de db. Are you sure?',
+            'This action removes the episode ' + episode.name + ' from the db. Are you sure?',
             'Yes',
             'No, please... cancel!'
         ).subscribe(res => {
