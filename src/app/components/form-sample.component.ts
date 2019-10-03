@@ -17,7 +17,13 @@ export class FormSampleComponent {
 
     constructor(
         private dialogsService: TWADialogsModule
-    ) {}
+    ) {
+        fetch('./../../assets/code/form-sample.ts.txt').then(response => {
+            response.text().then(text => {
+                this.demoForm = text;
+            });
+        });
+    }
 
     showDemoForm() {
         const formFields = [
@@ -129,10 +135,17 @@ export class FormSampleComponent {
                 if (res) {
                     console.log(res);
                     console.log(JSON.stringify(res));
-                    for (const field of res.entries()) {
-                        console.log(field);
-                    }
-                    this.responseForm = "\n" + JSON.stringify(res, null, 2).trim();
+                    const data = {};
+                    res.forEach((value, key) => {
+                        data[key] = value;
+                        console.log(key, '=>', value);
+                    });
+                    console.log("TCL: FormSampleComponent -> showDemoForm -> data", data)
+                    // for (const field of res.entries()) {
+                    //     data[field[0]] = field[1]
+                    //     console.log(field);
+                    // }
+                    this.responseForm = "\n" + JSON.stringify(data, null, 2).trim();
                 }
             }
         );

@@ -1,10 +1,9 @@
-
 <div>
     <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
         <h2>Filter Editor</h2>
         <div>
-            <button mat-raised-button 
-                    color="primary" 
+            <button mat-raised-button
+                    color="primary"
                     (click)="loadFilter()"
                     *ngIf="this.selectedTab === 0"
                     >
@@ -15,9 +14,9 @@
     <mat-tab-group #demoTabs (selectedTabChange)="tabChanged($event)">
         <mat-tab label="Demo">
             <div fxLayout="column" fxLayoutGap="20px">
-                <twa-md2-filter-editor [options]="fieldOptions" [config]="filterConfig" (change)="onChange($event)" #BBTFilter fxFlex></twa-md2-filter-editor>
+                <twa-md2-filter-editor [options]="fieldOptions" [config]="filterConfig" (change)="onChange($event)" #BBTFilter></twa-md2-filter-editor>
                 <mat-table #table [dataSource]="episodes">
-        
+
                     <ng-container matColumnDef="airdate">
                         <mat-header-cell *matHeaderCellDef>
                             Air date
@@ -26,7 +25,7 @@
                             {{row.airdate}}
                         </mat-cell>
                     </ng-container>
-        
+
                     <ng-container matColumnDef="airtime">
                         <mat-header-cell *matHeaderCellDef>
                             Air time
@@ -35,7 +34,7 @@
                             {{row.airtime}}
                         </mat-cell>
                     </ng-container>
-        
+
                     <ng-container matColumnDef="name">
                         <mat-header-cell *matHeaderCellDef>
                             Title
@@ -44,7 +43,7 @@
                             {{row.name}}
                         </mat-cell>
                     </ng-container>
-        
+
                     <ng-container matColumnDef="number">
                         <mat-header-cell *matHeaderCellDef>
                             Episode
@@ -53,7 +52,7 @@
                             {{row.number}}
                         </mat-cell>
                     </ng-container>
-        
+
                     <ng-container matColumnDef="season">
                         <mat-header-cell *matHeaderCellDef>
                             Season
@@ -62,7 +61,7 @@
                             {{row.season}}
                         </mat-cell>
                     </ng-container>
-        
+
                     <ng-container matColumnDef="summary">
                         <mat-header-cell *matHeaderCellDef>
                             Summary
@@ -71,7 +70,7 @@
                             {{row.summary | ellipsis: 200}}
                         </mat-cell>
                     </ng-container>
-        
+
                     <ng-container matColumnDef="tools">
                         <mat-header-cell *matHeaderCellDef class="tools">
                         </mat-header-cell>
@@ -81,10 +80,10 @@
                             </div>
                         </mat-cell>
                     </ng-container>
-        
+
                     <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
                     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-        
+
                 </mat-table>
                 <mat-paginator #paginator
                     [length]="getRows()"
@@ -95,17 +94,13 @@
             </div>
         </mat-tab>
         <mat-tab label="HTML">
-            <handy-syntax-highlighter [language]="'html'" [content]="demoFilterHTML">
-            </handy-syntax-highlighter>
+            <pre><code [languages]="['xml','html']" [highlight]="demoFilterHTML"></code></pre>
         </mat-tab>
         <mat-tab label="TypeScript">
-            <handy-syntax-highlighter [language]="'typescript'" [content]="demoFilterTypeScript">
-            </handy-syntax-highlighter>
+            <pre><code [languages]="['typescript']" [highlight]="demoFilterTypeScript"></code></pre>
         </mat-tab>
         <mat-tab label="Data">
-            <handy-syntax-highlighter [language]="'json'" [content]="demoFilterJSON" class="json">
-            </handy-syntax-highlighter>
+            <pre><code [languages]="['json', 'typescript']" [highlight]="demoFilterJSON"></code></pre>
         </mat-tab>
     </mat-tab-group>
 </div>
-    

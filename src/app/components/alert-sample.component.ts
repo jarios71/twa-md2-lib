@@ -1,5 +1,3 @@
-declare var require: any;       // To avoid compilation errors with "require"...
-
 import { Component } from '@angular/core';
 import { TWADialogsModule } from 'twa-md2-dialogs';
 // import { TWADialogsModule } from '../../../projects/twa-md2-dialogs/src/lib/twa-dialogs.module';
@@ -13,12 +11,18 @@ import { TWADialogsModule } from 'twa-md2-dialogs';
 export class AlertSampleComponent {
 
     title = 'ld';
-    demoAlert: string = require('!!raw-loader!./../../assets/code/alert-sample.ts.txt');
+    demoAlert: string = '';
     // demoAlert: string = require('!!raw-loader?lang=typescript!./../../assets/code/alert-sample.ts.txt');
 
     constructor(
         private dialogsService: TWADialogsModule
-    ) {}
+    ) {
+        fetch('./../../assets/code/alert-sample.ts.txt').then(response => {
+            response.text().then(text => {
+                this.demoAlert = text;
+            });
+        });
+    }
 
     showDemoAlert() {
         this.dialogsService

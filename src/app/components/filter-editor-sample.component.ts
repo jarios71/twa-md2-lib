@@ -7,7 +7,6 @@ import { MatPaginator, MatSort } from '@angular/material';
 import { BehaviorSubject, Observable, merge } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-// import { TWADialogsModule } from '../../../projects/twa-md2-dialogs/src/lib/twa-dialogs.module';
 import { TWADialogsModule } from 'twa-md2-dialogs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { TWAFilterEditorService, TWAFilterEditorComponent, FieldFilter } from '../../../projects/twa-md2-filter-editor/src/public_api';
@@ -33,10 +32,8 @@ import { TwaMd2NotificationsService } from 'twa-md2-notifications';
 export class FilterEditorSampleComponent implements OnInit {
 
     title = 'ld';
-    demoFilterHTML: string = require('!!raw-loader!./../../assets/code/filter-editor-sample.component.html.txt');
-    demoFilterTypeScript: string = require('!!raw-loader!./../../assets/code/filter-editor-sample.component.ts.txt');
-    // demoFilterHTML: string = require('!!raw-loader?lang=html!./../../assets/code/filter-editor-sample.component.html.txt');
-    // demoFilterTypeScript: string = require('!!raw-loader?lang=typescript!./../../assets/code/filter-editor-sample.component.ts.txt');
+    demoFilterHTML = '';
+    demoFilterTypeScript = '';
     demoFilterJSON: string = `\n` + JSON.stringify(require('./../../assets/data/bbt.json'), null, 4);
     episodesDB: BBTDatabase | null;
     episodes: BBTDataSource | null;
@@ -160,7 +157,8 @@ export class FilterEditorSampleComponent implements OnInit {
         private http: HttpClient,
         private filterService: TWAFilterEditorService,
         private notifsService: TwaMd2NotificationsService,
-    ) {}
+    ) {
+    }
 
     ngOnInit() {
 
@@ -183,6 +181,17 @@ export class FilterEditorSampleComponent implements OnInit {
             });
 
         this.sort.active = 'airdate';
+
+        fetch('./../../assets/code/filter-editor-sample.component.html.txt').then(response => {
+            response.text().then(text => {
+                this.demoFilterHTML = text;
+            });
+        });
+        fetch('./../../assets/code/filter-editor-sample.component.ts.txt').then(response => {
+            response.text().then(text => {
+                this.demoFilterTypeScript = text;
+            });
+        });
 
     }
 

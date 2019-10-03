@@ -31,6 +31,13 @@ this.dialogsService
                     }
                 },
                 {
+                    key: 'file1',
+                    label: 'Add file',
+                    type: 'file',
+                    value: '',
+                    fxFlex: '100%'
+                },
+                {
                     key: 'sex',
                     label: 'Sex',
                     type: 'select',

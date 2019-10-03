@@ -30,8 +30,6 @@ import { MatGridListModule } from '@angular/material/grid-list';
 // import { MatModule } from '@angular/material/';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
-import { Ng2HandySyntaxHighlighterModule } from 'ng2-handy-syntax-highlighter';
-
 import { TWADialogsModule, TWAConfirmDialogComponent, TWAPromptDialogComponent } from 'twa-md2-dialogs';
 // import { TWADialogsModule } from '../../projects/twa-md2-dialogs/src/public_api';
 import { TWAMd2NotificationsModule } from 'twa-md2-notifications';
@@ -51,6 +49,24 @@ import { FilterEditorSampleComponent } from './components/filter-editor-sample.c
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 import { EllipsisPipe } from './pipes/ellipsis.pipe';
+
+import { HighlightModule } from 'ngx-highlightjs';
+
+import xml from 'highlight.js/lib/languages/xml';
+import css from 'highlight.js/lib/languages/css';
+import typescript from 'highlight.js/lib/languages/typescript';
+
+/**
+ * Import every language you wish to highlight here
+ * NOTE: The name of each language must match the file name its imported from
+ */
+export function hljsLanguages() {
+    return [
+        {name: 'typescript', func: typescript},
+        {name: 'css', func: css},
+        {name: 'xml', func: xml}
+    ];
+}
 
 @NgModule({
   declarations: [
@@ -97,7 +113,9 @@ import { EllipsisPipe } from './pipes/ellipsis.pipe';
     MatSlideToggleModule,
     MatGridListModule,
     FlexLayoutModule,
-    Ng2HandySyntaxHighlighterModule,
+    HighlightModule.forRoot({
+        languages: hljsLanguages
+    }),
   ],
   providers: [
       HttpClient,

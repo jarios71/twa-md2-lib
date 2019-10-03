@@ -5,6 +5,7 @@
             <button mat-raised-button color="primary" (click)="showDemoAlert()">Test dialog</button>
         </div>
     </div>
-    <handy-syntax-highlighter [language]="'typescript'" [content]="demoAlert">
-    </handy-syntax-highlighter>
+    <!-- <handy-syntax-highlighter [language]="'typescript'" [content]="demoAlert">
+    </handy-syntax-highlighter> -->
+    <pre><code [languages]="['json', 'typescript']" [highlight]="demoAlert"></code></pre>
 </div>

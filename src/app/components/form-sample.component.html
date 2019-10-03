@@ -7,15 +7,13 @@
             </div>
         </div>
         <div fxLayout="row">
-            <handy-syntax-highlighter [language]="'typescript'" [content]="demoForm" fxFlex>
-            </handy-syntax-highlighter>
+            <pre><code [languages]="['json', 'typescript']" [highlight]="demoForm"></code></pre>
         </div>
     </div>
     <div *ngIf="responseForm > ''" fxFlex>
         <div fxLayout="row" fxLayoutGap="20px">
             <h2>Resultado</h2>
         </div>
-        <handy-syntax-highlighter [language]="'json'" [content]="responseForm">
-        </handy-syntax-highlighter>
+        <pre><code [languages]="['json']" [highlight]="responseForm"></code></pre>
     </div>
 </div>
