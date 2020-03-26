@@ -37,6 +37,7 @@ import { TWAMd2NotificationsModule } from 'twa-md2-notifications';
 // import { TWADialogsModule } from '../../projects/twa-md2-dialogs/src/lib/twa-dialogs.module';
 // import { TWAMd2NotificationsModule } from '../../projects/twa-md2-notifications/src/public_api';
 import { TWAFilterEditorModule } from '../../projects/twa-md2-filter-editor/src/lib/twa-md2-filter-editor.module';
+import { TWAMd2DynformsModule } from '../../projects/twa-md2-dynforms/src/lib/twa-md2-dynforms.module';
 
 import { appRoutes } from './app.routing';
 import { AppComponent } from './app.component';
@@ -45,6 +46,7 @@ import { AlertSampleComponent } from './components/alert-sample.component';
 import { ConfirmSampleComponent } from './components/confirm-sample.component';
 import { AutocompleteSampleComponent } from './components/autocomplete-sample.component';
 import { FormSampleComponent } from './components/form-sample.component';
+import { DynFormSampleComponent } from './components/dynform-sample.component';
 import { FilterEditorSampleComponent } from './components/filter-editor-sample.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 
@@ -75,6 +77,7 @@ export function hljsLanguages() {
     ConfirmSampleComponent,
     AutocompleteSampleComponent,
     FormSampleComponent,
+    DynFormSampleComponent,
     FilterEditorSampleComponent,
     EllipsisPipe,
   ],
@@ -86,6 +89,7 @@ export function hljsLanguages() {
     HttpClientModule,
     TWAMd2NotificationsModule,
     TWAFilterEditorModule,
+    TWAMd2DynformsModule,
     MatButtonModule,
     MatMenuModule,
     MatCardModule,

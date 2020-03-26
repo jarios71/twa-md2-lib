@@ -1,6 +1,6 @@
 {
   "name": "twa-md2-filter-editor",
-  "version": "0.8.2",
+  "version": "0.8.7",
   "peerDependencies": {
     "@angular/common": "^7.1.0",
     "@angular/core": "^7.1.0"

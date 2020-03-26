@@ -560,7 +560,9 @@ export class TWAFilterEditorComponent implements OnInit {
     }
 
     onDroppedFilter(event) {
-        this.arrayMove(this.activeFilters, event.previousIndex, event.currentIndex);
+      console.log('dropped');
+      this.arrayMove(this.activeFilters, event.previousIndex, event.currentIndex);
+      console.log(this.activeFilters);
         // this.clearSelection();
         this.sanitizeGroups();
         this.change.emit(this.activeFilters);

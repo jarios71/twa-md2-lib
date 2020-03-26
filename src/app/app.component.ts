@@ -19,6 +19,7 @@ export class AppComponent {
     demoConfirm: string = require('!!raw-loader!./../assets/code/confirm-sample.ts.txt');
     demoAutocomplete: string = require('!!raw-loader!./../assets/code/autocomplete-sample.ts.txt');
     demoForm: string = require('!!raw-loader!./../assets/code/form-sample.ts.txt');
+    demoDynForm: string = require('!!raw-loader!./../assets/code/dynform-sample.ts.txt');
     // demoAlert: string = require('!!raw-loader?lang=typescript!./../assets/code/alert-sample.ts.txt');
     // demoConfirm: string = require('!!raw-loader?lang=typescript!./../assets/code/confirm-sample.ts.txt');
     // demoAutocomplete: string = require('!!raw-loader?lang=typescript!./../assets/code/autocomplete-sample.ts.txt');
@@ -47,6 +48,13 @@ export class AppComponent {
         {
             title: 'Filter Editor',
             path: 'filter-editor-sample'
+        },
+    ];
+
+    samplesDynForms = [
+        {
+            title: 'Dynamic Forms',
+            path: 'dynform-sample'
         },
     ];
 

@@ -1,0 +1,22 @@
+<div fxLayout="row" fxLayoutGap="30px">
+    <div fxFlex>
+        <div fxLayout="row" fxLayoutGap="20px">
+          <h2>Dynamic forms</h2>
+        </div>
+        <div>
+          <button mat-raised-button (click)="getData()">Test dat</button>
+        </div>
+        <div fxLayout="column" fxLayoutAlign="center center">
+            <twa-md2-dynforms #dynform [fields]="formFields"></twa-md2-dynforms>
+        </div>
+        <div fxLayout="row">
+            <pre><code [languages]="['json', 'typescript']" [highlight]="demoForm"></code></pre>
+        </div>
+    </div>
+    <div *ngIf="responseForm > ''" fxFlex>
+        <div fxLayout="row" fxLayoutGap="20px">
+            <h2>Resultado</h2>
+        </div>
+        <pre><code [languages]="['json']" [highlight]="responseForm"></code></pre>
+    </div>
+</div>

@@ -37,6 +37,12 @@
       ],
       "twa-md2-filter-editor/*": [
         "dist/twa-md2-filter-editor/*"
+      ],
+      "twa-md2-dynforms": [
+        "dist/twa-md2-dynforms"
+      ],
+      "twa-md2-dynforms/*": [
+        "dist/twa-md2-dynforms/*"
       ]
     }
   }

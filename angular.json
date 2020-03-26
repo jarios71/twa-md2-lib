@@ -234,6 +234,41 @@
           }
         }
       }
+    },
+    "twa-md2-dynforms": {
+      "projectType": "library",
+      "root": "projects/twa-md2-dynforms",
+      "sourceRoot": "projects/twa-md2-dynforms/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/twa-md2-dynforms/tsconfig.lib.json",
+            "project": "projects/twa-md2-dynforms/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/twa-md2-dynforms/src/test.ts",
+            "tsConfig": "projects/twa-md2-dynforms/tsconfig.spec.json",
+            "karmaConfig": "projects/twa-md2-dynforms/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/twa-md2-dynforms/tsconfig.lib.json",
+              "projects/twa-md2-dynforms/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "lib-twa-md"
