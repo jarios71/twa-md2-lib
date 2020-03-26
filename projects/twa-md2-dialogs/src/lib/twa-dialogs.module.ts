@@ -12,6 +12,7 @@ import { MatNativeDateModule } from '@angular/material';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 import { MatchValidator } from './prompt-dialog/match-validator.directive';
+import { TWADialogsComponent } from './twa-dialogs.component';
 import { TWAConfirmDialogComponent } from './confirm-dialog/twa-confirm-dialog.component';
 import { TWAPromptDialogComponent } from './prompt-dialog/twa-prompt-dialog.component';
 // import { TWADialogsService } from './twa-dialogs.service';
@@ -43,6 +44,7 @@ import { MatDialog, MatDialogRef } from '@angular/material';
   ],
   declarations: [
     // TWADialogsModule,
+    TWADialogsComponent,
     TWAConfirmDialogComponent,
     TWAPromptDialogComponent,
     MatchValidator,

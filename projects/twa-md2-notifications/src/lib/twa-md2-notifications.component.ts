@@ -70,7 +70,7 @@ export class TWAMd2NotificationsComponent implements OnInit {
     @Input() notifsService: TwaMd2NotificationsService;
     @Output() panelClicked: EventEmitter<any> = new EventEmitter();
 
-    @ViewChild('notifPanelContainer', { static: false }) notifPanel;
+    @ViewChild('notifPanelContainer') notifPanel;
 
     private globalClick: Observable<Event>;
     private listening: boolean;

@@ -1,6 +1,6 @@
 declare var require: any;       // To avoid compilation errors with 'require'...
 
-import { Component, Output, EventEmitter, ViewChild, OnInit } from '@angular/core';
+import { Component, Output, EventEmitter, ViewChild, OnInit, Directive } from '@angular/core';
 import { DataSource } from '@angular/cdk/collections';
 import { MatPaginator, MatSort } from '@angular/material';
 
@@ -523,6 +523,7 @@ export class BBTDataSource extends DataSource<any> {
 
 }
 
+@Directive()
 class BBTFilter {
 
     filters: FieldFilter[] = [];
