@@ -1,6 +1,9 @@
 {
   "name": "twa-md2-notifications",
   "version": "0.9.3",
+  "dependencies": {
+    "tslib": "^2.0.0"
+  },
   "peerDependencies": {
     "@angular/common": "^9.0.0",
     "@angular/core": "^9.0.0"
