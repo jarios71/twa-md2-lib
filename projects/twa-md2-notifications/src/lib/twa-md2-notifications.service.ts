@@ -2,9 +2,10 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 
 export interface INotif {
+    id?: string;
     title: string;
     message: string;
-    date: string;
+    date?: string;
     data?: any;
     icon?: string;
     image?: string;
@@ -20,7 +21,7 @@ export class TwaMd2NotificationsService {
     constructor() { }
 
     public add(notif: INotif) {
-        console.log(notif);
+        // console.log(notif);
         this.queue.push(notif);
     }
 

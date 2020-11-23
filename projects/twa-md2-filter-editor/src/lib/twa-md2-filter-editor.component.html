@@ -116,8 +116,8 @@
         </mat-chip-list>
     </div>
 </div>
-<input style="visibilty: hidden; height: 0px; width: 0px;" type="file" id="fileSet" #fileSet (change)="uploadSet()" />
-<input style="visibilty: hidden; height: 0px; width: 0px;" type="file" id="openFiltersFile" #openFiltersFile (change)="openFilters()" />
+<input style="visibility: hidden; height: 0px; width: 0px;" type="file" id="fileSet" #fileSet (change)="uploadSet()" />
+<input style="visibility: hidden; height: 0px; width: 0px;" type="file" id="openFiltersFile" #openFiltersFile (change)="openFilters()" />
 <ng-template #group let-filter="filter" let-idx="idx">
     <span class="group-start">(</span>
     <ng-container *ngFor="let filter2 of filter.fields; let idx2 = index">

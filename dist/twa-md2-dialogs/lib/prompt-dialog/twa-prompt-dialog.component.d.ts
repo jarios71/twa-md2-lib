@@ -1,17 +1,17 @@
 import { EventEmitter, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material';
+import { MatDialogRef } from '@angular/material/dialog';
 import { FormGroup } from '@angular/forms';
 import { SafeHtml } from '@angular/platform-browser';
 export interface ITWAPromptField {
     key: string;
     label: string;
     type: string;
-    fxFlex: string;
-    value: string;
-    options: any[];
-    autocomplete: any;
-    rows: any[];
-    validation: any;
+    fxFlex?: string;
+    value?: string;
+    options?: any[];
+    autocomplete?: any;
+    rows?: any[];
+    validation?: any;
     validationMessages?: any;
 }
 export declare class TWAPromptDialogComponent implements OnInit {

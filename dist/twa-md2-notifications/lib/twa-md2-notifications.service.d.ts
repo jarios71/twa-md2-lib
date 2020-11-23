@@ -1,8 +1,9 @@
 import { Observable } from 'rxjs';
 export interface INotif {
+    id?: string;
     title: string;
     message: string;
-    date: string;
+    date?: string;
     data?: any;
     icon?: string;
     image?: string;

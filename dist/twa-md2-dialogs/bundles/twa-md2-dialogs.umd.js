@@ -1,8 +1,8 @@
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/common'), require('@angular/flex-layout'), require('@angular/forms'), require('@angular/material/input'), require('@angular/material/checkbox'), require('@angular/material/select'), require('@angular/material/radio'), require('@angular/material/icon'), require('@angular/material/datepicker'), require('@angular/material'), require('@angular/material/autocomplete'), require('rxjs/operators'), require('ngx-material-timepicker'), require('@angular/platform-browser'), require('@angular/material/dialog')) :
-    typeof define === 'function' && define.amd ? define('twa-md2-dialogs', ['exports', '@angular/core', '@angular/common', '@angular/flex-layout', '@angular/forms', '@angular/material/input', '@angular/material/checkbox', '@angular/material/select', '@angular/material/radio', '@angular/material/icon', '@angular/material/datepicker', '@angular/material', '@angular/material/autocomplete', 'rxjs/operators', 'ngx-material-timepicker', '@angular/platform-browser', '@angular/material/dialog'], factory) :
-    (global = global || self, factory(global['twa-md2-dialogs'] = {}, global.ng.core, global.ng.common, global.ng['flex-layout'], global.ng.forms, global.ng.material.input, global.ng.material.checkbox, global.ng.material.select, global.ng.material.radio, global.ng.material.icon, global.ng.material.datepicker, global.ng.material, global.ng.material.autocomplete, global.rxjs.operators, global.ngxMaterialTimepicker, global.ng.platformBrowser, global.ng.material.dialog));
-}(this, function (exports, core, common, flexLayout, forms, input, checkbox, select, radio, icon, datepicker, material, autocomplete, operators, ngxMaterialTimepicker, platformBrowser, dialog) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/common'), require('@angular/flex-layout'), require('@angular/forms'), require('@angular/material/input'), require('@angular/material/checkbox'), require('@angular/material/select'), require('@angular/material/radio'), require('@angular/material/icon'), require('@angular/material/datepicker'), require('@angular/material/core'), require('@angular/material/autocomplete'), require('@angular/material/dialog'), require('rxjs/operators'), require('@angular/material/button'), require('ngx-material-timepicker'), require('@angular/platform-browser')) :
+    typeof define === 'function' && define.amd ? define('twa-md2-dialogs', ['exports', '@angular/core', '@angular/common', '@angular/flex-layout', '@angular/forms', '@angular/material/input', '@angular/material/checkbox', '@angular/material/select', '@angular/material/radio', '@angular/material/icon', '@angular/material/datepicker', '@angular/material/core', '@angular/material/autocomplete', '@angular/material/dialog', 'rxjs/operators', '@angular/material/button', 'ngx-material-timepicker', '@angular/platform-browser'], factory) :
+    (global = global || self, factory(global['twa-md2-dialogs'] = {}, global.ng.core, global.ng.common, global.ng.flexLayout, global.ng.forms, global.ng.material.input, global.ng.material.checkbox, global.ng.material.select, global.ng.material.radio, global.ng.material.icon, global.ng.material.datepicker, global.ng.material.core, global.ng.material.autocomplete, global.ng.material.dialog, global.rxjs.operators, global.ng.material.button, global.ngxMaterialTimepicker, global.ng.platformBrowser));
+}(this, (function (exports, core, common, flexLayout, forms, input, checkbox, select, radio, icon, datepicker, core$1, autocomplete, dialog, operators, button, ngxMaterialTimepicker, platformBrowser) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -72,10 +72,11 @@
     }
 
     function __awaiter(thisArg, _arguments, P, generator) {
+        function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
         return new (P || (P = Promise))(function (resolve, reject) {
             function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
             function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-            function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+            function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
             step((generator = generator.apply(thisArg, _arguments || [])).next());
         });
     }
@@ -113,14 +114,15 @@
     }
 
     function __values(o) {
-        var m = typeof Symbol === "function" && o[Symbol.iterator], i = 0;
+        var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
         if (m) return m.call(o);
-        return {
+        if (o && typeof o.length === "number") return {
             next: function () {
                 if (o && i >= o.length) o = void 0;
                 return { value: o && o[i++], done: !o };
             }
         };
+        throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
     }
 
     function __read(o, n) {
@@ -201,28 +203,30 @@
         return (mod && mod.__esModule) ? mod : { default: mod };
     }
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
+    function __classPrivateFieldGet(receiver, privateMap) {
+        if (!privateMap.has(receiver)) {
+            throw new TypeError("attempted to get private field on non-instance");
+        }
+        return privateMap.get(receiver);
+    }
+
+    function __classPrivateFieldSet(receiver, privateMap, value) {
+        if (!privateMap.has(receiver)) {
+            throw new TypeError("attempted to set private field on non-instance");
+        }
+        privateMap.set(receiver, value);
+        return value;
+    }
+
     var MatchValidator = /** @class */ (function () {
         function MatchValidator(match) {
             this.match = match;
         }
-        /**
-         * @param {?} c
-         * @return {?}
-         */
-        MatchValidator.prototype.validate = /**
-         * @param {?} c
-         * @return {?}
-         */
-        function (c) {
+        MatchValidator_1 = MatchValidator;
+        MatchValidator.prototype.validate = function (c) {
             // self value (e.g. retype password)
-            /** @type {?} */
             var v = c.value;
             // control value (e.g. password)
-            /** @type {?} */
             var e = c.root.get(this.match);
             // value not equal
             if (e && v !== e.value) {
@@ -232,95 +236,61 @@
             }
             return null;
         };
-        MatchValidator.decorators = [
-            { type: core.Directive, args: [{
-                        selector: '[tm-match][formControlName],[tm-match][formControl],[tm-match][ngModel]',
-                        providers: [
-                            { provide: forms.NG_VALIDATORS, useExisting: core.forwardRef((/**
-                                 * @return {?}
-                                 */
-                                function () { return MatchValidator; })), multi: true }
-                        ]
-                    },] }
-        ];
-        /** @nocollapse */
+        var MatchValidator_1;
         MatchValidator.ctorParameters = function () { return [
             { type: String, decorators: [{ type: core.Attribute, args: ['tm-match',] }] }
         ]; };
+        MatchValidator = MatchValidator_1 = __decorate([
+            core.Directive({
+                selector: '[tm-match][formControlName],[tm-match][formControl],[tm-match][ngModel]',
+                providers: [
+                    { provide: forms.NG_VALIDATORS, useExisting: core.forwardRef(function () { return MatchValidator_1; }), multi: true }
+                ]
+            }),
+            __param(0, core.Attribute('tm-match')),
+            __metadata("design:paramtypes", [String])
+        ], MatchValidator);
         return MatchValidator;
     }());
-    if (false) {
-        /** @type {?} */
-        MatchValidator.prototype.match;
-    }
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
+    var TWADialogsComponent = /** @class */ (function () {
+        function TWADialogsComponent() {
+            this.message = 'Hello';
+        }
+        TWADialogsComponent.prototype.ngOnInit = function () {
+            var _this = this;
+            setTimeout(function () {
+                _this.message += ' World';
+            }, 1000);
+        };
+        TWADialogsComponent = __decorate([
+            core.Component({
+                selector: 'example-component',
+                template: '{{message}}'
+            })
+        ], TWADialogsComponent);
+        return TWADialogsComponent;
+    }());
+
     var TWAConfirmDialogComponent = /** @class */ (function () {
         function TWAConfirmDialogComponent(dialogRef) {
             this.dialogRef = dialogRef;
         }
-        TWAConfirmDialogComponent.decorators = [
-            { type: core.Component, args: [{
-                        selector: 'twa-app-confirm-dialog',
-                        // templateUrl: './twa-confirm-dialog.component.html',
-                        // styleUrls: ['./twa-confirm-dialog.component.css'],
-                        template: "\n    <h2>{{ title }}</h2>\n    <p [innerHtml]=\"messageHtml\"></p>\n\n    <button type=\"button\" mat-raised-button\n        (click)=\"dialogRef.close(true)\">{{ okText }}</button>\n    <button type=\"button\" mat-button *ngIf=\"cancelText > ''\"\n        (click)=\"dialogRef.close()\">{{ cancelText }}</button>\n    "
-                    }] }
-        ];
-        /** @nocollapse */
         TWAConfirmDialogComponent.ctorParameters = function () { return [
-            { type: material.MatDialogRef }
+            { type: dialog.MatDialogRef }
         ]; };
+        TWAConfirmDialogComponent = __decorate([
+            core.Component({
+                selector: 'twa-app-confirm-dialog',
+                // templateUrl: './twa-confirm-dialog.component.html',
+                // styleUrls: ['./twa-confirm-dialog.component.css'],
+                template: "\n    <h2>{{ title }}</h2>\n    <p [innerHtml]=\"messageHtml\"></p>\n\n    <button type=\"button\" mat-raised-button\n        (click)=\"dialogRef.close(true)\">{{ okText }}</button>\n    <button type=\"button\" mat-button *ngIf=\"cancelText > ''\"\n        (click)=\"dialogRef.close()\">{{ cancelText }}</button>\n    "
+            }),
+            __metadata("design:paramtypes", [dialog.MatDialogRef])
+        ], TWAConfirmDialogComponent);
         return TWAConfirmDialogComponent;
     }());
-    if (false) {
-        /** @type {?} */
-        TWAConfirmDialogComponent.prototype.title;
-        /** @type {?} */
-        TWAConfirmDialogComponent.prototype.message;
-        /** @type {?} */
-        TWAConfirmDialogComponent.prototype.messageHtml;
-        /** @type {?} */
-        TWAConfirmDialogComponent.prototype.okText;
-        /** @type {?} */
-        TWAConfirmDialogComponent.prototype.cancelText;
-        /** @type {?} */
-        TWAConfirmDialogComponent.prototype.dialogRef;
-    }
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @record
-     */
-    function ITWAPromptField() { }
-    if (false) {
-        /** @type {?} */
-        ITWAPromptField.prototype.key;
-        /** @type {?} */
-        ITWAPromptField.prototype.label;
-        /** @type {?} */
-        ITWAPromptField.prototype.type;
-        /** @type {?} */
-        ITWAPromptField.prototype.fxFlex;
-        /** @type {?} */
-        ITWAPromptField.prototype.value;
-        /** @type {?} */
-        ITWAPromptField.prototype.options;
-        /** @type {?} */
-        ITWAPromptField.prototype.autocomplete;
-        /** @type {?} */
-        ITWAPromptField.prototype.rows;
-        /** @type {?} */
-        ITWAPromptField.prototype.validation;
-        /** @type {?|undefined} */
-        ITWAPromptField.prototype.validationMessages;
-    }
     var TWAPromptDialogComponent = /** @class */ (function () {
         function TWAPromptDialogComponent(dialogRef) {
             this.dialogRef = dialogRef;
@@ -329,14 +299,7 @@
             this.formData = new FormData();
             this.isMultipart = false;
         }
-        /**
-         * @return {?}
-         */
-        TWAPromptDialogComponent.prototype.ngOnInit = /**
-         * @return {?}
-         */
-        function () {
-            /** @type {?} */
+        TWAPromptDialogComponent.prototype.ngOnInit = function () {
             var formGroup = {};
             for (var i in this.fields) {
                 if (this.fields.hasOwnProperty(i)) {
@@ -357,80 +320,28 @@
             }
             this.form = new forms.FormGroup(formGroup);
         };
-        /**
-         * @param {?} formGroup
-         * @param {?} i
-         * @return {?}
-         */
-        TWAPromptDialogComponent.prototype.getFormGroupEvent = /**
-         * @param {?} formGroup
-         * @param {?} i
-         * @return {?}
-         */
-        function (formGroup, i) {
+        TWAPromptDialogComponent.prototype.getFormGroupEvent = function (formGroup, i) {
             var _this = this;
-            return formGroup[this.fields[i].key].valueChanges.pipe(operators.startWith(''), operators.map((/**
-             * @param {?} filterValue
-             * @return {?}
-             */
-            function (filterValue) { return filterValue ? _this._filterValues(filterValue, _this.fields[i].autocomplete.options) :
-                _this.fields[i].autocomplete.options.slice(); })));
+            return formGroup[this.fields[i].key].valueChanges.pipe(operators.startWith(''), operators.map(function (filterValue) { return filterValue ? _this._filterValues(filterValue, _this.fields[i].autocomplete.options) :
+                _this.fields[i].autocomplete.options.slice(); }));
         };
-        /**
-         * @param {?} object
-         * @return {?}
-         */
-        TWAPromptDialogComponent.prototype.log = /**
-         * @param {?} object
-         * @return {?}
-         */
-        function (object) {
+        TWAPromptDialogComponent.prototype.log = function (object) {
             console.log(object);
         };
-        /**
-         * @private
-         * @param {?} value
-         * @param {?} options
-         * @return {?}
-         */
-        TWAPromptDialogComponent.prototype._filterValues = /**
-         * @private
-         * @param {?} value
-         * @param {?} options
-         * @return {?}
-         */
-        function (value, options) {
-            /** @type {?} */
+        TWAPromptDialogComponent.prototype._filterValues = function (value, options) {
             var filteredValue = value.toLowerCase();
-            return options.filter((/**
-             * @param {?} option
-             * @return {?}
-             */
-            function (option) { return option.toLowerCase().indexOf(filteredValue) >= 0; }));
+            return options.filter(function (option) { return option.toLowerCase().indexOf(filteredValue) >= 0; });
         };
-        /**
-         * @return {?}
-         */
-        TWAPromptDialogComponent.prototype.getFormSubmitEv = /**
-         * @return {?}
-         */
-        function () {
+        TWAPromptDialogComponent.prototype.getFormSubmitEv = function () {
             return this.formSubmitEv;
         };
-        /**
-         * @return {?}
-         */
-        TWAPromptDialogComponent.prototype.send = /**
-         * @return {?}
-         */
-        function () {
+        TWAPromptDialogComponent.prototype.send = function () {
             // let i;
             this.form.updateValueAndValidity();
             if (this.form.status !== 'INVALID') {
                 console.log(this.form.controls);
                 console.log(this.form.value);
                 if (this.isMultipart) {
-                    /** @type {?} */
                     var fields = this.fields;
                     for (var i in fields) {
                         if (fields[i].type !== 'file') {
@@ -457,17 +368,7 @@
                 }
             }
         };
-        /**
-         * @param {?} field
-         * @param {?} event
-         * @return {?}
-         */
-        TWAPromptDialogComponent.prototype.acClick = /**
-         * @param {?} field
-         * @param {?} event
-         * @return {?}
-         */
-        function (field, event) {
+        TWAPromptDialogComponent.prototype.acClick = function (field, event) {
             // console.log(event);
             // console.log(field.autocomplete);
             if (typeof field.autocomplete !== 'undefined') {
@@ -477,15 +378,7 @@
                 }
             }
         };
-        /**
-         * @param {?} field
-         * @return {?}
-         */
-        TWAPromptDialogComponent.prototype.acCheckBlur = /**
-         * @param {?} field
-         * @return {?}
-         */
-        function (field) {
+        TWAPromptDialogComponent.prototype.acCheckBlur = function (field) {
             // console.log(field.autocomplete.selected, this.form.controls[field.key].value);
             if (typeof field.autocomplete !== 'undefined') {
                 if (typeof field.autocomplete.forceSelect !== 'undefined' &&
@@ -498,29 +391,10 @@
                 }
             }
         };
-        /**
-         * @param {?} form
-         * @return {?}
-         */
-        TWAPromptDialogComponent.prototype.submitForm = /**
-         * @param {?} form
-         * @return {?}
-         */
-        function (form) {
+        TWAPromptDialogComponent.prototype.submitForm = function (form) {
             this.formSubmitEv.emit(form);
         };
-        /**
-         * @param {?} prop
-         * @param {?} error
-         * @return {?}
-         */
-        TWAPromptDialogComponent.prototype.drawCustomErrors = /**
-         * @param {?} prop
-         * @param {?} error
-         * @return {?}
-         */
-        function (prop, error) {
-            /** @type {?} */
+        TWAPromptDialogComponent.prototype.drawCustomErrors = function (prop, error) {
             var ret = false;
             if (typeof prop.validationMessages !== 'undefined') {
                 if (typeof prop.validationMessages[error] !== 'undefined') {
@@ -535,22 +409,9 @@
             }
             return ret;
         };
-        /**
-         * @private
-         * @param {?} validators
-         * @param {?} field
-         * @return {?}
-         */
-        TWAPromptDialogComponent.prototype.mapValidators = /**
-         * @private
-         * @param {?} validators
-         * @param {?} field
-         * @return {?}
-         */
-        function (validators, field) {
+        TWAPromptDialogComponent.prototype.mapValidators = function (validators, field) {
             var e_1, _a;
             var _this = this;
-            /** @type {?} */
             var formValidators = [];
             if (validators) {
                 var _loop_1 = function (validation) {
@@ -558,13 +419,8 @@
                         formValidators.push(forms.Validators.required);
                     }
                     else if (validation === 'match') {
-                        formValidators.push((/**
-                         * @return {?}
-                         */
-                        function () {
-                            /** @type {?} */
+                        formValidators.push(function () {
                             var ret = false;
-                            /** @type {?} */
                             var control = _this.form.get(validators[validation]);
                             if (!_this.form.get(field)) {
                                 ret = null;
@@ -579,7 +435,7 @@
                                 };
                             }
                             return ret;
-                        }));
+                        });
                     }
                     else if (validation === 'min') {
                         formValidators.push(forms.Validators.min(validators[validation]));
@@ -604,30 +460,13 @@
             }
             return formValidators;
         };
-        /**
-         * @param {?} formElement
-         * @return {?}
-         */
-        TWAPromptDialogComponent.prototype.addFiles = /**
-         * @param {?} formElement
-         * @return {?}
-         */
-        function (formElement) {
+        TWAPromptDialogComponent.prototype.addFiles = function (formElement) {
             console.log(formElement, this.form.get(formElement));
-            /** @type {?} */
-            var elem = (/** @type {?} */ (document.getElementById(formElement)));
+            var elem = document.getElementById(formElement);
             elem.click();
             // this.form.get(formElement).nativeElement.click();
         };
-        /**
-         * @param {?} formElement
-         * @return {?}
-         */
-        TWAPromptDialogComponent.prototype.changeFiles = /**
-         * @param {?} formElement
-         * @return {?}
-         */
-        function (formElement) {
+        TWAPromptDialogComponent.prototype.changeFiles = function (formElement) {
             this.form.get(formElement.target.id + 'Ctrl').setValue(formElement.target.files[0].name);
             // console.log(formElement);
             // const formData = new FormData();
@@ -636,71 +475,27 @@
             console.log(this.formData);
             // this.form.get(formElement.target.id).setValue(JSON.stringify(formData));
         };
-        TWAPromptDialogComponent.decorators = [
-            { type: core.Component, args: [{
-                        selector: 'twa-app-prompt-dialog',
-                        template: "\n    <h2>{{ title }}</h2>\n    <p [innerHtml]=\"messageHtml\"></p>\n\n    <form novalidate (ngSubmit)=\"submitForm(form.value)\" [formGroup]=\"form\" fxLayout=\"row wrap\" fxLayoutGap=\"10px\">\n        <div *ngFor=\"let prop of fields\" fxFlex=\"{{prop.fxFlex ? ('calc(' + prop.fxFlex + ' - 10px)') : '100%'}}\" fxLayout=\"column\">\n            <div [ngSwitch]=\"prop.type\" fxFlex=\"100%\">\n                <div *ngSwitchCase=\"'text'\">\n                    <mat-form-field *ngIf=\"!prop.autocomplete\" fxFlex>\n                        <input matInput placeholder=\"{{prop.label}}\"\n                            [formControlName]=\"prop.key\"\n                            [id]=\"prop.key\" [type]=\"prop.type\" fxFlex>\n                    </mat-form-field>\n                    <div *ngIf=\"prop.autocomplete\" fxFlex>\n                        <mat-form-field fxFlex>\n                            <input matInput placeholder=\"{{prop.label}}\"\n                                [formControlName]=\"prop.key\"\n                                [matAutocomplete]=\"auto\"\n                                (blur)=\"acCheckBlur(prop)\"\n                                [id]=\"prop.key\" [type]=\"prop.type\">\n                        </mat-form-field>\n                        <mat-autocomplete #auto=\"matAutocomplete\"\n                            (optionSelected)=\"acClick(prop, $event)\">\n                            <mat-option *ngFor=\"let option of prop.autocomplete.filteredOptions | async\"\n                                [value]=\"option\">\n                            {{ option }}\n                            </mat-option>\n                        </mat-autocomplete>\n                    </div>\n                </div>\n                <div *ngSwitchCase=\"'password'\">\n                    <mat-form-field fxFlex>\n                        <input matInput type=\"password\" placeholder=\"{{prop.label}}\"\n                            [formControlName]=\"prop.key\"\n                            [id]=\"prop.key\" [type]=\"prop.type\" fxFlex>\n                    </mat-form-field>\n                </div>\n                <div *ngSwitchCase=\"'textarea'\">\n                    <mat-form-field fxFlex>\n                        <textarea matInput placeholder=\"{{prop.label}}\" rows=\"{{prop.rows||'3'}}\" autosize\n                            [formControlName]=\"prop.key\"\n                            [id]=\"prop.key\" [type]=\"prop.type\"></textarea>\n                    </mat-form-field>\n                </div>\n                <div *ngSwitchCase=\"'number'\">\n                    <mat-form-field fxFlex>\n                        <input matInput placeholder=\"{{prop.label}}\"\n                            [formControlName]=\"prop.key\"\n                            [id]=\"prop.key\" [type]=\"prop.type\">\n                    </mat-form-field>\n                </div>\n                <div *ngSwitchCase=\"'file'\">\n                    <mat-form-field fxFlex>\n                        <input type=\"file\"\n                            [formControlName]=\"prop.key\"\n                            [id]=\"prop.key\"\n                            [type]=\"prop.type\"\n                            style=\"display: none\"\n                            (change)=\"changeFiles($event)\" />\n                        <input matInput placeholder=\"{{prop.label}}\"\n                            [formControlName]=\"prop.key + 'Ctrl'\"\n                            [id]=\"prop.key + 'Ctrl'\" type=\"text\"\n                            (click)=\"addFiles(prop.key)\">\n                        <mat-icon matSuffix (click)=\"addFiles(prop.key)\">folder</mat-icon>\n                    </mat-form-field>\n                </div>\n                <div *ngSwitchCase=\"'checkbox'\">\n                    <mat-checkbox\n                        [formControlName]=\"prop.key\"\n                        [id]=\"prop.key\">\n                        {{prop.label}}\n                    </mat-checkbox>\n                </div>\n                <div *ngSwitchCase=\"'date'\">\n                    <mat-form-field fxFlex>\n                        <input matInput [matDatepicker]=picker placeholder=\"{{prop.label}}\"\n                            [formControlName]=\"prop.key\"\n                            [id]=\"prop.key\">\n                        <mat-datepicker #picker></mat-datepicker>\n                        <mat-datepicker-toggle matSuffix [for]=\"picker\"></mat-datepicker-toggle>\n                    </mat-form-field>\n                </div>\n                <div *ngSwitchCase=\"'time'\">\n                    <mat-form-field fxFlex>\n                        <input matInput [ngxTimepicker]=\"tpicker\" placeholder=\"{{prop.label}}\"\n                            [format]=\"24\"\n                            [formControlName]=\"prop.key\"\n                            [id]=\"prop.key\">\n                        <ngx-material-timepicker #tpicker></ngx-material-timepicker>\n                    </mat-form-field>\n                </div>\n\n                <div *ngSwitchCase=\"'radio'\" fxLayout=\"column\">\n                    <div _ngcontent-c20=\"\" style=\"height: 20px;\">\n                        <label _ngcontent-c20=\"\" style=\"transform: translateY(-1.28125em) scale(0.75)\n                                perspective(100px)\n                                translateZ(0.001px);\n                                -ms-transform: translateY(-1.28125em)\n                                scale(0.75);width: 133.33333333%;margin: 20px 0 0 0;font-weight: 100;color: #666;\">\n                            {{prop.label}}\n                        </label>\n                    </div>\n                    <mat-radio-group [formControlName]=\"prop.key\" [name]=\"prop.key\" fxLayout=\"column\" style=\"margin-top: 14px;\">\n                        <mat-radio-button [value]=\"option.value\" *ngFor=\"let option of prop.options\">\n                            {{option.label}}\n                        </mat-radio-button>\n                    </mat-radio-group>\n                </div>\n\n                <div *ngSwitchCase=\"'select'\">\n                    <mat-form-field fxFlex>\n                        <mat-select [formControlName]=\"prop.key\" placeholder=\"{{prop.label}}\">\n                            <mat-option *ngFor=\"let option of prop.options\" [value]=\"option.value\">\n                                {{ option.label }}\n                            </mat-option>\n                        </mat-select>\n                    </mat-form-field>\n                </div>\n            </div>\n            <div class=\"error\" *ngIf=\"form.get(prop.key).errors\" fxFlex=\"100%\">\n            </div>\n            <div class=\"error\" *ngIf=\"form.get(prop.key).invalid && (form.get(prop.key).dirty || form.get(prop.key).touched)\" fxFlex=\"100%\">\n                <mat-error *ngIf=\"form.get(prop.key).errors.required\">\n                    <div *ngIf=\"drawCustomErrors(prop, 'required')\">\n                        {{prop.validationMessages.required}}\n                    </div>\n                    <div *ngIf=\"!prop.validationMessages || !prop.validationMessages.required\">\n                        The field {{ prop.label }} is required.\n                    </div>\n                </mat-error>\n                <mat-error *ngIf=\"form.get(prop.key).errors.match\">\n                    <div *ngIf=\"drawCustomErrors(prop, 'match')\">\n                        {{prop.validationMessages.match}}\n                    </div>\n                    <div *ngIf=\"!prop.validationMessages || !prop.validationMessages.match\">\n                        The fields doesn't match.\n                    </div>\n                </mat-error>\n                <mat-error *ngIf=\"form.get(prop.key).errors.min\">\n                    <div *ngIf=\"drawCustomErrors(prop, 'min')\">\n                        {{prop.validationMessages.min}}\n                    </div>\n                    <div *ngIf=\"!prop.validationMessages || !prop.validationMessages.min\">\n                        The minimal value is {{form.get(prop.key).errors.min.min}}.\n                    </div>\n                </mat-error>\n                <mat-error *ngIf=\"form.get(prop.key).errors.max\">\n                    <div *ngIf=\"drawCustomErrors(prop, 'max')\">\n                        {{prop.validationMessages.max}}\n                    </div>\n                    <div *ngIf=\"!prop.validationMessages || !prop.validationMessages.max\">\n                        The max value is {{form.get(prop.key).errors.max.max}}.\n                    </div>\n                </mat-error>\n            </div>\n        </div>\n    </form>\n\n    <button type=\"button\" mat-raised-button\n        (click)=\"send()\">{{ okText }}</button>\n    <button type=\"button\" mat-button\n        (click)=\"dialogRef.close(false)\">{{ cancelText }}</button>\n\n    ",
-                        styles: ['.mat-error { display: block; margin: -15px 0 15px; }']
-                    }] }
-        ];
-        /** @nocollapse */
         TWAPromptDialogComponent.ctorParameters = function () { return [
-            { type: material.MatDialogRef }
+            { type: dialog.MatDialogRef }
         ]; };
+        TWAPromptDialogComponent = __decorate([
+            core.Component({
+                selector: 'twa-app-prompt-dialog',
+                template: "\n    <h2>{{ title }}</h2>\n    <p [innerHtml]=\"messageHtml\"></p>\n\n    <form novalidate (ngSubmit)=\"submitForm(form.value)\" [formGroup]=\"form\" fxLayout=\"row wrap\" fxLayoutGap=\"10px\">\n        <div *ngFor=\"let prop of fields\" fxFlex=\"{{prop.fxFlex ? prop.fxFlex : '100'}}\" fxLayout=\"column\">\n        <!-- <div *ngFor=\"let prop of fields\" fxFlex=\"{{prop.fxFlex ? ('calc(' + prop.fxFlex + ' - 10px)') : '100%'}}\" fxLayout=\"column\"> -->\n            <div [ngSwitch]=\"prop.type\" fxFlex=\"100%\">\n                <div *ngSwitchCase=\"'text'\">\n                    <mat-form-field *ngIf=\"!prop.autocomplete\" fxFlex>\n                        <input matInput placeholder=\"{{prop.label}}\"\n                            [formControlName]=\"prop.key\"\n                            [id]=\"prop.key\" [type]=\"prop.type\" fxFlex>\n                    </mat-form-field>\n                    <div *ngIf=\"prop.autocomplete\" fxFlex>\n                        <mat-form-field fxFlex>\n                            <input matInput placeholder=\"{{prop.label}}\"\n                                [formControlName]=\"prop.key\"\n                                [matAutocomplete]=\"auto\"\n                                (blur)=\"acCheckBlur(prop)\"\n                                [id]=\"prop.key\" [type]=\"prop.type\">\n                        </mat-form-field>\n                        <mat-autocomplete #auto=\"matAutocomplete\"\n                            (optionSelected)=\"acClick(prop, $event)\">\n                            <mat-option *ngFor=\"let option of prop.autocomplete.filteredOptions | async\"\n                                [value]=\"option\">\n                            {{ option }}\n                            </mat-option>\n                        </mat-autocomplete>\n                    </div>\n                </div>\n                <div *ngSwitchCase=\"'password'\">\n                    <mat-form-field fxFlex>\n                        <input matInput type=\"password\" placeholder=\"{{prop.label}}\"\n                            [formControlName]=\"prop.key\"\n                            [id]=\"prop.key\" [type]=\"prop.type\" fxFlex>\n                    </mat-form-field>\n                </div>\n                <div *ngSwitchCase=\"'textarea'\">\n                    <mat-form-field fxFlex>\n                        <textarea matInput placeholder=\"{{prop.label}}\" rows=\"{{prop.rows||'3'}}\" autosize\n                            [formControlName]=\"prop.key\"\n                            [id]=\"prop.key\" [type]=\"prop.type\"></textarea>\n                    </mat-form-field>\n                </div>\n                <div *ngSwitchCase=\"'number'\">\n                    <mat-form-field fxFlex>\n                        <input matInput placeholder=\"{{prop.label}}\"\n                            [formControlName]=\"prop.key\"\n                            [id]=\"prop.key\" [type]=\"prop.type\">\n                    </mat-form-field>\n                </div>\n                <div *ngSwitchCase=\"'file'\">\n                    <mat-form-field fxFlex>\n                        <input type=\"file\"\n                            [formControlName]=\"prop.key\"\n                            [id]=\"prop.key\"\n                            [type]=\"prop.type\"\n                            style=\"display: none\"\n                            (change)=\"changeFiles($event)\" />\n                        <input matInput placeholder=\"{{prop.label}}\"\n                            [formControlName]=\"prop.key + 'Ctrl'\"\n                            [id]=\"prop.key + 'Ctrl'\" type=\"text\"\n                            (click)=\"addFiles(prop.key)\">\n                        <mat-icon matSuffix (click)=\"addFiles(prop.key)\">folder</mat-icon>\n                    </mat-form-field>\n                </div>\n                <div *ngSwitchCase=\"'checkbox'\">\n                    <mat-checkbox\n                        [formControlName]=\"prop.key\"\n                        [id]=\"prop.key\">\n                        {{prop.label}}\n                    </mat-checkbox>\n                </div>\n                <div *ngSwitchCase=\"'date'\">\n                    <mat-form-field fxFlex>\n                        <input matInput [matDatepicker]=picker placeholder=\"{{prop.label}}\"\n                            [formControlName]=\"prop.key\"\n                            [id]=\"prop.key\">\n                        <mat-datepicker #picker></mat-datepicker>\n                        <mat-datepicker-toggle matSuffix [for]=\"picker\"></mat-datepicker-toggle>\n                    </mat-form-field>\n                </div>\n                <div *ngSwitchCase=\"'time'\">\n                    <mat-form-field fxFlex>\n                        <input matInput [ngxTimepicker]=\"tpicker\" placeholder=\"{{prop.label}}\"\n                            [format]=\"24\"\n                            [formControlName]=\"prop.key\"\n                            [id]=\"prop.key\">\n                        <ngx-material-timepicker #tpicker></ngx-material-timepicker>\n                    </mat-form-field>\n                </div>\n\n                <div *ngSwitchCase=\"'radio'\" fxLayout=\"column\">\n                    <div _ngcontent-c20=\"\" style=\"height: 20px;\">\n                        <label _ngcontent-c20=\"\" style=\"transform: translateY(-1.28125em) scale(0.75)\n                                perspective(100px)\n                                translateZ(0.001px);\n                                -ms-transform: translateY(-1.28125em)\n                                scale(0.75);width: 133.33333333%;margin: 20px 0 0 0;font-weight: 100;color: #666;\">\n                            {{prop.label}}\n                        </label>\n                    </div>\n                    <mat-radio-group [formControlName]=\"prop.key\" [name]=\"prop.key\" fxLayout=\"column\" style=\"margin-top: 14px;\">\n                        <mat-radio-button [value]=\"option.value\" *ngFor=\"let option of prop.options\">\n                            {{option.label}}\n                        </mat-radio-button>\n                    </mat-radio-group>\n                </div>\n\n                <div *ngSwitchCase=\"'select'\">\n                    <mat-form-field fxFlex>\n                        <mat-select [formControlName]=\"prop.key\" placeholder=\"{{prop.label}}\">\n                            <mat-option *ngFor=\"let option of prop.options\" [value]=\"option.value\">\n                                {{ option.label }}\n                            </mat-option>\n                        </mat-select>\n                    </mat-form-field>\n                </div>\n            </div>\n            <div class=\"error\" *ngIf=\"form.get(prop.key).errors\" fxFlex=\"100%\">\n            </div>\n            <div class=\"error\" *ngIf=\"form.get(prop.key).invalid && (form.get(prop.key).dirty || form.get(prop.key).touched)\" fxFlex=\"100%\">\n                <mat-error *ngIf=\"form.get(prop.key).errors.required\">\n                    <div *ngIf=\"drawCustomErrors(prop, 'required')\">\n                        {{prop.validationMessages.required}}\n                    </div>\n                    <div *ngIf=\"!prop.validationMessages || !prop.validationMessages.required\">\n                        The field {{ prop.label }} is required.\n                    </div>\n                </mat-error>\n                <mat-error *ngIf=\"form.get(prop.key).errors.match\">\n                    <div *ngIf=\"drawCustomErrors(prop, 'match')\">\n                        {{prop.validationMessages.match}}\n                    </div>\n                    <div *ngIf=\"!prop.validationMessages || !prop.validationMessages.match\">\n                        The fields doesn't match.\n                    </div>\n                </mat-error>\n                <mat-error *ngIf=\"form.get(prop.key).errors.min\">\n                    <div *ngIf=\"drawCustomErrors(prop, 'min')\">\n                        {{prop.validationMessages.min}}\n                    </div>\n                    <div *ngIf=\"!prop.validationMessages || !prop.validationMessages.min\">\n                        The minimal value is {{form.get(prop.key).errors.min.min}}.\n                    </div>\n                </mat-error>\n                <mat-error *ngIf=\"form.get(prop.key).errors.max\">\n                    <div *ngIf=\"drawCustomErrors(prop, 'max')\">\n                        {{prop.validationMessages.max}}\n                    </div>\n                    <div *ngIf=\"!prop.validationMessages || !prop.validationMessages.max\">\n                        The max value is {{form.get(prop.key).errors.max.max}}.\n                    </div>\n                </mat-error>\n            </div>\n        </div>\n    </form>\n\n    <button type=\"button\" mat-raised-button\n        (click)=\"send()\">{{ okText }}</button>\n    <button type=\"button\" mat-button\n        (click)=\"dialogRef.close(false)\">{{ cancelText }}</button>\n\n    ",
+                styles: ['.mat-error { display: block; margin: -15px 0 15px; }']
+            }),
+            __metadata("design:paramtypes", [dialog.MatDialogRef])
+        ], TWAPromptDialogComponent);
         return TWAPromptDialogComponent;
     }());
-    if (false) {
-        /** @type {?} */
-        TWAPromptDialogComponent.prototype.form;
-        /** @type {?} */
-        TWAPromptDialogComponent.prototype.formSubmitEv;
-        /** @type {?} */
-        TWAPromptDialogComponent.prototype.formData;
-        /** @type {?} */
-        TWAPromptDialogComponent.prototype.isMultipart;
-        /** @type {?} */
-        TWAPromptDialogComponent.prototype.title;
-        /** @type {?} */
-        TWAPromptDialogComponent.prototype.message;
-        /** @type {?} */
-        TWAPromptDialogComponent.prototype.messageHtml;
-        /** @type {?} */
-        TWAPromptDialogComponent.prototype.fields;
-        /** @type {?} */
-        TWAPromptDialogComponent.prototype.okText;
-        /** @type {?} */
-        TWAPromptDialogComponent.prototype.cancelText;
-        /** @type {?} */
-        TWAPromptDialogComponent.prototype.onSubmit;
-        /** @type {?} */
-        TWAPromptDialogComponent.prototype.dialogRef;
-    }
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
     var TWADialogsModule = /** @class */ (function () {
         function TWADialogsModule(dialog, _sanitizer) {
             this.dialog = dialog;
             this._sanitizer = _sanitizer;
         }
-        /**
-         * @param {?} title
-         * @param {?} message
-         * @param {?=} okText
-         * @param {?=} cancelText
-         * @return {?}
-         */
-        TWADialogsModule.prototype.confirm = /**
-         * @param {?} title
-         * @param {?} message
-         * @param {?=} okText
-         * @param {?=} cancelText
-         * @return {?}
-         */
-        function (title, message, okText, cancelText) {
-            /** @type {?} */
+        TWADialogsModule_1 = TWADialogsModule;
+        TWADialogsModule.prototype.confirm = function (title, message, okText, cancelText) {
             var dialogRef;
             dialogRef = this.dialog.open(TWAConfirmDialogComponent);
             dialogRef.componentInstance.title = title;
@@ -710,24 +505,7 @@
             dialogRef.componentInstance.cancelText = cancelText || '';
             return dialogRef.afterClosed();
         };
-        /**
-         * @param {?} title
-         * @param {?} message
-         * @param {?} fields
-         * @param {?=} okText
-         * @param {?=} cancelText
-         * @return {?}
-         */
-        TWADialogsModule.prototype.prompt = /**
-         * @param {?} title
-         * @param {?} message
-         * @param {?} fields
-         * @param {?=} okText
-         * @param {?=} cancelText
-         * @return {?}
-         */
-        function (title, message, fields, okText, cancelText) {
-            /** @type {?} */
+        TWADialogsModule.prototype.prompt = function (title, message, fields, okText, cancelText) {
             var dialogRef;
             dialogRef = this.dialog.open(TWAPromptDialogComponent);
             dialogRef.componentInstance.title = title;
@@ -741,74 +519,66 @@
             // });
             return dialogRef.afterClosed();
         };
-        TWADialogsModule.decorators = [
-            { type: core.NgModule, args: [{
-                        imports: [
-                            common.CommonModule,
-                            flexLayout.FlexLayoutModule,
-                            material.MatDialogModule,
-                            material.MatButtonModule,
-                            forms.FormsModule,
-                            forms.ReactiveFormsModule,
-                            input.MatInputModule,
-                            checkbox.MatCheckboxModule,
-                            select.MatSelectModule,
-                            radio.MatRadioModule,
-                            icon.MatIconModule,
-                            datepicker.MatDatepickerModule,
-                            material.MatNativeDateModule,
-                            autocomplete.MatAutocompleteModule,
-                            ngxMaterialTimepicker.NgxMaterialTimepickerModule,
-                        ],
-                        declarations: [
-                            // TWADialogsModule,
-                            TWAConfirmDialogComponent,
-                            TWAPromptDialogComponent,
-                            MatchValidator,
-                        ],
-                        exports: [
-                            // TWADialogsModule,
-                            TWAConfirmDialogComponent,
-                            TWAPromptDialogComponent
-                        ],
-                        entryComponents: [TWAConfirmDialogComponent, TWAPromptDialogComponent],
-                        providers: [
-                            TWADialogsModule,
-                            TWAConfirmDialogComponent,
-                            TWAPromptDialogComponent
-                        ]
-                    },] },
-            { type: core.Injectable, args: [{
-                        providedIn: 'root'
-                    },] }
-        ];
-        /** @nocollapse */
+        var TWADialogsModule_1;
         TWADialogsModule.ctorParameters = function () { return [
-            { type: material.MatDialog },
+            { type: dialog.MatDialog },
             { type: platformBrowser.DomSanitizer }
         ]; };
-        /** @nocollapse */ TWADialogsModule.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function TWADialogsModule_Factory() { return new TWADialogsModule(core.ɵɵinject(dialog.MatDialog), core.ɵɵinject(platformBrowser.DomSanitizer)); }, token: TWADialogsModule, providedIn: "root" });
+        TWADialogsModule.ɵprov = core["ɵɵdefineInjectable"]({ factory: function TWADialogsModule_Factory() { return new TWADialogsModule(core["ɵɵinject"](dialog.MatDialog), core["ɵɵinject"](platformBrowser.DomSanitizer)); }, token: TWADialogsModule, providedIn: "root" });
+        TWADialogsModule = TWADialogsModule_1 = __decorate([
+            core.NgModule({
+                imports: [
+                    common.CommonModule,
+                    flexLayout.FlexLayoutModule,
+                    dialog.MatDialogModule,
+                    button.MatButtonModule,
+                    forms.FormsModule,
+                    forms.ReactiveFormsModule,
+                    input.MatInputModule,
+                    checkbox.MatCheckboxModule,
+                    select.MatSelectModule,
+                    radio.MatRadioModule,
+                    icon.MatIconModule,
+                    datepicker.MatDatepickerModule,
+                    core$1.MatNativeDateModule,
+                    autocomplete.MatAutocompleteModule,
+                    ngxMaterialTimepicker.NgxMaterialTimepickerModule,
+                ],
+                declarations: [
+                    // TWADialogsModule,
+                    TWADialogsComponent,
+                    TWAConfirmDialogComponent,
+                    TWAPromptDialogComponent,
+                    MatchValidator,
+                ],
+                exports: [
+                    // TWADialogsModule,
+                    TWAConfirmDialogComponent,
+                    TWAPromptDialogComponent
+                ],
+                entryComponents: [TWAConfirmDialogComponent, TWAPromptDialogComponent],
+                providers: [
+                    TWADialogsModule_1,
+                    TWAConfirmDialogComponent,
+                    TWAPromptDialogComponent
+                ]
+            }),
+            core.Injectable({
+                providedIn: 'root'
+            }),
+            __metadata("design:paramtypes", [dialog.MatDialog,
+                platformBrowser.DomSanitizer])
+        ], TWADialogsModule);
         return TWADialogsModule;
     }());
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        TWADialogsModule.prototype.dialog;
-        /**
-         * @type {?}
-         * @private
-         */
-        TWADialogsModule.prototype._sanitizer;
-    }
 
     exports.TWAConfirmDialogComponent = TWAConfirmDialogComponent;
     exports.TWADialogsModule = TWADialogsModule;
     exports.TWAPromptDialogComponent = TWAPromptDialogComponent;
-    exports.ɵa = MatchValidator;
+    exports.ɵa = TWADialogsComponent;
+    exports.ɵb = MatchValidator;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
-}));
+})));
 //# sourceMappingURL=twa-md2-dialogs.umd.js.map

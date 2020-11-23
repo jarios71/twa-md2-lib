@@ -2,7 +2,8 @@ declare var require: any;       // To avoid compilation errors with 'require'...
 
 import { Component, Output, EventEmitter, ViewChild, OnInit, Directive } from '@angular/core';
 import { DataSource } from '@angular/cdk/collections';
-import { MatPaginator, MatSort } from '@angular/material';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 
 import { BehaviorSubject, Observable, merge } from 'rxjs';
 import { map } from 'rxjs/operators';

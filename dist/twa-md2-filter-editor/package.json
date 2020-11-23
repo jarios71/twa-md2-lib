@@ -1,9 +1,10 @@
 {
   "name": "twa-md2-filter-editor",
-  "version": "0.8.7",
+  "version": "0.9.5",
   "peerDependencies": {
-    "@angular/common": "^7.1.0",
-    "@angular/core": "^7.1.0"
+    "@angular/common": "^9.0.0",
+    "@angular/core": "^9.0.0",
+    "tslib": "^1.10.0"
   },
   "main": "bundles/twa-md2-filter-editor.umd.js",
   "module": "fesm5/twa-md2-filter-editor.js",
@@ -14,8 +15,5 @@
   "fesm2015": "fesm2015/twa-md2-filter-editor.js",
   "typings": "twa-md2-filter-editor.d.ts",
   "metadata": "twa-md2-filter-editor.metadata.json",
-  "sideEffects": false,
-  "dependencies": {
-    "tslib": "^1.9.0"
-  }
+  "sideEffects": false
 }

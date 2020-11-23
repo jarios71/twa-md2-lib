@@ -1,4 +1,5 @@
-import { Injectable, ɵɵdefineInjectable, EventEmitter, Component, ElementRef, Input, Output, ViewChild, NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { __decorate, __metadata } from 'tslib';
+import { ɵɵdefineInjectable, Injectable, EventEmitter, ElementRef, Input, Output, ViewChild, Component, NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { of, fromEvent } from 'rxjs';
 import { delay, tap } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
@@ -9,128 +10,59 @@ import { MatIconModule } from '@angular/material/icon';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { MatBadgeModule } from '@angular/material/badge';
 
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/**
- * @record
- */
-function INotif() { }
-if (false) {
-    /** @type {?} */
-    INotif.prototype.title;
-    /** @type {?} */
-    INotif.prototype.message;
-    /** @type {?} */
-    INotif.prototype.date;
-    /** @type {?|undefined} */
-    INotif.prototype.data;
-    /** @type {?|undefined} */
-    INotif.prototype.icon;
-    /** @type {?|undefined} */
-    INotif.prototype.image;
-}
-class TwaMd2NotificationsService {
+let TwaMd2NotificationsService = class TwaMd2NotificationsService {
     constructor() {
         this.queue = [];
     }
-    /**
-     * @param {?} notif
-     * @return {?}
-     */
     add(notif) {
-        console.log(notif);
+        // console.log(notif);
         this.queue.push(notif);
     }
-    /**
-     * @param {?} idx
-     * @return {?}
-     */
     remove(idx) {
         this.queue.splice(idx, 1);
     }
-    /**
-     * @return {?}
-     */
     get() {
         return of(this.queue);
     }
-    /**
-     * @param {?} notif
-     * @return {?}
-     */
     clicked(notif) {
         console.log(notif);
     }
-}
-TwaMd2NotificationsService.decorators = [
-    { type: Injectable, args: [{
-                providedIn: 'root'
-            },] }
-];
-/** @nocollapse */
-TwaMd2NotificationsService.ctorParameters = () => [];
-/** @nocollapse */ TwaMd2NotificationsService.ngInjectableDef = ɵɵdefineInjectable({ factory: function TwaMd2NotificationsService_Factory() { return new TwaMd2NotificationsService(); }, token: TwaMd2NotificationsService, providedIn: "root" });
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    TwaMd2NotificationsService.prototype.queue;
-}
+};
+TwaMd2NotificationsService.ɵprov = ɵɵdefineInjectable({ factory: function TwaMd2NotificationsService_Factory() { return new TwaMd2NotificationsService(); }, token: TwaMd2NotificationsService, providedIn: "root" });
+TwaMd2NotificationsService = __decorate([
+    Injectable({
+        providedIn: 'root'
+    }),
+    __metadata("design:paramtypes", [])
+], TwaMd2NotificationsService);
 
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 // import { EventEmitter } from 'protractor';
-class TWAMd2NotificationsComponent {
-    /**
-     * @param {?} _elRef
-     */
+let TWAMd2NotificationsComponent = class TWAMd2NotificationsComponent {
     constructor(_elRef) {
         this._elRef = _elRef;
         this.panelClicked = new EventEmitter();
+        this.panelClosed = new EventEmitter();
         this.isOpened = false;
     }
-    /**
-     * @return {?}
-     */
     ngOnInit() {
-        this.notifsService.get().subscribe((/**
-         * @param {?} data
-         * @return {?}
-         */
-        data => {
+        this.notifsService.get().subscribe(data => {
             this.notifs = data;
-        }));
-        this.globalClick = fromEvent(document, 'click').pipe(delay(1), tap((/**
-         * @return {?}
-         */
-        () => {
+        });
+        this.globalClick = fromEvent(document, 'click').pipe(delay(1), tap(() => {
             this.listening = true;
-        })));
-        this.globalClick.subscribe((/**
-         * @param {?} event
-         * @return {?}
-         */
-        (event) => {
-            this.onGlobalClick(event);
         }));
+        this.globalClick.subscribe((event) => {
+            this.onGlobalClick(event);
+        });
     }
-    /**
-     * @param {?} event
-     * @return {?}
-     */
     onGlobalClick(event) {
         if (event instanceof MouseEvent &&
             this.listening === true &&
             typeof this.notifPanel !== 'undefined' &&
             this.notifPanel !== undefined) {
-            console.log(this.notifPanel.nativeElement);
-            console.log(this._elRef.nativeElement);
-            console.log(event.target);
+            // console.log(this.notifPanel.nativeElement);
+            // console.log(this._elRef.nativeElement);
+            // console.log(event.target);
             if (this.isDescendant(this.notifPanel.nativeElement, event.target) !== true &&
                 this.isDescendant(this._elRef.nativeElement, event.target) !== true &&
                 this._elRef.nativeElement !== event.target &&
@@ -139,24 +71,13 @@ class TWAMd2NotificationsComponent {
             }
         }
     }
-    /**
-     * @param {?} elem
-     * @param {?} className
-     * @return {?}
-     */
     hasClass(elem, className) {
         if (elem.classList.contains(className)) {
             return true;
         }
         return false;
     }
-    /**
-     * @param {?} parent
-     * @param {?} child
-     * @return {?}
-     */
     isDescendant(parent, child) {
-        /** @type {?} */
         let node = child;
         while (node !== null) {
             if (node === parent) {
@@ -168,77 +89,73 @@ class TWAMd2NotificationsComponent {
         }
         return false;
     }
-    /**
-     * @return {?}
-     */
     notifClicked() {
-        console.log('notif icon clicked!');
+        // console.log('notif icon clicked!');
         if (!this.isOpened && !this.notifs.length) {
             return;
         }
         this.isOpened = !this.isOpened;
     }
-    /**
-     * @param {?} notif
-     * @param {?} notifIdx
-     * @return {?}
-     */
     notifPanelClicked(notif, notifIdx) {
-        console.log('notif panel clicked!', notif);
+        // console.log('notif panel clicked!', notif);
         if (typeof notif.data !== 'undefined' &&
             typeof notif.data.action !== 'undefined') {
             notif.data.action(notif);
+            // } else {
         }
-        else {
-            this.panelClicked.emit(notif);
-        }
+        this.panelClicked.emit(notif);
         this.notifsService.remove(notifIdx);
         this.checkIfOpened();
     }
-    /**
-     * @return {?}
-     */
     checkIfOpened() {
         if (this.notifs.length === 0) {
             this.isOpened = false;
         }
     }
-    /**
-     * @param {?} notifIdx
-     * @return {?}
-     */
-    removePanel(notifIdx) {
+    removePanel(notif, notifIdx) {
+        this.panelClosed.emit(notif);
         this.notifsService.remove(notifIdx);
         this.checkIfOpened();
     }
-    /**
-     * @return {?}
-     */
     clearPanels() {
         if (this.notifs.length) {
-            this.notifs.splice(0, 1);
-            setTimeout((/**
-             * @return {?}
-             */
-            () => {
+            this.removePanel(this.notifs[0], 0);
+            // this.notifs.splice(0, 1);
+            setTimeout(() => {
                 this.clearPanels();
-            }), 200);
+            }, 100);
         }
         else {
             this.checkIfOpened();
         }
     }
-    /**
-     * @return {?}
-     */
     connectedOverlayDetach() {
-        console.log('overlay detached!');
+        // console.log('overlay detached!');
     }
-}
-TWAMd2NotificationsComponent.decorators = [
-    { type: Component, args: [{
-                selector: 'twa-md2-notifications',
-                template: `
+};
+TWAMd2NotificationsComponent.ctorParameters = () => [
+    { type: ElementRef }
+];
+__decorate([
+    Input(),
+    __metadata("design:type", TwaMd2NotificationsService)
+], TWAMd2NotificationsComponent.prototype, "notifsService", void 0);
+__decorate([
+    Output(),
+    __metadata("design:type", EventEmitter)
+], TWAMd2NotificationsComponent.prototype, "panelClicked", void 0);
+__decorate([
+    Output(),
+    __metadata("design:type", EventEmitter)
+], TWAMd2NotificationsComponent.prototype, "panelClosed", void 0);
+__decorate([
+    ViewChild('notifPanelContainer'),
+    __metadata("design:type", Object)
+], TWAMd2NotificationsComponent.prototype, "notifPanel", void 0);
+TWAMd2NotificationsComponent = __decorate([
+    Component({
+        selector: 'twa-md2-notifications',
+        template: `
         <button mat-icon-button #overlayOrigin="cdkOverlayOrigin" cdkOverlayOrigin (click)="notifClicked()">
             <mat-icon [matBadge]="notifs.length" matBadgeSize="medium" *ngIf="notifs.length">notifications</mat-icon>
             <mat-icon *ngIf="notifs.length===0">notifications_none</mat-icon>
@@ -268,7 +185,7 @@ TWAMd2NotificationsComponent.decorators = [
                         <div class="ccontent twa-notif" fxLayout="column">
                             <div fxLayout="row" class="twa-notif">
                                 <h4 class="twa-notif" fxFlex>{{notif.title}}</h4>
-                                <button class="close twa-notif" mat-icon-button (click)="removePanel(i)">
+                                <button class="close twa-notif" mat-icon-button (click)="removePanel(notif, i)">
                                     <mat-icon class="twa-notif">close</mat-icon>
                                 </button>
                             </div>
@@ -282,102 +199,61 @@ TWAMd2NotificationsComponent.decorators = [
             </div>
         </ng-template>
     `,
-                styles: ['.notifPanelContainer { width: 320px; background: #eee; border: 1px solid #ccc;' +
-                        'padding: 12px 12px 4px 12px; box-shadow: 0 2px 10px rgba(0,0,0,.2); }',
-                    '.notifPanelHideButton { width: 100%; height: 18px; border-top: 1px solid #ccc; cursor: pointer; }',
-                    'div.panelTitle h3 { color: #aaa; font-weight: 900; font-family: Roboto Light; font-size: 26px; margin: 8px; }',
-                    'div.notifsContainer.scrolling { max-height: 408px; overflow: auto; }',
-                    'mat-card.notif { cursor: pointer; padding: 12px 12px 12px 8px; margin: 0 0 8px 0!important; }',
-                    'mat-card.notif h4 { font-family: Roboto Light; font-size: 16px; margin: 8px 0 0; }',
-                    'mat-card.notif p { font-family: Roboto Light; margin: 8px 0 0; }',
-                    '.cicon { padding: 12px 12px 12px 4px; }',
-                    '.ccontent { width: 100%; }',
-                    'mat-icon.panelIcon { font-size: 40px; height: 40px; width: 40px; line-height: 40px; }',
-                    'img.notifImage { width: 40x; height: 40px; border-radius: 50%; }',
-                    'button.close { margin: -12px -12px 0 0;}']
-            }] }
-];
-/** @nocollapse */
-TWAMd2NotificationsComponent.ctorParameters = () => [
-    { type: ElementRef }
-];
-TWAMd2NotificationsComponent.propDecorators = {
-    notifsService: [{ type: Input }],
-    panelClicked: [{ type: Output }],
-    notifPanel: [{ type: ViewChild, args: ['notifPanelContainer', { static: false },] }]
+        styles: ['.notifPanelContainer { width: 320px; background: #eee; border: 1px solid #ccc;' +
+                'padding: 12px 12px 4px 12px; box-shadow: 0 2px 10px rgba(0,0,0,.2); }',
+            '.notifPanelHideButton { width: 100%; height: 18px; border-top: 1px solid #ccc; cursor: pointer; }',
+            'div.panelTitle h3 { color: #aaa; font-weight: 900; font-family: Roboto Light; font-size: 26px; margin: 8px; }',
+            'div.notifsContainer.scrolling { max-height: 408px; overflow: auto; }',
+            'mat-card.notif { cursor: pointer; padding: 12px 12px 12px 8px; margin: 0 0 8px 0!important; }',
+            'mat-card.notif h4 { font-family: Roboto Light; font-size: 16px; margin: 8px 0 0; }',
+            'mat-card.notif p { font-family: Roboto Light; margin: 8px 0 0; }',
+            '.cicon { padding: 12px 12px 12px 4px; }',
+            '.ccontent { width: 100%; }',
+            'mat-icon.panelIcon { font-size: 40px; height: 40px; width: 40px; line-height: 40px; }',
+            'img.notifImage { width: 40x; height: 40px; border-radius: 50%; }',
+            'button.close { margin: -12px -12px 0 0;}']
+    }),
+    __metadata("design:paramtypes", [ElementRef])
+], TWAMd2NotificationsComponent);
+
+let TWAMd2NotificationsModule = class TWAMd2NotificationsModule {
 };
-if (false) {
-    /** @type {?} */
-    TWAMd2NotificationsComponent.prototype.notifsService;
-    /** @type {?} */
-    TWAMd2NotificationsComponent.prototype.panelClicked;
-    /** @type {?} */
-    TWAMd2NotificationsComponent.prototype.notifPanel;
-    /**
-     * @type {?}
-     * @private
-     */
-    TWAMd2NotificationsComponent.prototype.globalClick;
-    /**
-     * @type {?}
-     * @private
-     */
-    TWAMd2NotificationsComponent.prototype.listening;
-    /** @type {?} */
-    TWAMd2NotificationsComponent.prototype.isOpened;
-    /** @type {?} */
-    TWAMd2NotificationsComponent.prototype.notifs;
-    /**
-     * @type {?}
-     * @private
-     */
-    TWAMd2NotificationsComponent.prototype._elRef;
-}
+TWAMd2NotificationsModule = __decorate([
+    NgModule({
+        imports: [
+            CommonModule,
+            FlexLayoutModule,
+            MatCardModule,
+            MatButtonModule,
+            MatIconModule,
+            OverlayModule,
+            MatBadgeModule,
+        ],
+        declarations: [
+            TWAMd2NotificationsComponent,
+        ],
+        exports: [
+            OverlayModule,
+            TWAMd2NotificationsComponent,
+        ],
+        entryComponents: [
+            TWAMd2NotificationsComponent,
+        ],
+        providers: [
+            TWAMd2NotificationsComponent,
+        ],
+        schemas: [
+            CUSTOM_ELEMENTS_SCHEMA
+        ]
+    })
+], TWAMd2NotificationsModule);
 
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class TWAMd2NotificationsModule {
-}
-TWAMd2NotificationsModule.decorators = [
-    { type: NgModule, args: [{
-                imports: [
-                    CommonModule,
-                    FlexLayoutModule,
-                    MatCardModule,
-                    MatButtonModule,
-                    MatIconModule,
-                    OverlayModule,
-                    MatBadgeModule,
-                ],
-                declarations: [
-                    TWAMd2NotificationsComponent,
-                ],
-                exports: [
-                    OverlayModule,
-                    TWAMd2NotificationsComponent,
-                ],
-                entryComponents: [
-                    TWAMd2NotificationsComponent,
-                ],
-                providers: [
-                    TWAMd2NotificationsComponent,
-                ],
-                schemas: [
-                    CUSTOM_ELEMENTS_SCHEMA
-                ]
-            },] }
-];
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+/*
+ * Public API Surface of twa-md2-notifications
  */
 
 /**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * Generated bundle index. Do not edit.
  */
 
 export { TWAMd2NotificationsComponent, TWAMd2NotificationsModule, TwaMd2NotificationsService };

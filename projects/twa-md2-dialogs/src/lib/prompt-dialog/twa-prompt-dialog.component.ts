@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material';
+import { MatDialogRef } from '@angular/material/dialog';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { SafeHtml } from '@angular/platform-browser';
 
@@ -11,12 +11,12 @@ export interface ITWAPromptField {
     key: string;
     label: string;
     type: string;
-    fxFlex: string;
-    value: string;
-    options: any[];
-    autocomplete: any;
-    rows: any[];
-    validation: any;
+    fxFlex?: string;
+    value?: string;
+    options?: any[];
+    autocomplete?: any;
+    rows?: any[];
+    validation?: any;
     validationMessages?: any;
 }
 
@@ -30,7 +30,8 @@ export interface ITWAPromptField {
     <p [innerHtml]="messageHtml"></p>
 
     <form novalidate (ngSubmit)="submitForm(form.value)" [formGroup]="form" fxLayout="row wrap" fxLayoutGap="10px">
-        <div *ngFor="let prop of fields" fxFlex="{{prop.fxFlex ? ('calc(' + prop.fxFlex + ' - 10px)') : '100%'}}" fxLayout="column">
+        <div *ngFor="let prop of fields" fxFlex="{{prop.fxFlex ? prop.fxFlex : '100'}}" fxLayout="column">
+        <!-- <div *ngFor="let prop of fields" fxFlex="{{prop.fxFlex ? ('calc(' + prop.fxFlex + ' - 10px)') : '100%'}}" fxLayout="column"> -->
             <div [ngSwitch]="prop.type" fxFlex="100%">
                 <div *ngSwitchCase="'text'">
                     <mat-form-field *ngIf="!prop.autocomplete" fxFlex>

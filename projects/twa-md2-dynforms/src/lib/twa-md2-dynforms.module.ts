@@ -9,9 +9,9 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material';
+import { MatNativeDateModule } from '@angular/material/core';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import { MatButtonModule } from '@angular/material';
+import { MatButtonModule } from '@angular/material/button';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
@@ -37,6 +37,6 @@ import { TWAMd2DynformsComponent } from './twa-md2-dynforms.component';
     NgxMaterialTimepickerModule,
   ],
   exports: [TWAMd2DynformsComponent],
-  entryComponents: [TWAMd2DynformsComponent],
+  // entryComponents: [TWAMd2DynformsComponent],
 })
 export class TWAMd2DynformsModule { }

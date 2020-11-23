@@ -114,38 +114,45 @@ export class TWAFilterEditorService {
 
     filterData = (filter: any, filterValue: any) => {
 
-        const comparators = {
-            '=>': (a: string, b: string) => a.includes(b),
-            '===': (a: any, b: any) => a === b,
-            '>=': (a: any, b: any) => a >= b,
-            '>': (a: any, b: any) => a > b,
-            '<=': (a: any, b: any) => a <= b,
-            '<': (a: any, b: any) => a < b,
-            'in': (a: any, b: any) => b.split(',').includes(a),
-        };
+      const comparators = {
+        '=>': (a: string, b: string) => a.includes(b),
+        '===': (a: any, b: any) => a === b,
+        '>=': (a: any, b: any) => a >= b,
+        '>': (a: any, b: any) => a > b,
+        '<=': (a: any, b: any) => a <= b,
+        '<': (a: any, b: any) => a < b,
+        'in': (a: any, b: any) => b.split(',').includes(a),
+      };
+      const isNumeric = (n) => {
+        return !isNaN(parseFloat(n)) && isFinite(n);
+      };
 
-        let retValue = false;
+      let retValue = false;
 
-        if (filter.isgroup) {
-            retValue = this.filterGroup(filter, filterValue);
-        } else {
-            if (this.prepareData) {
-                this.prepareData(filter, filterValue);
-            }
-            try {
-                if (typeof filterValue[filter.field] === 'number' && (filter.operation !== '=>' && filter.operation !== 'in')) {
-                    retValue = comparators[filter.operation](+filterValue[filter.field],
-                                                             +filter.value);
-                } else {
-                    retValue = comparators[filter.operation](String(filterValue[filter.field]).toLowerCase(),
-                                                             String(filter.value).toLowerCase());
-                }
-            } catch {
-                retValue = false;
-            }
+      if (filter.isgroup) {
+        retValue = this.filterGroup(filter, filterValue);
+      } else {
+        if (this.prepareData) {
+            this.prepareData(filter, filterValue);
         }
+        try {
+          if (typeof filterValue[filter.field] === 'number' && (filter.operation !== '=>' && filter.operation !== 'in')) {
+            retValue = comparators[filter.operation](+filterValue[filter.field], +filter.value);
+          } else if ((!isNumeric(filterValue[filter.field]) || !isNumeric(filter.value)) &&
+              (typeof filterValue[filter.field] === 'string' || filterValue[filter.field] instanceof String)) {
+            retValue = comparators[filter.operation](String(filterValue[filter.field]).toLowerCase(),
+                                                      String(filter.value).toLowerCase());
+          } else if (isNumeric(filterValue[filter.field]) && isNumeric(filter.value)) {
+            retValue = comparators[filter.operation](+filterValue[filter.field], +filter.value);
+          } else {
+            retValue = comparators[filter.operation](filterValue[filter.field], filter.value);
+          }
+        } catch {
+            retValue = false;
+        }
+      }
 
-        return retValue;
+      return retValue;
 
     }
 

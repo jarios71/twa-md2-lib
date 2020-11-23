@@ -8,7 +8,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material';
+import { MatNativeDateModule } from '@angular/material/core';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 import { MatchValidator } from './prompt-dialog/match-validator.directive';
@@ -16,13 +16,14 @@ import { TWADialogsComponent } from './twa-dialogs.component';
 import { TWAConfirmDialogComponent } from './confirm-dialog/twa-confirm-dialog.component';
 import { TWAPromptDialogComponent } from './prompt-dialog/twa-prompt-dialog.component';
 // import { TWADialogsService } from './twa-dialogs.service';
-import { MatButtonModule, MatDialogModule } from '@angular/material';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { MatDialog, MatDialogRef } from '@angular/material';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 
 @NgModule({
   imports: [
@@ -54,7 +55,7 @@ import { MatDialog, MatDialogRef } from '@angular/material';
     TWAConfirmDialogComponent,
     TWAPromptDialogComponent
   ],
-  entryComponents: [TWAConfirmDialogComponent, TWAPromptDialogComponent],
+  // entryComponents: [TWAConfirmDialogComponent, TWAPromptDialogComponent],
   providers: [
     TWADialogsModule,
     TWAConfirmDialogComponent,

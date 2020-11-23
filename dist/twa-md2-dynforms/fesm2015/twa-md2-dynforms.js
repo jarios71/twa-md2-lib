@@ -1,4 +1,5 @@
-import { Injectable, ɵɵdefineInjectable, EventEmitter, Component, Input, Output, NgModule } from '@angular/core';
+import { __decorate, __metadata } from 'tslib';
+import { ɵɵdefineInjectable, Injectable, EventEmitter, Input, Output, Component, NgModule } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { startWith, map } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
@@ -9,57 +10,23 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatButtonModule, MatNativeDateModule } from '@angular/material';
+import { MatNativeDateModule } from '@angular/material/core';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatButtonModule } from '@angular/material/button';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class TwaMd2DynformsService {
+let TwaMd2DynformsService = class TwaMd2DynformsService {
     constructor() { }
-}
-TwaMd2DynformsService.decorators = [
-    { type: Injectable, args: [{
-                providedIn: 'root'
-            },] }
-];
-/** @nocollapse */
-TwaMd2DynformsService.ctorParameters = () => [];
-/** @nocollapse */ TwaMd2DynformsService.ngInjectableDef = ɵɵdefineInjectable({ factory: function TwaMd2DynformsService_Factory() { return new TwaMd2DynformsService(); }, token: TwaMd2DynformsService, providedIn: "root" });
+};
+TwaMd2DynformsService.ɵprov = ɵɵdefineInjectable({ factory: function TwaMd2DynformsService_Factory() { return new TwaMd2DynformsService(); }, token: TwaMd2DynformsService, providedIn: "root" });
+TwaMd2DynformsService = __decorate([
+    Injectable({
+        providedIn: 'root'
+    }),
+    __metadata("design:paramtypes", [])
+], TwaMd2DynformsService);
 
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/**
- * @record
- */
-function ITWAPromptField() { }
-if (false) {
-    /** @type {?} */
-    ITWAPromptField.prototype.key;
-    /** @type {?} */
-    ITWAPromptField.prototype.label;
-    /** @type {?} */
-    ITWAPromptField.prototype.type;
-    /** @type {?} */
-    ITWAPromptField.prototype.fxFlex;
-    /** @type {?} */
-    ITWAPromptField.prototype.value;
-    /** @type {?} */
-    ITWAPromptField.prototype.options;
-    /** @type {?} */
-    ITWAPromptField.prototype.autocomplete;
-    /** @type {?} */
-    ITWAPromptField.prototype.rows;
-    /** @type {?} */
-    ITWAPromptField.prototype.validation;
-    /** @type {?|undefined} */
-    ITWAPromptField.prototype.validationMessages;
-}
-class TWAMd2DynformsComponent {
+let TWAMd2DynformsComponent = class TWAMd2DynformsComponent {
     constructor() {
         this.form = new FormGroup({});
         this.formSubmitEv = new EventEmitter();
@@ -67,23 +34,13 @@ class TWAMd2DynformsComponent {
         this.isMultipart = false;
         this.submit = this.formSubmitEv;
     }
-    /**
-     * @return {?}
-     */
     ngOnInit() {
         // this.createForm();
     }
-    /**
-     * @return {?}
-     */
     ngOnChanges() {
         this.createForm();
     }
-    /**
-     * @return {?}
-     */
     createForm() {
-        /** @type {?} */
         const formGroup = {};
         for (const i in this.fields) {
             if (this.fields.hasOwnProperty(i)) {
@@ -104,50 +61,20 @@ class TWAMd2DynformsComponent {
         }
         this.form = new FormGroup(formGroup);
     }
-    /**
-     * @param {?} formGroup
-     * @param {?} i
-     * @return {?}
-     */
     getFormGroupEvent(formGroup, i) {
-        return formGroup[this.fields[i].key].valueChanges.pipe(startWith(''), map((/**
-         * @param {?} filterValue
-         * @return {?}
-         */
-        filterValue => filterValue ? this._filterValues(filterValue, this.fields[i].autocomplete.options) :
-            this.fields[i].autocomplete.options.slice())));
+        return formGroup[this.fields[i].key].valueChanges.pipe(startWith(''), map(filterValue => filterValue ? this._filterValues(filterValue, this.fields[i].autocomplete.options) :
+            this.fields[i].autocomplete.options.slice()));
     }
-    /**
-     * @param {?} object
-     * @return {?}
-     */
     log(object) {
         console.log(object);
     }
-    /**
-     * @private
-     * @param {?} value
-     * @param {?} options
-     * @return {?}
-     */
     _filterValues(value, options) {
-        /** @type {?} */
         const filteredValue = value.toLowerCase();
-        return options.filter((/**
-         * @param {?} option
-         * @return {?}
-         */
-        option => option.toLowerCase().indexOf(filteredValue) >= 0));
+        return options.filter(option => option.toLowerCase().indexOf(filteredValue) >= 0);
     }
-    /**
-     * @return {?}
-     */
     getFormSubmitEv() {
         return this.formSubmitEv;
     }
-    /**
-     * @return {?}
-     */
     send() {
         // let i;
         this.form.updateValueAndValidity();
@@ -155,7 +82,6 @@ class TWAMd2DynformsComponent {
             console.log(this.form.controls);
             console.log(this.form.value);
             if (this.isMultipart) {
-                /** @type {?} */
                 const fields = this.fields;
                 for (const i in fields) {
                     if (fields[i].type !== 'file') {
@@ -184,11 +110,6 @@ class TWAMd2DynformsComponent {
             }
         }
     }
-    /**
-     * @param {?} field
-     * @param {?} event
-     * @return {?}
-     */
     acClick(field, event) {
         // console.log(event);
         // console.log(field.autocomplete);
@@ -199,10 +120,6 @@ class TWAMd2DynformsComponent {
             }
         }
     }
-    /**
-     * @param {?} field
-     * @return {?}
-     */
     acCheckBlur(field) {
         // console.log(field.autocomplete.selected, this.form.controls[field.key].value);
         if (typeof field.autocomplete !== 'undefined') {
@@ -216,20 +133,10 @@ class TWAMd2DynformsComponent {
             }
         }
     }
-    /**
-     * @param {?} form
-     * @return {?}
-     */
     submitForm(form) {
         this.formSubmitEv.emit(form);
     }
-    /**
-     * @param {?} prop
-     * @param {?} error
-     * @return {?}
-     */
     drawCustomErrors(prop, error) {
-        /** @type {?} */
         let ret = false;
         if (typeof prop.validationMessages !== 'undefined') {
             if (typeof prop.validationMessages[error] !== 'undefined') {
@@ -244,14 +151,7 @@ class TWAMd2DynformsComponent {
         }
         return ret;
     }
-    /**
-     * @private
-     * @param {?} validators
-     * @param {?} field
-     * @return {?}
-     */
     mapValidators(validators, field) {
-        /** @type {?} */
         const formValidators = [];
         if (validators) {
             for (const validation of Object.keys(validators)) {
@@ -259,13 +159,8 @@ class TWAMd2DynformsComponent {
                     formValidators.push(Validators.required);
                 }
                 else if (validation === 'match') {
-                    formValidators.push((/**
-                     * @return {?}
-                     */
-                    () => {
-                        /** @type {?} */
+                    formValidators.push(() => {
                         let ret = false;
-                        /** @type {?} */
                         const control = this.form.get(validators[validation]);
                         if (!this.form.get(field)) {
                             ret = null;
@@ -280,7 +175,7 @@ class TWAMd2DynformsComponent {
                             };
                         }
                         return ret;
-                    }));
+                    });
                 }
                 else if (validation === 'min') {
                     formValidators.push(Validators.min(validators[validation]));
@@ -292,21 +187,12 @@ class TWAMd2DynformsComponent {
         }
         return formValidators;
     }
-    /**
-     * @param {?} formElement
-     * @return {?}
-     */
     addFiles(formElement) {
         console.log(formElement, this.form.get(formElement));
-        /** @type {?} */
-        const elem = (/** @type {?} */ (document.getElementById(formElement)));
+        const elem = document.getElementById(formElement);
         elem.click();
         // this.form.get(formElement).nativeElement.click();
     }
-    /**
-     * @param {?} formElement
-     * @return {?}
-     */
     changeFiles(formElement) {
         this.form.get(formElement.target.id + 'Ctrl').setValue(formElement.target.files[0].name);
         // console.log(formElement);
@@ -316,11 +202,19 @@ class TWAMd2DynformsComponent {
         console.log(this.formData);
         // this.form.get(formElement.target.id).setValue(JSON.stringify(formData));
     }
-}
-TWAMd2DynformsComponent.decorators = [
-    { type: Component, args: [{
-                selector: 'twa-md2-dynforms',
-                template: `
+};
+__decorate([
+    Input(),
+    __metadata("design:type", Array)
+], TWAMd2DynformsComponent.prototype, "fields", void 0);
+__decorate([
+    Output(),
+    __metadata("design:type", Object)
+], TWAMd2DynformsComponent.prototype, "submit", void 0);
+TWAMd2DynformsComponent = __decorate([
+    Component({
+        selector: 'twa-md2-dynforms',
+        template: `
     <h2 *ngIf="title && title > ''">{{ title }}</h2>
     <p *ngIf="message && message > ''" [innerHtml]="messageHtml"></p>
 
@@ -484,81 +378,42 @@ TWAMd2DynformsComponent.decorators = [
     <button type="button" mat-button
       (click)="dialogRef.close(false)">{{ cancelText }}</button> -->
   `
-            }] }
-];
-/** @nocollapse */
-TWAMd2DynformsComponent.ctorParameters = () => [];
-TWAMd2DynformsComponent.propDecorators = {
-    fields: [{ type: Input }],
-    submit: [{ type: Output }]
+    }),
+    __metadata("design:paramtypes", [])
+], TWAMd2DynformsComponent);
+
+let TWAMd2DynformsModule = class TWAMd2DynformsModule {
 };
-if (false) {
-    /** @type {?} */
-    TWAMd2DynformsComponent.prototype.data;
-    /** @type {?} */
-    TWAMd2DynformsComponent.prototype.form;
-    /** @type {?} */
-    TWAMd2DynformsComponent.prototype.formSubmitEv;
-    /** @type {?} */
-    TWAMd2DynformsComponent.prototype.formData;
-    /** @type {?} */
-    TWAMd2DynformsComponent.prototype.isMultipart;
-    /** @type {?} */
-    TWAMd2DynformsComponent.prototype.title;
-    /** @type {?} */
-    TWAMd2DynformsComponent.prototype.message;
-    /** @type {?} */
-    TWAMd2DynformsComponent.prototype.messageHtml;
-    /** @type {?} */
-    TWAMd2DynformsComponent.prototype.fields;
-    /** @type {?} */
-    TWAMd2DynformsComponent.prototype.submit;
-    /** @type {?} */
-    TWAMd2DynformsComponent.prototype.okText;
-    /** @type {?} */
-    TWAMd2DynformsComponent.prototype.cancelText;
-    /** @type {?} */
-    TWAMd2DynformsComponent.prototype.onSubmit;
-}
+TWAMd2DynformsModule = __decorate([
+    NgModule({
+        declarations: [TWAMd2DynformsComponent],
+        imports: [
+            CommonModule,
+            FlexLayoutModule,
+            MatButtonModule,
+            FormsModule,
+            ReactiveFormsModule,
+            MatInputModule,
+            MatCheckboxModule,
+            MatSelectModule,
+            MatRadioModule,
+            MatIconModule,
+            MatDatepickerModule,
+            MatNativeDateModule,
+            MatAutocompleteModule,
+            NgxMaterialTimepickerModule,
+        ],
+        exports: [TWAMd2DynformsComponent],
+        entryComponents: [TWAMd2DynformsComponent],
+    })
+], TWAMd2DynformsModule);
 
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class TWAMd2DynformsModule {
-}
-TWAMd2DynformsModule.decorators = [
-    { type: NgModule, args: [{
-                declarations: [TWAMd2DynformsComponent],
-                imports: [
-                    CommonModule,
-                    FlexLayoutModule,
-                    MatButtonModule,
-                    FormsModule,
-                    ReactiveFormsModule,
-                    MatInputModule,
-                    MatCheckboxModule,
-                    MatSelectModule,
-                    MatRadioModule,
-                    MatIconModule,
-                    MatDatepickerModule,
-                    MatNativeDateModule,
-                    MatAutocompleteModule,
-                    NgxMaterialTimepickerModule,
-                ],
-                exports: [TWAMd2DynformsComponent],
-                entryComponents: [TWAMd2DynformsComponent],
-            },] }
-];
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+/*
+ * Public API Surface of twa-md2-dynforms
  */
 
 /**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * Generated bundle index. Do not edit.
  */
 
 export { TWAMd2DynformsComponent, TWAMd2DynformsModule, TwaMd2DynformsService };

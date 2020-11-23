@@ -31,9 +31,9 @@ import { TWAMd2NotificationsComponent } from './twa-md2-notifications.component'
         TWAMd2NotificationsComponent,
         // TwaMd2NotificationsService,
     ],
-    entryComponents: [
-        TWAMd2NotificationsComponent,
-    ],
+    // entryComponents: [
+    //     TWAMd2NotificationsComponent,
+    // ],
     providers: [
         TWAMd2NotificationsComponent,
     ],

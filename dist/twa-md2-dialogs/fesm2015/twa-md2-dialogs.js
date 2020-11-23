@@ -1,4 +1,5 @@
-import { Directive, forwardRef, Attribute, Component, EventEmitter, NgModule, Injectable, ɵɵdefineInjectable, ɵɵinject } from '@angular/core';
+import { __decorate, __param, __metadata } from 'tslib';
+import { Attribute, Directive, forwardRef, Component, EventEmitter, ɵɵdefineInjectable, ɵɵinject, NgModule, Injectable } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NG_VALIDATORS, FormGroup, FormControl, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -8,34 +9,23 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatDialogRef, MatDialogModule, MatButtonModule, MatNativeDateModule, MatDialog } from '@angular/material';
+import { MatNativeDateModule } from '@angular/material/core';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatDialogRef, MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { startWith, map } from 'rxjs/operators';
+import { MatButtonModule } from '@angular/material/button';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { DomSanitizer } from '@angular/platform-browser';
-import { MatDialog as MatDialog$1 } from '@angular/material/dialog';
 
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class MatchValidator {
-    /**
-     * @param {?} match
-     */
+var MatchValidator_1;
+let MatchValidator = MatchValidator_1 = class MatchValidator {
     constructor(match) {
         this.match = match;
     }
-    /**
-     * @param {?} c
-     * @return {?}
-     */
     validate(c) {
         // self value (e.g. retype password)
-        /** @type {?} */
         const v = c.value;
         // control value (e.g. password)
-        /** @type {?} */
         const e = c.root.get(this.match);
         // value not equal
         if (e && v !== e.value) {
@@ -45,45 +35,52 @@ class MatchValidator {
         }
         return null;
     }
-}
-MatchValidator.decorators = [
-    { type: Directive, args: [{
-                selector: '[tm-match][formControlName],[tm-match][formControl],[tm-match][ngModel]',
-                providers: [
-                    { provide: NG_VALIDATORS, useExisting: forwardRef((/**
-                         * @return {?}
-                         */
-                        () => MatchValidator)), multi: true }
-                ]
-            },] }
-];
-/** @nocollapse */
+};
 MatchValidator.ctorParameters = () => [
     { type: String, decorators: [{ type: Attribute, args: ['tm-match',] }] }
 ];
-if (false) {
-    /** @type {?} */
-    MatchValidator.prototype.match;
-}
+MatchValidator = MatchValidator_1 = __decorate([
+    Directive({
+        selector: '[tm-match][formControlName],[tm-match][formControl],[tm-match][ngModel]',
+        providers: [
+            { provide: NG_VALIDATORS, useExisting: forwardRef(() => MatchValidator_1), multi: true }
+        ]
+    }),
+    __param(0, Attribute('tm-match')),
+    __metadata("design:paramtypes", [String])
+], MatchValidator);
 
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class TWAConfirmDialogComponent {
-    /**
-     * @param {?} dialogRef
-     */
+let TWADialogsComponent = class TWADialogsComponent {
+    constructor() {
+        this.message = 'Hello';
+    }
+    ngOnInit() {
+        setTimeout(() => {
+            this.message += ' World';
+        }, 1000);
+    }
+};
+TWADialogsComponent = __decorate([
+    Component({
+        selector: 'example-component',
+        template: '{{message}}'
+    })
+], TWADialogsComponent);
+
+let TWAConfirmDialogComponent = class TWAConfirmDialogComponent {
     constructor(dialogRef) {
         this.dialogRef = dialogRef;
     }
-}
-TWAConfirmDialogComponent.decorators = [
-    { type: Component, args: [{
-                selector: 'twa-app-confirm-dialog',
-                // templateUrl: './twa-confirm-dialog.component.html',
-                // styleUrls: ['./twa-confirm-dialog.component.css'],
-                template: `
+};
+TWAConfirmDialogComponent.ctorParameters = () => [
+    { type: MatDialogRef }
+];
+TWAConfirmDialogComponent = __decorate([
+    Component({
+        selector: 'twa-app-confirm-dialog',
+        // templateUrl: './twa-confirm-dialog.component.html',
+        // styleUrls: ['./twa-confirm-dialog.component.css'],
+        template: `
     <h2>{{ title }}</h2>
     <p [innerHtml]="messageHtml"></p>
 
@@ -92,61 +89,11 @@ TWAConfirmDialogComponent.decorators = [
     <button type="button" mat-button *ngIf="cancelText > ''"
         (click)="dialogRef.close()">{{ cancelText }}</button>
     `
-            }] }
-];
-/** @nocollapse */
-TWAConfirmDialogComponent.ctorParameters = () => [
-    { type: MatDialogRef }
-];
-if (false) {
-    /** @type {?} */
-    TWAConfirmDialogComponent.prototype.title;
-    /** @type {?} */
-    TWAConfirmDialogComponent.prototype.message;
-    /** @type {?} */
-    TWAConfirmDialogComponent.prototype.messageHtml;
-    /** @type {?} */
-    TWAConfirmDialogComponent.prototype.okText;
-    /** @type {?} */
-    TWAConfirmDialogComponent.prototype.cancelText;
-    /** @type {?} */
-    TWAConfirmDialogComponent.prototype.dialogRef;
-}
+    }),
+    __metadata("design:paramtypes", [MatDialogRef])
+], TWAConfirmDialogComponent);
 
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/**
- * @record
- */
-function ITWAPromptField() { }
-if (false) {
-    /** @type {?} */
-    ITWAPromptField.prototype.key;
-    /** @type {?} */
-    ITWAPromptField.prototype.label;
-    /** @type {?} */
-    ITWAPromptField.prototype.type;
-    /** @type {?} */
-    ITWAPromptField.prototype.fxFlex;
-    /** @type {?} */
-    ITWAPromptField.prototype.value;
-    /** @type {?} */
-    ITWAPromptField.prototype.options;
-    /** @type {?} */
-    ITWAPromptField.prototype.autocomplete;
-    /** @type {?} */
-    ITWAPromptField.prototype.rows;
-    /** @type {?} */
-    ITWAPromptField.prototype.validation;
-    /** @type {?|undefined} */
-    ITWAPromptField.prototype.validationMessages;
-}
-class TWAPromptDialogComponent {
-    /**
-     * @param {?} dialogRef
-     */
+let TWAPromptDialogComponent = class TWAPromptDialogComponent {
     constructor(dialogRef) {
         this.dialogRef = dialogRef;
         this.form = new FormGroup({});
@@ -154,11 +101,7 @@ class TWAPromptDialogComponent {
         this.formData = new FormData();
         this.isMultipart = false;
     }
-    /**
-     * @return {?}
-     */
     ngOnInit() {
-        /** @type {?} */
         const formGroup = {};
         for (const i in this.fields) {
             if (this.fields.hasOwnProperty(i)) {
@@ -179,50 +122,20 @@ class TWAPromptDialogComponent {
         }
         this.form = new FormGroup(formGroup);
     }
-    /**
-     * @param {?} formGroup
-     * @param {?} i
-     * @return {?}
-     */
     getFormGroupEvent(formGroup, i) {
-        return formGroup[this.fields[i].key].valueChanges.pipe(startWith(''), map((/**
-         * @param {?} filterValue
-         * @return {?}
-         */
-        filterValue => filterValue ? this._filterValues(filterValue, this.fields[i].autocomplete.options) :
-            this.fields[i].autocomplete.options.slice())));
+        return formGroup[this.fields[i].key].valueChanges.pipe(startWith(''), map(filterValue => filterValue ? this._filterValues(filterValue, this.fields[i].autocomplete.options) :
+            this.fields[i].autocomplete.options.slice()));
     }
-    /**
-     * @param {?} object
-     * @return {?}
-     */
     log(object) {
         console.log(object);
     }
-    /**
-     * @private
-     * @param {?} value
-     * @param {?} options
-     * @return {?}
-     */
     _filterValues(value, options) {
-        /** @type {?} */
         const filteredValue = value.toLowerCase();
-        return options.filter((/**
-         * @param {?} option
-         * @return {?}
-         */
-        option => option.toLowerCase().indexOf(filteredValue) >= 0));
+        return options.filter(option => option.toLowerCase().indexOf(filteredValue) >= 0);
     }
-    /**
-     * @return {?}
-     */
     getFormSubmitEv() {
         return this.formSubmitEv;
     }
-    /**
-     * @return {?}
-     */
     send() {
         // let i;
         this.form.updateValueAndValidity();
@@ -230,7 +143,6 @@ class TWAPromptDialogComponent {
             console.log(this.form.controls);
             console.log(this.form.value);
             if (this.isMultipart) {
-                /** @type {?} */
                 const fields = this.fields;
                 for (const i in fields) {
                     if (fields[i].type !== 'file') {
@@ -257,11 +169,6 @@ class TWAPromptDialogComponent {
             }
         }
     }
-    /**
-     * @param {?} field
-     * @param {?} event
-     * @return {?}
-     */
     acClick(field, event) {
         // console.log(event);
         // console.log(field.autocomplete);
@@ -272,10 +179,6 @@ class TWAPromptDialogComponent {
             }
         }
     }
-    /**
-     * @param {?} field
-     * @return {?}
-     */
     acCheckBlur(field) {
         // console.log(field.autocomplete.selected, this.form.controls[field.key].value);
         if (typeof field.autocomplete !== 'undefined') {
@@ -289,20 +192,10 @@ class TWAPromptDialogComponent {
             }
         }
     }
-    /**
-     * @param {?} form
-     * @return {?}
-     */
     submitForm(form) {
         this.formSubmitEv.emit(form);
     }
-    /**
-     * @param {?} prop
-     * @param {?} error
-     * @return {?}
-     */
     drawCustomErrors(prop, error) {
-        /** @type {?} */
         let ret = false;
         if (typeof prop.validationMessages !== 'undefined') {
             if (typeof prop.validationMessages[error] !== 'undefined') {
@@ -317,14 +210,7 @@ class TWAPromptDialogComponent {
         }
         return ret;
     }
-    /**
-     * @private
-     * @param {?} validators
-     * @param {?} field
-     * @return {?}
-     */
     mapValidators(validators, field) {
-        /** @type {?} */
         const formValidators = [];
         if (validators) {
             for (const validation of Object.keys(validators)) {
@@ -332,13 +218,8 @@ class TWAPromptDialogComponent {
                     formValidators.push(Validators.required);
                 }
                 else if (validation === 'match') {
-                    formValidators.push((/**
-                     * @return {?}
-                     */
-                    () => {
-                        /** @type {?} */
+                    formValidators.push(() => {
                         let ret = false;
-                        /** @type {?} */
                         const control = this.form.get(validators[validation]);
                         if (!this.form.get(field)) {
                             ret = null;
@@ -353,7 +234,7 @@ class TWAPromptDialogComponent {
                             };
                         }
                         return ret;
-                    }));
+                    });
                 }
                 else if (validation === 'min') {
                     formValidators.push(Validators.min(validators[validation]));
@@ -365,21 +246,12 @@ class TWAPromptDialogComponent {
         }
         return formValidators;
     }
-    /**
-     * @param {?} formElement
-     * @return {?}
-     */
     addFiles(formElement) {
         console.log(formElement, this.form.get(formElement));
-        /** @type {?} */
-        const elem = (/** @type {?} */ (document.getElementById(formElement)));
+        const elem = document.getElementById(formElement);
         elem.click();
         // this.form.get(formElement).nativeElement.click();
     }
-    /**
-     * @param {?} formElement
-     * @return {?}
-     */
     changeFiles(formElement) {
         this.form.get(formElement.target.id + 'Ctrl').setValue(formElement.target.files[0].name);
         // console.log(formElement);
@@ -389,16 +261,20 @@ class TWAPromptDialogComponent {
         console.log(this.formData);
         // this.form.get(formElement.target.id).setValue(JSON.stringify(formData));
     }
-}
-TWAPromptDialogComponent.decorators = [
-    { type: Component, args: [{
-                selector: 'twa-app-prompt-dialog',
-                template: `
+};
+TWAPromptDialogComponent.ctorParameters = () => [
+    { type: MatDialogRef }
+];
+TWAPromptDialogComponent = __decorate([
+    Component({
+        selector: 'twa-app-prompt-dialog',
+        template: `
     <h2>{{ title }}</h2>
     <p [innerHtml]="messageHtml"></p>
 
     <form novalidate (ngSubmit)="submitForm(form.value)" [formGroup]="form" fxLayout="row wrap" fxLayoutGap="10px">
-        <div *ngFor="let prop of fields" fxFlex="{{prop.fxFlex ? ('calc(' + prop.fxFlex + ' - 10px)') : '100%'}}" fxLayout="column">
+        <div *ngFor="let prop of fields" fxFlex="{{prop.fxFlex ? prop.fxFlex : '100'}}" fxLayout="column">
+        <!-- <div *ngFor="let prop of fields" fxFlex="{{prop.fxFlex ? ('calc(' + prop.fxFlex + ' - 10px)') : '100%'}}" fxLayout="column"> -->
             <div [ngSwitch]="prop.type" fxFlex="100%">
                 <div *ngSwitchCase="'text'">
                     <mat-form-field *ngIf="!prop.autocomplete" fxFlex>
@@ -557,62 +433,18 @@ TWAPromptDialogComponent.decorators = [
         (click)="dialogRef.close(false)">{{ cancelText }}</button>
 
     `,
-                styles: ['.mat-error { display: block; margin: -15px 0 15px; }']
-            }] }
-];
-/** @nocollapse */
-TWAPromptDialogComponent.ctorParameters = () => [
-    { type: MatDialogRef }
-];
-if (false) {
-    /** @type {?} */
-    TWAPromptDialogComponent.prototype.form;
-    /** @type {?} */
-    TWAPromptDialogComponent.prototype.formSubmitEv;
-    /** @type {?} */
-    TWAPromptDialogComponent.prototype.formData;
-    /** @type {?} */
-    TWAPromptDialogComponent.prototype.isMultipart;
-    /** @type {?} */
-    TWAPromptDialogComponent.prototype.title;
-    /** @type {?} */
-    TWAPromptDialogComponent.prototype.message;
-    /** @type {?} */
-    TWAPromptDialogComponent.prototype.messageHtml;
-    /** @type {?} */
-    TWAPromptDialogComponent.prototype.fields;
-    /** @type {?} */
-    TWAPromptDialogComponent.prototype.okText;
-    /** @type {?} */
-    TWAPromptDialogComponent.prototype.cancelText;
-    /** @type {?} */
-    TWAPromptDialogComponent.prototype.onSubmit;
-    /** @type {?} */
-    TWAPromptDialogComponent.prototype.dialogRef;
-}
+        styles: ['.mat-error { display: block; margin: -15px 0 15px; }']
+    }),
+    __metadata("design:paramtypes", [MatDialogRef])
+], TWAPromptDialogComponent);
 
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class TWADialogsModule {
-    /**
-     * @param {?} dialog
-     * @param {?} _sanitizer
-     */
+var TWADialogsModule_1;
+let TWADialogsModule = TWADialogsModule_1 = class TWADialogsModule {
     constructor(dialog, _sanitizer) {
         this.dialog = dialog;
         this._sanitizer = _sanitizer;
     }
-    /**
-     * @param {?} title
-     * @param {?} message
-     * @param {?=} okText
-     * @param {?=} cancelText
-     * @return {?}
-     */
     confirm(title, message, okText, cancelText) {
-        /** @type {?} */
         let dialogRef;
         dialogRef = this.dialog.open(TWAConfirmDialogComponent);
         dialogRef.componentInstance.title = title;
@@ -622,16 +454,7 @@ class TWADialogsModule {
         dialogRef.componentInstance.cancelText = cancelText || '';
         return dialogRef.afterClosed();
     }
-    /**
-     * @param {?} title
-     * @param {?} message
-     * @param {?} fields
-     * @param {?=} okText
-     * @param {?=} cancelText
-     * @return {?}
-     */
     prompt(title, message, fields, okText, cancelText) {
-        /** @type {?} */
         let dialogRef;
         dialogRef = this.dialog.open(TWAPromptDialogComponent);
         dialogRef.componentInstance.title = title;
@@ -645,76 +468,64 @@ class TWADialogsModule {
         // });
         return dialogRef.afterClosed();
     }
-}
-TWADialogsModule.decorators = [
-    { type: NgModule, args: [{
-                imports: [
-                    CommonModule,
-                    FlexLayoutModule,
-                    MatDialogModule,
-                    MatButtonModule,
-                    FormsModule,
-                    ReactiveFormsModule,
-                    MatInputModule,
-                    MatCheckboxModule,
-                    MatSelectModule,
-                    MatRadioModule,
-                    MatIconModule,
-                    MatDatepickerModule,
-                    MatNativeDateModule,
-                    MatAutocompleteModule,
-                    NgxMaterialTimepickerModule,
-                ],
-                declarations: [
-                    // TWADialogsModule,
-                    TWAConfirmDialogComponent,
-                    TWAPromptDialogComponent,
-                    MatchValidator,
-                ],
-                exports: [
-                    // TWADialogsModule,
-                    TWAConfirmDialogComponent,
-                    TWAPromptDialogComponent
-                ],
-                entryComponents: [TWAConfirmDialogComponent, TWAPromptDialogComponent],
-                providers: [
-                    TWADialogsModule,
-                    TWAConfirmDialogComponent,
-                    TWAPromptDialogComponent
-                ]
-            },] },
-    { type: Injectable, args: [{
-                providedIn: 'root'
-            },] }
-];
-/** @nocollapse */
+};
 TWADialogsModule.ctorParameters = () => [
     { type: MatDialog },
     { type: DomSanitizer }
 ];
-/** @nocollapse */ TWADialogsModule.ngInjectableDef = ɵɵdefineInjectable({ factory: function TWADialogsModule_Factory() { return new TWADialogsModule(ɵɵinject(MatDialog$1), ɵɵinject(DomSanitizer)); }, token: TWADialogsModule, providedIn: "root" });
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    TWADialogsModule.prototype.dialog;
-    /**
-     * @type {?}
-     * @private
-     */
-    TWADialogsModule.prototype._sanitizer;
-}
+TWADialogsModule.ɵprov = ɵɵdefineInjectable({ factory: function TWADialogsModule_Factory() { return new TWADialogsModule(ɵɵinject(MatDialog), ɵɵinject(DomSanitizer)); }, token: TWADialogsModule, providedIn: "root" });
+TWADialogsModule = TWADialogsModule_1 = __decorate([
+    NgModule({
+        imports: [
+            CommonModule,
+            FlexLayoutModule,
+            MatDialogModule,
+            MatButtonModule,
+            FormsModule,
+            ReactiveFormsModule,
+            MatInputModule,
+            MatCheckboxModule,
+            MatSelectModule,
+            MatRadioModule,
+            MatIconModule,
+            MatDatepickerModule,
+            MatNativeDateModule,
+            MatAutocompleteModule,
+            NgxMaterialTimepickerModule,
+        ],
+        declarations: [
+            // TWADialogsModule,
+            TWADialogsComponent,
+            TWAConfirmDialogComponent,
+            TWAPromptDialogComponent,
+            MatchValidator,
+        ],
+        exports: [
+            // TWADialogsModule,
+            TWAConfirmDialogComponent,
+            TWAPromptDialogComponent
+        ],
+        entryComponents: [TWAConfirmDialogComponent, TWAPromptDialogComponent],
+        providers: [
+            TWADialogsModule_1,
+            TWAConfirmDialogComponent,
+            TWAPromptDialogComponent
+        ]
+    }),
+    Injectable({
+        providedIn: 'root'
+    }),
+    __metadata("design:paramtypes", [MatDialog,
+        DomSanitizer])
+], TWADialogsModule);
 
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+/*
+ * Public API Surface of twa-md2-dialogs
  */
 
 /**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * Generated bundle index. Do not edit.
  */
 
-export { TWAConfirmDialogComponent, TWADialogsModule, TWAPromptDialogComponent, MatchValidator as ɵa };
+export { TWAConfirmDialogComponent, TWADialogsModule, TWAPromptDialogComponent, TWADialogsComponent as ɵa, MatchValidator as ɵb };
 //# sourceMappingURL=twa-md2-dialogs.js.map

@@ -115,11 +115,14 @@ export class TWAFilterEditorComponent implements OnInit {
 
     @HostListener('document:keydown', ['$event'])
     handleKeyboardEvent(event: KeyboardEvent) {
-        if ((event.key === 'c' && event.ctrlKey)) {
-            this.clearFilters();
-        } else if (this.editing && event.keyCode === 13) {
-            this.addFilter();
-        }
+      // if ((event.key === 'c' && event.ctrlKey)) {
+      //     this.clearFilters();
+      // } else if (this.editing && event.keyCode === 13) {
+      //     this.addFilter();
+      // }
+      if (this.editing && event.keyCode === 13) {
+        this.addFilter();
+      }
     }
 
     constructor() {}

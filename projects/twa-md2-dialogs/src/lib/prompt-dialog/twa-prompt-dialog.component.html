@@ -2,8 +2,8 @@
 <p>{{ message }}</p>
 
 <form novalidate (ngSubmit)="onSubmit(form.value)" [formGroup]="form" fxLayout="column">
-    <div *ngFor="let prop of fields" fxFlex>
-        <div [ngSwitch]="prop.type">
+    <div *ngFor="let prop of fields" fxFlex fxLayout="column">
+        <div [ngSwitch]="prop.type" fxFlex>
             <div *ngSwitchCase="'text'" fxFlex="{{prop.fxFlex||'none'}}">
                 <div *ngIf="typeof prop.autocomplete === 'undefined'">
                     <mat-form-field fxFlex="{{prop.fxFlex||'none'}}">

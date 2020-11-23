@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-import { MatDialog, MatDialogRef } from "@angular/material";
+import { MatDialog, MatDialogRef } from "@angular/material/dialog";
 import { TWAConfirmDialogComponent } from "./confirm-dialog/twa-confirm-dialog.component";
 import { TWAPromptDialogComponent } from "./prompt-dialog/twa-prompt-dialog.component";
 

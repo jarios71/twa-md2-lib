@@ -4,6 +4,7 @@ export declare class TWAMd2NotificationsComponent implements OnInit {
     private _elRef;
     notifsService: TwaMd2NotificationsService;
     panelClicked: EventEmitter<any>;
+    panelClosed: EventEmitter<any>;
     notifPanel: any;
     private globalClick;
     private listening;
@@ -17,7 +18,7 @@ export declare class TWAMd2NotificationsComponent implements OnInit {
     notifClicked(): void;
     notifPanelClicked(notif: INotif, notifIdx: number): void;
     checkIfOpened(): void;
-    removePanel(notifIdx: number): void;
+    removePanel(notif: INotif, notifIdx: number): void;
     clearPanels(): void;
     connectedOverlayDetach(): void;
 }

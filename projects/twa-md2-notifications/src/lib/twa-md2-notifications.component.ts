@@ -36,7 +36,7 @@ import { delay, tap } from 'rxjs/operators';
                         <div class="ccontent twa-notif" fxLayout="column">
                             <div fxLayout="row" class="twa-notif">
                                 <h4 class="twa-notif" fxFlex>{{notif.title}}</h4>
-                                <button class="close twa-notif" mat-icon-button (click)="removePanel(i)">
+                                <button class="close twa-notif" mat-icon-button (click)="removePanel(notif, i)">
                                     <mat-icon class="twa-notif">close</mat-icon>
                                 </button>
                             </div>
@@ -69,6 +69,7 @@ import { delay, tap } from 'rxjs/operators';
 export class TWAMd2NotificationsComponent implements OnInit {
     @Input() notifsService: TwaMd2NotificationsService;
     @Output() panelClicked: EventEmitter<any> = new EventEmitter();
+    @Output() panelClosed: EventEmitter<any> = new EventEmitter();
 
     @ViewChild('notifPanelContainer') notifPanel;
 
@@ -102,9 +103,9 @@ export class TWAMd2NotificationsComponent implements OnInit {
             this.listening === true &&
             typeof this.notifPanel !== 'undefined' &&
             this.notifPanel !== undefined) {
-            console.log(this.notifPanel.nativeElement);
-            console.log(this._elRef.nativeElement);
-            console.log(event.target);
+            // console.log(this.notifPanel.nativeElement);
+            // console.log(this._elRef.nativeElement);
+            // console.log(event.target);
             if (this.isDescendant(this.notifPanel.nativeElement, event.target) !== true &&
                 this.isDescendant(this._elRef.nativeElement, event.target) !== true &&
                 this._elRef.nativeElement !== event.target &&
@@ -134,49 +135,51 @@ export class TWAMd2NotificationsComponent implements OnInit {
     }
 
     notifClicked() {
-        console.log('notif icon clicked!');
-        if (!this.isOpened && !this.notifs.length) {
-            return;
-        }
-        this.isOpened = !this.isOpened;
+      // console.log('notif icon clicked!');
+      if (!this.isOpened && !this.notifs.length) {
+        return;
+      }
+      this.isOpened = !this.isOpened;
     }
 
     notifPanelClicked(notif: INotif, notifIdx: number) {
-        console.log('notif panel clicked!', notif);
-        if (typeof notif.data !== 'undefined' &&
-        typeof notif.data.action !== 'undefined') {
-            notif.data.action(notif);
-        } else {
-            this.panelClicked.emit(notif);
-        }
-        this.notifsService.remove(notifIdx);
-        this.checkIfOpened();
+      // console.log('notif panel clicked!', notif);
+      if (typeof notif.data !== 'undefined' &&
+      typeof notif.data.action !== 'undefined') {
+        notif.data.action(notif);
+      // } else {
+      }
+      this.panelClicked.emit(notif);
+      this.notifsService.remove(notifIdx);
+      this.checkIfOpened();
     }
 
     checkIfOpened() {
-        if (this.notifs.length === 0) {
-            this.isOpened = false;
-        }
+      if (this.notifs.length === 0) {
+        this.isOpened = false;
+      }
     }
 
-    removePanel(notifIdx: number) {
-        this.notifsService.remove(notifIdx);
-        this.checkIfOpened();
+    removePanel(notif: INotif, notifIdx: number) {
+      this.panelClosed.emit(notif);
+      this.notifsService.remove(notifIdx);
+      this.checkIfOpened();
     }
 
     clearPanels() {
-        if (this.notifs.length) {
-            this.notifs.splice(0, 1);
-            setTimeout(() => {
-                this.clearPanels();
-            }, 200);
-        } else {
-            this.checkIfOpened();
-        }
+      if (this.notifs.length) {
+        this.removePanel(this.notifs[0], 0);
+        // this.notifs.splice(0, 1);
+        setTimeout(() => {
+          this.clearPanels();
+        }, 100);
+      } else {
+        this.checkIfOpened();
+      }
     }
 
     connectedOverlayDetach() {
-        console.log('overlay detached!');
+      // console.log('overlay detached!');
     }
 
 }
