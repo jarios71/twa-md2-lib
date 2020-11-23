@@ -1,7 +1,0 @@
-/*
- * Public API Surface of twa-md2-notifications
- */
-export * from './lib/twa-md2-notifications.service';
-export * from './lib/twa-md2-notifications.component';
-export * from './lib/twa-md2-notifications.module';
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicHVibGljX2FwaS5qcyIsInNvdXJjZVJvb3QiOiJuZzovL3R3YS1tZDItbm90aWZpY2F0aW9ucy8iLCJzb3VyY2VzIjpbInB1YmxpY19hcGkudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7O0dBRUc7QUFFSCxjQUFjLHFDQUFxQyxDQUFDO0FBQ3BELGNBQWMsdUNBQXVDLENBQUM7QUFDdEQsY0FBYyxvQ0FBb0MsQ0FBQyIsInNvdXJjZXNDb250ZW50IjpbIi8qXG4gKiBQdWJsaWMgQVBJIFN1cmZhY2Ugb2YgdHdhLW1kMi1ub3RpZmljYXRpb25zXG4gKi9cblxuZXhwb3J0ICogZnJvbSAnLi9saWIvdHdhLW1kMi1ub3RpZmljYXRpb25zLnNlcnZpY2UnO1xuZXhwb3J0ICogZnJvbSAnLi9saWIvdHdhLW1kMi1ub3RpZmljYXRpb25zLmNvbXBvbmVudCc7XG5leHBvcnQgKiBmcm9tICcuL2xpYi90d2EtbWQyLW5vdGlmaWNhdGlvbnMubW9kdWxlJztcbiJdfQ==

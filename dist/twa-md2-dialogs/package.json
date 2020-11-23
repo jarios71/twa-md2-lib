@@ -1,17 +1,17 @@
 {
   "name": "twa-md2-dialogs",
-  "version": "0.9.6",
+  "version": "0.10.0",
+  "dependencies": {
+    "tslib": "^2.0.0"
+  },
   "peerDependencies": {
-    "@angular/common": "^9.0.0",
-    "@angular/core": "^9.0.0",
-    "tslib": "^1.10.0"
+    "@angular/common": "^10.0.0",
+    "@angular/core": "^10.0.0"
   },
   "main": "bundles/twa-md2-dialogs.umd.js",
-  "module": "fesm5/twa-md2-dialogs.js",
+  "module": "fesm2015/twa-md2-dialogs.js",
   "es2015": "fesm2015/twa-md2-dialogs.js",
-  "esm5": "esm5/twa-md2-dialogs.js",
   "esm2015": "esm2015/twa-md2-dialogs.js",
-  "fesm5": "fesm5/twa-md2-dialogs.js",
   "fesm2015": "fesm2015/twa-md2-dialogs.js",
   "typings": "twa-md2-dialogs.d.ts",
   "metadata": "twa-md2-dialogs.metadata.json",

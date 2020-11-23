@@ -1,5 +1,4 @@
-import { __decorate, __metadata } from 'tslib';
-import { ɵɵdefineInjectable, Injectable, EventEmitter, Input, Output, Component, NgModule } from '@angular/core';
+import { ɵɵdefineInjectable, Injectable, EventEmitter, Component, Input, Output, NgModule } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { startWith, map } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
@@ -15,18 +14,18 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatButtonModule } from '@angular/material/button';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 
-let TwaMd2DynformsService = class TwaMd2DynformsService {
+class TwaMd2DynformsService {
     constructor() { }
-};
+}
 TwaMd2DynformsService.ɵprov = ɵɵdefineInjectable({ factory: function TwaMd2DynformsService_Factory() { return new TwaMd2DynformsService(); }, token: TwaMd2DynformsService, providedIn: "root" });
-TwaMd2DynformsService = __decorate([
-    Injectable({
-        providedIn: 'root'
-    }),
-    __metadata("design:paramtypes", [])
-], TwaMd2DynformsService);
+TwaMd2DynformsService.decorators = [
+    { type: Injectable, args: [{
+                providedIn: 'root'
+            },] }
+];
+TwaMd2DynformsService.ctorParameters = () => [];
 
-let TWAMd2DynformsComponent = class TWAMd2DynformsComponent {
+class TWAMd2DynformsComponent {
     constructor() {
         this.form = new FormGroup({});
         this.formSubmitEv = new EventEmitter();
@@ -202,19 +201,11 @@ let TWAMd2DynformsComponent = class TWAMd2DynformsComponent {
         console.log(this.formData);
         // this.form.get(formElement.target.id).setValue(JSON.stringify(formData));
     }
-};
-__decorate([
-    Input(),
-    __metadata("design:type", Array)
-], TWAMd2DynformsComponent.prototype, "fields", void 0);
-__decorate([
-    Output(),
-    __metadata("design:type", Object)
-], TWAMd2DynformsComponent.prototype, "submit", void 0);
-TWAMd2DynformsComponent = __decorate([
-    Component({
-        selector: 'twa-md2-dynforms',
-        template: `
+}
+TWAMd2DynformsComponent.decorators = [
+    { type: Component, args: [{
+                selector: 'twa-md2-dynforms',
+                template: `
     <h2 *ngIf="title && title > ''">{{ title }}</h2>
     <p *ngIf="message && message > ''" [innerHtml]="messageHtml"></p>
 
@@ -378,35 +369,38 @@ TWAMd2DynformsComponent = __decorate([
     <button type="button" mat-button
       (click)="dialogRef.close(false)">{{ cancelText }}</button> -->
   `
-    }),
-    __metadata("design:paramtypes", [])
-], TWAMd2DynformsComponent);
-
-let TWAMd2DynformsModule = class TWAMd2DynformsModule {
+            },] }
+];
+TWAMd2DynformsComponent.ctorParameters = () => [];
+TWAMd2DynformsComponent.propDecorators = {
+    fields: [{ type: Input }],
+    submit: [{ type: Output }]
 };
-TWAMd2DynformsModule = __decorate([
-    NgModule({
-        declarations: [TWAMd2DynformsComponent],
-        imports: [
-            CommonModule,
-            FlexLayoutModule,
-            MatButtonModule,
-            FormsModule,
-            ReactiveFormsModule,
-            MatInputModule,
-            MatCheckboxModule,
-            MatSelectModule,
-            MatRadioModule,
-            MatIconModule,
-            MatDatepickerModule,
-            MatNativeDateModule,
-            MatAutocompleteModule,
-            NgxMaterialTimepickerModule,
-        ],
-        exports: [TWAMd2DynformsComponent],
-        entryComponents: [TWAMd2DynformsComponent],
-    })
-], TWAMd2DynformsModule);
+
+class TWAMd2DynformsModule {
+}
+TWAMd2DynformsModule.decorators = [
+    { type: NgModule, args: [{
+                declarations: [TWAMd2DynformsComponent],
+                imports: [
+                    CommonModule,
+                    FlexLayoutModule,
+                    MatButtonModule,
+                    FormsModule,
+                    ReactiveFormsModule,
+                    MatInputModule,
+                    MatCheckboxModule,
+                    MatSelectModule,
+                    MatRadioModule,
+                    MatIconModule,
+                    MatDatepickerModule,
+                    MatNativeDateModule,
+                    MatAutocompleteModule,
+                    NgxMaterialTimepickerModule,
+                ],
+                exports: [TWAMd2DynformsComponent],
+            },] }
+];
 
 /*
  * Public API Surface of twa-md2-dynforms

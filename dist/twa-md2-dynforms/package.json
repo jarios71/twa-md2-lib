@@ -1,17 +1,17 @@
 {
   "name": "twa-md2-dynforms",
-  "version": "0.9.0",
+  "version": "0.10.0",
+  "dependencies": {
+    "tslib": "^2.0.0"
+  },
   "peerDependencies": {
-    "@angular/common": "^9.0.0",
-    "@angular/core": "^9.0.0",
-    "tslib": "^1.10.0"
+    "@angular/common": "^10.0.0",
+    "@angular/core": "^10.0.0"
   },
   "main": "bundles/twa-md2-dynforms.umd.js",
-  "module": "fesm5/twa-md2-dynforms.js",
+  "module": "fesm2015/twa-md2-dynforms.js",
   "es2015": "fesm2015/twa-md2-dynforms.js",
-  "esm5": "esm5/twa-md2-dynforms.js",
   "esm2015": "esm2015/twa-md2-dynforms.js",
-  "fesm5": "fesm5/twa-md2-dynforms.js",
   "fesm2015": "fesm2015/twa-md2-dynforms.js",
   "typings": "twa-md2-dynforms.d.ts",
   "metadata": "twa-md2-dynforms.metadata.json",

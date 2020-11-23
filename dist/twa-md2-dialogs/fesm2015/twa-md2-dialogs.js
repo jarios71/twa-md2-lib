@@ -1,5 +1,4 @@
-import { __decorate, __param, __metadata } from 'tslib';
-import { Attribute, Directive, forwardRef, Component, EventEmitter, ɵɵdefineInjectable, ɵɵinject, NgModule, Injectable } from '@angular/core';
+import { Directive, forwardRef, Attribute, Component, EventEmitter, ɵɵdefineInjectable, ɵɵinject, NgModule, Injectable } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NG_VALIDATORS, FormGroup, FormControl, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -17,8 +16,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { DomSanitizer } from '@angular/platform-browser';
 
-var MatchValidator_1;
-let MatchValidator = MatchValidator_1 = class MatchValidator {
+class MatchValidator {
     constructor(match) {
         this.match = match;
     }
@@ -35,22 +33,20 @@ let MatchValidator = MatchValidator_1 = class MatchValidator {
         }
         return null;
     }
-};
+}
+MatchValidator.decorators = [
+    { type: Directive, args: [{
+                selector: '[tm-match][formControlName],[tm-match][formControl],[tm-match][ngModel]',
+                providers: [
+                    { provide: NG_VALIDATORS, useExisting: forwardRef(() => MatchValidator), multi: true }
+                ]
+            },] }
+];
 MatchValidator.ctorParameters = () => [
     { type: String, decorators: [{ type: Attribute, args: ['tm-match',] }] }
 ];
-MatchValidator = MatchValidator_1 = __decorate([
-    Directive({
-        selector: '[tm-match][formControlName],[tm-match][formControl],[tm-match][ngModel]',
-        providers: [
-            { provide: NG_VALIDATORS, useExisting: forwardRef(() => MatchValidator_1), multi: true }
-        ]
-    }),
-    __param(0, Attribute('tm-match')),
-    __metadata("design:paramtypes", [String])
-], MatchValidator);
 
-let TWADialogsComponent = class TWADialogsComponent {
+class TWADialogsComponent {
     constructor() {
         this.message = 'Hello';
     }
@@ -59,28 +55,25 @@ let TWADialogsComponent = class TWADialogsComponent {
             this.message += ' World';
         }, 1000);
     }
-};
-TWADialogsComponent = __decorate([
-    Component({
-        selector: 'example-component',
-        template: '{{message}}'
-    })
-], TWADialogsComponent);
+}
+TWADialogsComponent.decorators = [
+    { type: Component, args: [{
+                selector: 'example-component',
+                template: '{{message}}'
+            },] }
+];
 
-let TWAConfirmDialogComponent = class TWAConfirmDialogComponent {
+class TWAConfirmDialogComponent {
     constructor(dialogRef) {
         this.dialogRef = dialogRef;
     }
-};
-TWAConfirmDialogComponent.ctorParameters = () => [
-    { type: MatDialogRef }
-];
-TWAConfirmDialogComponent = __decorate([
-    Component({
-        selector: 'twa-app-confirm-dialog',
-        // templateUrl: './twa-confirm-dialog.component.html',
-        // styleUrls: ['./twa-confirm-dialog.component.css'],
-        template: `
+}
+TWAConfirmDialogComponent.decorators = [
+    { type: Component, args: [{
+                selector: 'twa-app-confirm-dialog',
+                // templateUrl: './twa-confirm-dialog.component.html',
+                // styleUrls: ['./twa-confirm-dialog.component.css'],
+                template: `
     <h2>{{ title }}</h2>
     <p [innerHtml]="messageHtml"></p>
 
@@ -89,11 +82,13 @@ TWAConfirmDialogComponent = __decorate([
     <button type="button" mat-button *ngIf="cancelText > ''"
         (click)="dialogRef.close()">{{ cancelText }}</button>
     `
-    }),
-    __metadata("design:paramtypes", [MatDialogRef])
-], TWAConfirmDialogComponent);
+            },] }
+];
+TWAConfirmDialogComponent.ctorParameters = () => [
+    { type: MatDialogRef }
+];
 
-let TWAPromptDialogComponent = class TWAPromptDialogComponent {
+class TWAPromptDialogComponent {
     constructor(dialogRef) {
         this.dialogRef = dialogRef;
         this.form = new FormGroup({});
@@ -261,14 +256,11 @@ let TWAPromptDialogComponent = class TWAPromptDialogComponent {
         console.log(this.formData);
         // this.form.get(formElement.target.id).setValue(JSON.stringify(formData));
     }
-};
-TWAPromptDialogComponent.ctorParameters = () => [
-    { type: MatDialogRef }
-];
-TWAPromptDialogComponent = __decorate([
-    Component({
-        selector: 'twa-app-prompt-dialog',
-        template: `
+}
+TWAPromptDialogComponent.decorators = [
+    { type: Component, args: [{
+                selector: 'twa-app-prompt-dialog',
+                template: `
     <h2>{{ title }}</h2>
     <p [innerHtml]="messageHtml"></p>
 
@@ -433,13 +425,14 @@ TWAPromptDialogComponent = __decorate([
         (click)="dialogRef.close(false)">{{ cancelText }}</button>
 
     `,
-        styles: ['.mat-error { display: block; margin: -15px 0 15px; }']
-    }),
-    __metadata("design:paramtypes", [MatDialogRef])
-], TWAPromptDialogComponent);
+                styles: ['.mat-error { display: block; margin: -15px 0 15px; }']
+            },] }
+];
+TWAPromptDialogComponent.ctorParameters = () => [
+    { type: MatDialogRef }
+];
 
-var TWADialogsModule_1;
-let TWADialogsModule = TWADialogsModule_1 = class TWADialogsModule {
+class TWADialogsModule {
     constructor(dialog, _sanitizer) {
         this.dialog = dialog;
         this._sanitizer = _sanitizer;
@@ -468,56 +461,54 @@ let TWADialogsModule = TWADialogsModule_1 = class TWADialogsModule {
         // });
         return dialogRef.afterClosed();
     }
-};
+}
+TWADialogsModule.ɵprov = ɵɵdefineInjectable({ factory: function TWADialogsModule_Factory() { return new TWADialogsModule(ɵɵinject(MatDialog), ɵɵinject(DomSanitizer)); }, token: TWADialogsModule, providedIn: "root" });
+TWADialogsModule.decorators = [
+    { type: NgModule, args: [{
+                imports: [
+                    CommonModule,
+                    FlexLayoutModule,
+                    MatDialogModule,
+                    MatButtonModule,
+                    FormsModule,
+                    ReactiveFormsModule,
+                    MatInputModule,
+                    MatCheckboxModule,
+                    MatSelectModule,
+                    MatRadioModule,
+                    MatIconModule,
+                    MatDatepickerModule,
+                    MatNativeDateModule,
+                    MatAutocompleteModule,
+                    NgxMaterialTimepickerModule,
+                ],
+                declarations: [
+                    // TWADialogsModule,
+                    TWADialogsComponent,
+                    TWAConfirmDialogComponent,
+                    TWAPromptDialogComponent,
+                    MatchValidator,
+                ],
+                exports: [
+                    // TWADialogsModule,
+                    TWAConfirmDialogComponent,
+                    TWAPromptDialogComponent
+                ],
+                // entryComponents: [TWAConfirmDialogComponent, TWAPromptDialogComponent],
+                providers: [
+                    TWADialogsModule,
+                    TWAConfirmDialogComponent,
+                    TWAPromptDialogComponent
+                ]
+            },] },
+    { type: Injectable, args: [{
+                providedIn: 'root'
+            },] }
+];
 TWADialogsModule.ctorParameters = () => [
     { type: MatDialog },
     { type: DomSanitizer }
 ];
-TWADialogsModule.ɵprov = ɵɵdefineInjectable({ factory: function TWADialogsModule_Factory() { return new TWADialogsModule(ɵɵinject(MatDialog), ɵɵinject(DomSanitizer)); }, token: TWADialogsModule, providedIn: "root" });
-TWADialogsModule = TWADialogsModule_1 = __decorate([
-    NgModule({
-        imports: [
-            CommonModule,
-            FlexLayoutModule,
-            MatDialogModule,
-            MatButtonModule,
-            FormsModule,
-            ReactiveFormsModule,
-            MatInputModule,
-            MatCheckboxModule,
-            MatSelectModule,
-            MatRadioModule,
-            MatIconModule,
-            MatDatepickerModule,
-            MatNativeDateModule,
-            MatAutocompleteModule,
-            NgxMaterialTimepickerModule,
-        ],
-        declarations: [
-            // TWADialogsModule,
-            TWADialogsComponent,
-            TWAConfirmDialogComponent,
-            TWAPromptDialogComponent,
-            MatchValidator,
-        ],
-        exports: [
-            // TWADialogsModule,
-            TWAConfirmDialogComponent,
-            TWAPromptDialogComponent
-        ],
-        entryComponents: [TWAConfirmDialogComponent, TWAPromptDialogComponent],
-        providers: [
-            TWADialogsModule_1,
-            TWAConfirmDialogComponent,
-            TWAPromptDialogComponent
-        ]
-    }),
-    Injectable({
-        providedIn: 'root'
-    }),
-    __metadata("design:paramtypes", [MatDialog,
-        DomSanitizer])
-], TWADialogsModule);
 
 /*
  * Public API Surface of twa-md2-dialogs

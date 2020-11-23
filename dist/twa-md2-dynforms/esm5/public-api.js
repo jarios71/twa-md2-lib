@@ -1,7 +1,0 @@
-/*
- * Public API Surface of twa-md2-dynforms
- */
-export * from './lib/twa-md2-dynforms.service';
-export * from './lib/twa-md2-dynforms.component';
-export * from './lib/twa-md2-dynforms.module';
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicHVibGljLWFwaS5qcyIsInNvdXJjZVJvb3QiOiJuZzovL3R3YS1tZDItZHluZm9ybXMvIiwic291cmNlcyI6WyJwdWJsaWMtYXBpLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBOztHQUVHO0FBRUgsY0FBYyxnQ0FBZ0MsQ0FBQztBQUMvQyxjQUFjLGtDQUFrQyxDQUFDO0FBQ2pELGNBQWMsK0JBQStCLENBQUMiLCJzb3VyY2VzQ29udGVudCI6WyIvKlxuICogUHVibGljIEFQSSBTdXJmYWNlIG9mIHR3YS1tZDItZHluZm9ybXNcbiAqL1xuXG5leHBvcnQgKiBmcm9tICcuL2xpYi90d2EtbWQyLWR5bmZvcm1zLnNlcnZpY2UnO1xuZXhwb3J0ICogZnJvbSAnLi9saWIvdHdhLW1kMi1keW5mb3Jtcy5jb21wb25lbnQnO1xuZXhwb3J0ICogZnJvbSAnLi9saWIvdHdhLW1kMi1keW5mb3Jtcy5tb2R1bGUnO1xuIl19
