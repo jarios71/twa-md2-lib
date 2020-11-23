@@ -39,7 +39,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
               "aot": true,
               "extractLicenses": true,
@@ -142,7 +141,7 @@
       "prefix": "lib",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "projects/twa-md2-dialogs/tsconfig.lib.json",
             "project": "projects/twa-md2-dialogs/ng-package.json"
@@ -182,7 +181,7 @@
       "prefix": "lib",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "projects/twa-md2-notifications/tsconfig.lib.json",
             "project": "projects/twa-md2-notifications/ng-package.json"
@@ -222,7 +221,7 @@
       "prefix": "lib",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "projects/twa-md2-filter-editor/tsconfig.lib.json",
             "project": "projects/twa-md2-filter-editor/ng-package.json"
@@ -262,7 +261,7 @@
       "prefix": "lib",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "projects/twa-md2-dynforms/tsconfig.lib.json",
             "project": "projects/twa-md2-dynforms/ng-package.json"
