@@ -1,6 +1,6 @@
 {
   "name": "twa-md2-dialogs",
-  "version": "0.10.0",
+  "version": "0.10.4",
   "dependencies": {
     "tslib": "^2.0.0"
   },
