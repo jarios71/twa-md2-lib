@@ -56,6 +56,9 @@ export interface ITWAPromptField {
                         </mat-autocomplete>
                     </div>
                 </div>
+                <div *ngSwitchCase="'h4'">
+                  <h4>{{prop.label}}</h4>
+                </div>
                 <div *ngSwitchCase="'password'">
                     <mat-form-field fxFlex>
                         <input matInput type="password" placeholder="{{prop.label}}"
@@ -205,6 +208,7 @@ export class TWAPromptDialogComponent implements OnInit {
     public okText: string;
     public cancelText: string;
     public onSubmit: any;
+    public onChanges: any;
 
     constructor(public dialogRef: MatDialogRef<TWAPromptDialogComponent>) {
     }
@@ -238,6 +242,9 @@ export class TWAPromptDialogComponent implements OnInit {
         }
 
         this.form = new FormGroup(formGroup);
+        if (this.onChanges) {
+          this.form.valueChanges.subscribe(res => this.onChanges(res));
+        }
 
     }
 

@@ -1,5 +1,6 @@
 <div fxLayout="column" style="width: 100%;">
-    <div class="selector" fxLayout="row" fxLayoutGap="10px">
+    <div class="selector" fxLayout="row" fxLayout.xs="column" fxLayoutGap="10px">
+      <div fxLayout="row" fxLayout.xs="row wrap">
         <mat-form-field>
             <mat-select [(ngModel)]="selectedField">
                 <mat-option selected value="none">{{texts.filterBy}}</mat-option>
@@ -11,17 +12,20 @@
                 <mat-option *ngFor="let op of operationsData" value="{{op.type}}">{{op.label}}</mat-option>
             </mat-select>
         </mat-form-field>
-        <mat-form-field>
-            <input matInput placeholder="{{texts.filter}}" [(ngModel)]="selectedValue"
-                    (focus)="onFocus($event)" (blur)="onBlur($event)" />
-            <button mat-button *ngIf="operation==='in'" matSuffix mat-icon-button aria-label="Clear" (click)="fileSet.click()">
-                <mat-icon>attach_file</mat-icon>
-            </button>
-        </mat-form-field>
-        <div>
-            <button mat-button mat-icon-button (click)="sendFilter()" [disabled]="checkFilter()">
-                <mat-icon>send</mat-icon>
-            </button>
+      </div>
+        <div fxLayout="row">
+          <mat-form-field>
+              <input matInput placeholder="{{texts.filter}}" [(ngModel)]="selectedValue"
+                      (focus)="onFocus($event)" (blur)="onBlur($event)" />
+              <button mat-button *ngIf="operation==='in'" matSuffix mat-icon-button aria-label="Clear" (click)="fileSet.click()">
+                  <mat-icon>attach_file</mat-icon>
+              </button>
+          </mat-form-field>
+          <div>
+              <button mat-button mat-icon-button (click)="sendFilter()" [disabled]="checkFilter()">
+                  <mat-icon>send</mat-icon>
+              </button>
+          </div>
         </div>
         <div fxFlex></div>
         <button mat-button mat-icon-button

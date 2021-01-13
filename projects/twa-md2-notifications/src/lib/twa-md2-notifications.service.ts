@@ -20,9 +20,13 @@ export class TwaMd2NotificationsService {
 
     constructor() { }
 
-    public add(notif: INotif) {
+    public add(notif: INotif, prepend = true) {
         // console.log(notif);
-        this.queue.push(notif);
+        if (prepend) {
+          this.queue.unshift(notif);
+        } else {
+          this.queue.push(notif);
+        }
     }
 
     public remove(idx: number) {

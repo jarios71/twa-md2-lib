@@ -13,9 +13,14 @@ class TwaMd2NotificationsService {
     constructor() {
         this.queue = [];
     }
-    add(notif) {
+    add(notif, prepend = true) {
         // console.log(notif);
-        this.queue.push(notif);
+        if (prepend) {
+            this.queue.unshift(notif);
+        }
+        else {
+            this.queue.push(notif);
+        }
     }
     remove(idx) {
         this.queue.splice(idx, 1);

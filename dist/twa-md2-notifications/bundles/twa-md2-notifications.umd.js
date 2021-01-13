@@ -8,9 +8,15 @@
         function TwaMd2NotificationsService() {
             this.queue = [];
         }
-        TwaMd2NotificationsService.prototype.add = function (notif) {
+        TwaMd2NotificationsService.prototype.add = function (notif, prepend) {
+            if (prepend === void 0) { prepend = true; }
             // console.log(notif);
-            this.queue.push(notif);
+            if (prepend) {
+                this.queue.unshift(notif);
+            }
+            else {
+                this.queue.push(notif);
+            }
         };
         TwaMd2NotificationsService.prototype.remove = function (idx) {
             this.queue.splice(idx, 1);

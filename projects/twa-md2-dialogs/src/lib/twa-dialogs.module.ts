@@ -95,7 +95,8 @@ export class TWADialogsModule {
     message: string,
     fields: any,
     okText?: string,
-    cancelText?: string
+    cancelText?: string,
+    onChanges?: any,
   ): Observable<any> {
     let dialogRef: MatDialogRef<TWAPromptDialogComponent>;
 
@@ -107,6 +108,7 @@ export class TWADialogsModule {
     dialogRef.componentInstance.fields = fields;
     dialogRef.componentInstance.okText = okText || 'Aceptar';
     dialogRef.componentInstance.cancelText = cancelText || 'Cancelar';
+    dialogRef.componentInstance.onChanges = onChanges || false;
 
     // onSubmit = dialogRef.componentInstance.getFormSubmitEv().subscribe(item => {
     //     dialogRef.componentInstance.result = item;

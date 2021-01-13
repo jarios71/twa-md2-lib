@@ -11,7 +11,7 @@ export interface INotif {
 export declare class TwaMd2NotificationsService {
     private queue;
     constructor();
-    add(notif: INotif): void;
+    add(notif: INotif, prepend?: boolean): void;
     remove(idx: number): void;
     get(): Observable<INotif[]>;
     clicked(notif: INotif): void;

@@ -49,6 +49,9 @@ export interface ITWAPromptField {
               </mat-autocomplete>
             </div>
           </div>
+          <div *ngSwitchCase="'h4'">
+            <h4>{{prop.label}}</h4>
+          </div>
             <div *ngSwitchCase="'password'">
               <mat-form-field class="dynform-field-{{prop.key}}" fxFlex>
                 <input matInput type="password" placeholder="{{prop.label}}"
