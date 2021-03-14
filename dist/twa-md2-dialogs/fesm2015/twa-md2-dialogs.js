@@ -95,6 +95,7 @@ class TWAPromptDialogComponent {
         this.formSubmitEv = new EventEmitter();
         this.formData = new FormData();
         this.isMultipart = false;
+        this.updatingOnChanges = false;
     }
     ngOnInit() {
         const formGroup = {};
@@ -116,6 +117,36 @@ class TWAPromptDialogComponent {
             }
         }
         this.form = new FormGroup(formGroup);
+        this.setOnChanges();
+    }
+    setOnChanges() {
+        if (this.onChanges) {
+            console.log('🚀 ~ file: twa-prompt-dialog.component.ts ~ line 246 ~ TWAPromptDialogComponent ~ ngOnInit ~ this.onChanges', this.onChanges);
+            this.form.valueChanges.subscribe(res => {
+                if (this.updatingOnChanges) {
+                    return;
+                }
+                console.log('🚀 ~ file: twa-prompt-dialog.component.ts ~ line 248 ~ TWAPromptDialogComponent ~ ngOnInit ~ res', res);
+                // const newval = this.onChanges(res);ES061610000302
+                this.updatingOnChanges = true;
+                this.onChanges(res).subscribe(newval => {
+                    console.log('🚀 ~ file: twa-prompt-dialog.component.ts ~ line 255 ~ TWAPromptDialogComponent ~ this.onChanges ~ newval', newval);
+                    console.log('🚀 ~ file: twa-prompt-dialog.component.ts ~ line 261 ~ TWAPromptDialogComponent ~ this.onChanges ~ this.form.controls', this.form.controls);
+                    if (newval.result && newval.data) {
+                        this.form.patchValue(newval.data);
+                        // for (let prop in newval.data) {
+                        //   if (newval.data.hasOwnProperty(prop) && this.form.controls.hasOwnProperty(prop)) {
+                        //     this.form.controls[prop].setValue(newval.data[prop]);
+                        //   }
+                        // }
+                        this.updatingOnChanges = false;
+                    }
+                });
+            });
+        }
+        else {
+            console.log('🚀 ~ file: twa-prompt-dialog.component.ts ~ line 246 ~ TWAPromptDialogComponent ~ ngOnInit ~ this.onChanges', ' NO CHANGES');
+        }
     }
     getFormGroupEvent(formGroup, i) {
         return formGroup[this.fields[i].key].valueChanges.pipe(startWith(''), map(filterValue => filterValue ? this._filterValues(filterValue, this.fields[i].autocomplete.options) :
@@ -450,7 +481,7 @@ class TWADialogsModule {
         dialogRef.componentInstance.cancelText = cancelText || '';
         return dialogRef.afterClosed();
     }
-    prompt(title, message, fields, okText, cancelText) {
+    prompt(title, message, fields, okText, cancelText, onChanges) {
         let dialogRef;
         dialogRef = this.dialog.open(TWAPromptDialogComponent);
         dialogRef.componentInstance.title = title;
@@ -459,6 +490,11 @@ class TWADialogsModule {
         dialogRef.componentInstance.fields = fields;
         dialogRef.componentInstance.okText = okText || 'Aceptar';
         dialogRef.componentInstance.cancelText = cancelText || 'Cancelar';
+        dialogRef.componentInstance.onChanges = onChanges || false;
+        if (onChanges) {
+            console.log('🚀 ~ file: twa-dialogs.module.ts ~ line 114 ~ TWADialogsModule ~ onChanges', onChanges);
+            dialogRef.componentInstance.setOnChanges();
+        }
         // onSubmit = dialogRef.componentInstance.getFormSubmitEv().subscribe(item => {
         //     dialogRef.componentInstance.result = item;
         // });

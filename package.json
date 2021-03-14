@@ -29,6 +29,7 @@
     "ngx-material-timepicker": "^4.0.2",
     "rxjs": "~6.5.4",
     "tslib": "^2.0.0",
+    "twa-md2-dialogs": "^0.10.19",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {

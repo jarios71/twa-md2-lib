@@ -6,5 +6,5 @@ export declare class TWADialogsModule {
     private _sanitizer;
     constructor(dialog: MatDialog, _sanitizer: DomSanitizer);
     confirm(title: string, message: string, okText?: string, cancelText?: string): Observable<any>;
-    prompt(title: string, message: string, fields: any, okText?: string, cancelText?: string): Observable<any>;
+    prompt(title: string, message: string, fields: any, okText?: string, cancelText?: string, onChanges?: any): Observable<any>;
 }

@@ -27,8 +27,11 @@ export declare class TWAPromptDialogComponent implements OnInit {
     okText: string;
     cancelText: string;
     onSubmit: any;
+    onChanges: any;
+    updatingOnChanges: boolean;
     constructor(dialogRef: MatDialogRef<TWAPromptDialogComponent>);
     ngOnInit(): void;
+    setOnChanges(): void;
     getFormGroupEvent(formGroup: any, i: any): any;
     log(object: any): void;
     private _filterValues;

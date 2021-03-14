@@ -209,6 +209,7 @@ export class TWAPromptDialogComponent implements OnInit {
     public cancelText: string;
     public onSubmit: any;
     public onChanges: any;
+    public updatingOnChanges = false;
 
     constructor(public dialogRef: MatDialogRef<TWAPromptDialogComponent>) {
     }
@@ -242,9 +243,36 @@ export class TWAPromptDialogComponent implements OnInit {
         }
 
         this.form = new FormGroup(formGroup);
-        if (this.onChanges) {
-          this.form.valueChanges.subscribe(res => this.onChanges(res));
-        }
+        this.setOnChanges();
+    }
+
+    setOnChanges() {
+      if (this.onChanges) {
+        console.log('🚀 ~ file: twa-prompt-dialog.component.ts ~ line 246 ~ TWAPromptDialogComponent ~ ngOnInit ~ this.onChanges', this.onChanges);
+        this.form.valueChanges.subscribe(res => {
+          if (this.updatingOnChanges) {
+            return;
+          }
+          console.log('🚀 ~ file: twa-prompt-dialog.component.ts ~ line 248 ~ TWAPromptDialogComponent ~ ngOnInit ~ res', res);
+          // const newval = this.onChanges(res);ES061610000302
+          this.updatingOnChanges = true;
+          this.onChanges(res).subscribe(newval => {
+            console.log('🚀 ~ file: twa-prompt-dialog.component.ts ~ line 255 ~ TWAPromptDialogComponent ~ this.onChanges ~ newval', newval);
+            console.log('🚀 ~ file: twa-prompt-dialog.component.ts ~ line 261 ~ TWAPromptDialogComponent ~ this.onChanges ~ this.form.controls', this.form.controls);
+            if (newval.result && newval.data) {
+              this.form.patchValue(newval.data);
+              // for (let prop in newval.data) {
+              //   if (newval.data.hasOwnProperty(prop) && this.form.controls.hasOwnProperty(prop)) {
+              //     this.form.controls[prop].setValue(newval.data[prop]);
+              //   }
+              // }
+              this.updatingOnChanges = false;
+            }
+          });
+        });
+      } else {
+        console.log('🚀 ~ file: twa-prompt-dialog.component.ts ~ line 246 ~ TWAPromptDialogComponent ~ ngOnInit ~ this.onChanges', ' NO CHANGES');
+      }
 
     }
 

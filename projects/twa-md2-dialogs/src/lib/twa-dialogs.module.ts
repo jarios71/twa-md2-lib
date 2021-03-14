@@ -110,6 +110,10 @@ export class TWADialogsModule {
     dialogRef.componentInstance.cancelText = cancelText || 'Cancelar';
     dialogRef.componentInstance.onChanges = onChanges || false;
 
+    if (onChanges) {
+      console.log('🚀 ~ file: twa-dialogs.module.ts ~ line 114 ~ TWADialogsModule ~ onChanges', onChanges);
+      dialogRef.componentInstance.setOnChanges();
+    }
     // onSubmit = dialogRef.componentInstance.getFormSubmitEv().subscribe(item => {
     //     dialogRef.componentInstance.result = item;
     // });
